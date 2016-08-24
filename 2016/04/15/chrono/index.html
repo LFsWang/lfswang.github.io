@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="canonical" href="https://lfswang.github.io" />
+  <script>
+  var getLocation = function(href) {
+    var l = document.createElement("a");
+    l.href = href;
+    return l;
+  };
+  var host = getLocation("https://lfswang.github.io").hostname;
+  if ((host == window.location.host) && (window.location.protocol != "https:"))
+    window.location.protocol = "https";
+  </script>
+  
+  <title>Chrono 通用的時間處裡方法 | LFsWang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="C++11 std::chrono 時間和日期的操作介面除了可以使用舊有的C函數之外，在C++11後標準提供了chrono，帶來了全新統一的處理方法。個人私下關注的一個專案，內部的計時器即是以此為基礎所製作出來的，在舊的C++中若想使用此功能的話，可以考慮使用c++ boost chrono，在boost的版本中，提供了其他未納入標準的功能(如IO處理)。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chrono 通用的時間處裡方法">
+<meta property="og:url" content="https://lfswang.github.io/2016/04/15/chrono/index.html">
+<meta property="og:site_name" content="LFsWang">
+<meta property="og:description" content="C++11 std::chrono 時間和日期的操作介面除了可以使用舊有的C函數之外，在C++11後標準提供了chrono，帶來了全新統一的處理方法。個人私下關注的一個專案，內部的計時器即是以此為基礎所製作出來的，在舊的C++中若想使用此功能的話，可以考慮使用c++ boost chrono，在boost的版本中，提供了其他未納入標準的功能(如IO處理)。">
+<meta property="og:image" content="https://lfswang.github.io/2016/04/15/chrono/Xtime_get_ticks.PNG">
+<meta property="og:image" content="https://lfswang.github.io/2016/04/15/chrono/Query_perf_counter.PNG">
+<meta property="og:image" content="https://lfswang.github.io/2016/04/15/chrono/tdm_gcc5.1_system_clock.PNG">
+<meta property="og:image" content="https://lfswang.github.io/2016/04/15/chrono/reverse_clock_gettime_0.PNG">
+<meta property="og:image" content="https://lfswang.github.io/2016/04/15/chrono/reverse_clock_gettime_1.PNG">
+<meta property="og:updated_time" content="2016-04-18T18:24:05.010Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chrono 通用的時間處裡方法">
+<meta name="twitter:description" content="C++11 std::chrono 時間和日期的操作介面除了可以使用舊有的C函數之外，在C++11後標準提供了chrono，帶來了全新統一的處理方法。個人私下關注的一個專案，內部的計時器即是以此為基礎所製作出來的，在舊的C++中若想使用此功能的話，可以考慮使用c++ boost chrono，在boost的版本中，提供了其他未納入標準的功能(如IO處理)。">
+<meta name="twitter:image" content="https://lfswang.github.io/2016/04/15/chrono/Xtime_get_ticks.PNG">
+  
+    <link rel="alternative" href="/atom.xml" title="LFsWang" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/LFS.jpg">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="https://www.gravatar.com/avatar/9dbf1cde5c869bc167a1b47179010378?s=400" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/">LFsWang</a></h1>
+        </hgroup>
+
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>選單</li>
+                        <li>Tags</li>
+                        
+                        <li>友站連結</li>
+                        
+                        
+                        <li>關於</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/LFsWang" title="github">github</a>
+                            
+                                <a class="fl facebook" target="_blank" href="https://www.facebook.com/Sylveon-1580376772211056/?ref=bookmarks" title="facebook">facebook</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/Basic-C/" style="font-size: 10px;">Basic C++</a> <a href="/tags/C-11/" style="font-size: 20px;">C++11</a> <a href="/tags/C-14/" style="font-size: 15px;">C++14</a> <a href="/tags/C-17/" style="font-size: 20px;">C++17</a> <a href="/tags/Chrono/" style="font-size: 10px;">Chrono</a> <a href="/tags/cf707/" style="font-size: 10px;">cf707</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://tfcis.org">TFcis</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">LFs!?</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到首頁">LFsWang</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="https://www.gravatar.com/avatar/9dbf1cde5c869bc167a1b47179010378?s=400" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到首頁">LFsWang</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="https://github.com/LFsWang" title="github">github</a>
+                    
+                        <a class="facebook" target="_blank" href="https://www.facebook.com/Sylveon-1580376772211056/?ref=bookmarks" title="facebook">facebook</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-chrono" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/04/15/chrono/" class="article-date">
+      <time datetime="2016-04-15T15:41:32.000Z" itemprop="datePublished">2016-04-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Chrono 通用的時間處裡方法
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/C/">C++</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-11/">C++11</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-14/">C++14</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-17/">C++17</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Chrono/">Chrono</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="C-11-std-chrono-時間和日期的操作介面"><a href="#C-11-std-chrono-時間和日期的操作介面" class="headerlink" title="C++11 std::chrono 時間和日期的操作介面"></a>C++11 std::chrono 時間和日期的操作介面</h1><p>除了可以使用舊有的C函數之外，在C++11後標準提供了chrono，帶來了全新統一的處理方法。個人私下關注的一個專案，內部的計時器即是以此為基礎所製作出來的，在舊的C++中若想使用此功能的話，可以考慮使用<code>c++ boost chrono</code>，在boost的版本中，提供了其他未納入標準的功能(如IO處理)。</p>
+<a id="more"></a>
+<p>chrono對於時間的管理是十分有彈性的，允許使用不同的計時單位，並在各單位間做精準的單位換算。也被應用在C++11多線程調控；內置的高精準時鐘也解決了跨平台計時的問題，在STD的版本中，可搭配C函數來進行格式化輸出，入門難度筆者認為是中偏易，需特別小心在單位轉換上的限制與數值精準度的掌控。</p>
+<p>std::chrono總共提供了3個主要的功能，下面逐一地介紹與詳解：</p>
+<ul>
+<li>Duration 單位量長度的表示單位</li>
+<li>Clocks 時鐘</li>
+<li>Time point 用於表示點的類別</li>
+</ul>
+<h2 id="Duration"><a href="#Duration" class="headerlink" title="Duration"></a>Duration</h2><p><code>std::chrono::duration</code>用於表示一個時程(time interval)，可於宣告時決定一個單位與標準單位的比例。提供了不同單位下的轉換介面，以便撰寫程式時可以使用更接近需求的單位，避免邏輯上的錯誤。</p>
+<h3 id="類別定義"><a href="#類別定義" class="headerlink" title="類別定義"></a>類別定義</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span>&lt;</div><div class="line">    <span class="keyword">class</span> Rep, </div><div class="line">    <span class="keyword">class</span> Period = <span class="built_in">std</span>::ratio&lt;<span class="number">1</span>&gt; </div><div class="line">&gt; <span class="keyword">class</span> duration;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>名稱</th>
+<th>型態</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rep</td>
+<td>基本算數型態</td>
+<td>用於表示單位(ticks)數字的型態</td>
+</tr>
+<tr>
+<td>Period</td>
+<td><a href="http://en.cppreference.com/w/cpp/numeric/ratio/ratio" target="_blank" rel="external">實數 std::ratio</a></td>
+<td>每1單位Rep與標準單位的比例。在預設的時間處裡上是以秒(second)作為基本單位</td>
+</tr>
+</tbody>
+</table>
+<p>我們可以利用Period這一個參數來完成單位轉換的功能，下面提供一個範例，用於轉換公尺(m)與公厘(mm)，並以公分(cm)作為標準單位。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;chrono&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ratio&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">using</span> meter      = <span class="built_in">std</span>::chrono::duration&lt;<span class="keyword">int</span>,<span class="built_in">std</span>::ratio&lt;<span class="number">100</span>&gt;&gt;; <span class="comment">//1m = 100cm</span></div><div class="line">    <span class="keyword">using</span> millimeter = <span class="built_in">std</span>::chrono::duration&lt;<span class="keyword">int</span>,<span class="built_in">std</span>::ratio&lt;<span class="number">1</span>,<span class="number">10</span>&gt;&gt;;<span class="comment">//1mm= 0.1cm</span></div><div class="line">    </div><div class="line">    <span class="keyword">int</span> len = <span class="number">5</span>;</div><div class="line">    </div><div class="line">    <span class="function">meter <span class="title">lenth</span><span class="params">(len)</span></span>;        <span class="comment">// 5 meter</span></div><div class="line">    <span class="function">millimeter <span class="title">trans</span><span class="params">(lenth)</span></span>; <span class="comment">// turn to millimeter</span></div><div class="line">    </div><div class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span>&lt;&lt; len &lt;&lt; <span class="string">"m = "</span> &lt;&lt; trans.count() &lt;&lt; <span class="string">"mm"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>程式碼使用了成員函數<a href="#成員函數列表">count()</a>來輸出duration存有多少個單位(ticks)。輸出結果如下：</p>
+<blockquote>
+<p>5m = 5000mm</p>
+</blockquote>
+<h3 id="成員列表"><a href="#成員列表" class="headerlink" title="成員列表"></a>成員列表</h3><table>
+<thead>
+<tr>
+<th>名稱</th>
+<th>備註</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(constructor)</td>
+<td>建構子</td>
+<td>建構子</td>
+</tr>
+<tr>
+<td>operator=</td>
+<td></td>
+<td>設定運算子</td>
+</tr>
+<tr>
+<td>count()</td>
+<td></td>
+<td>回傳儲存了多少單位(ticks)</td>
+</tr>
+<tr>
+<td>zero</td>
+<td>static</td>
+<td>表示0單位量，數值等於<code>Rep(0)</code></td>
+</tr>
+<tr>
+<td>min</td>
+<td>static</td>
+<td>表示最小能表示的單位量，數值等於<code>std::numeric_limits&lt;Rep&gt;::lowest()</code></td>
+</tr>
+<tr>
+<td>max</td>
+<td>static</td>
+<td>表示最大能表示的單位量，數值等於<code>std::numeric_limits&lt;Rep&gt;::max()</code></td>
+</tr>
+<tr>
+<td>算數運算子</td>
+<td></td>
+<td>包含 <code>一元+ 一元- + - * / % ++ -- += *= /= %=</code>，與同等介面的外部函數，如果Rep可支援該運算的話。</td>
+</tr>
+</tbody>
+</table>
+<p>duration最強大的功能在於不同類型間的duration運算時的轉換，因此使用時務必熟知建構子、設定運算子以及算術運算子的規則，接下來將會深入的講解這幾個的運作標準，若僅想概覽功能的讀者可以跳到：<a href="#duration-輔助方法">輔助</a></p>
+<h4 id="duration-建構子與設定運算子"><a href="#duration-建構子與設定運算子" class="headerlink" title="duration 建構子與設定運算子"></a>duration 建構子與設定運算子</h4><p>duration建構子，除了有預設(default)的建構子，拷貝建構子，還具有下兩種形式。設定運算子是預設(default)的。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span>&lt; <span class="keyword">class</span> Rep2 &gt;</div><div class="line"><span class="function"><span class="keyword">constexpr</span> <span class="keyword">explicit</span> <span class="title">duration</span><span class="params">( <span class="keyword">const</span> Rep2&amp; r )</span></span>;</div><div class="line"></div><div class="line"><span class="keyword">template</span>&lt; <span class="keyword">class</span> Rep2, <span class="keyword">class</span> Period2 &gt;</div><div class="line"><span class="function"><span class="keyword">constexpr</span> <span class="title">duration</span><span class="params">( <span class="keyword">const</span> duration&lt;Rep2,Period2&gt;&amp; d )</span></span>;</div></pre></td></tr></table></figure></p>
+<p>在上兩個建構子中，對於型態上有所限制，將兩個不同Rep的duration賦值時須遵守：</p>
+<ol>
+<li>Rep2可以被隱式(implicitly convertibl)轉換為Rep</li>
+<li>Rep是小數型態，或Rep2是非小數型態</li>
+</ol>
+<p>第一點沒什麼太特別的問題，是為了確保兩者間是能運算的，第二點比較難以理解一點，簡而言之，你不能把整數轉換至小數的型態。因此<code>duration&lt;double&gt; a = duration&lt;int&gt;(1);</code>是不合法的。</p>
+<p>對於不同的Period，也需<strong>滿足下面條件的其中一點</strong>：</p>
+<ul>
+<li>Rep是小數型態</li>
+<li>Rep2是非小數型態，且Period2是Period的整數倍。</li>
+</ul>
+<p>所以上方的範例程式碼中，可以把<code>meter</code>設定給<code>millimeter</code>，但是如果換過來把<code>millimeter</code>設定給<code>meter</code>是不合法的，因為<code>0.1</code>不是<code>100</code>的整數倍。</p>
+<p>若有使用的需求，要突破上面限制的話，應使用<code>std::chrono::duration_cast</code>來做型別轉換，功能類似於<code>static_cast</code>，內部實作上會盡可能避免除法以達到最佳精確度的要求。</p>
+<p>統整上方規則，預設的基本型態數值設定：</p>
+<blockquote>
+<p>你可以</p>
+<ul>
+<li>小單位(整數) = 大單位(整數)</li>
+<li>任意單位(小數) = 任意單位</li>
+</ul>
+<p>你不可以</p>
+<ul>
+<li>大單位(整數) = 小單位(整數)</li>
+<li>任意單位(整數) = 任意單位(小數)</li>
+</ul>
+</blockquote>
+<p>duration判斷小數使用的是<code>std::chrono::treat_as_floating_point&lt;T&gt;</code>，繼承自<code>std::is_floating_point&lt;T&gt;</code>。</p>
+<p>duration判斷整除使用的是<code>std::ratio_divide&lt;Period2, period&gt;::den == 1</code>。</p>
+<h4 id="duration-算術運算子"><a href="#duration-算術運算子" class="headerlink" title="duration 算術運算子"></a>duration 算術運算子</h4><p>如果你想用<code>auto</code>來自動判別duration計算完的結果，那這個章節非常重要，因為轉換的規則相當的複雜。這裡使用了特化的<code>std::common_type&lt;std::chrono::duration&gt;</code>來判別計算完的型態。計算完成的duration<code>Rep</code>等於<code>std::common_type&lt;Rep,Rep2&gt;</code>，而<code>Period</code>等於Period與Period2的<code>最大公因數(GCD)</code>，計算方法在標準書有提供Note可以參考。</p>
+<blockquote><p>This can be computed by forming a ratio of the greatest common divisor of Period1::num and Period2::num and the least common multiple of Period1::den and Period2::den.</p>
+<footer><strong>Working Draft </strong><cite>Standard for Programming Language C++ 20.12.4.3 Specializations of common_type</cite></footer></blockquote>
+<p>下方用<code>CD</code>簡易表示<code>std::common_type&lt;A,B&gt;</code>。</p>
+<ul>
+<li>L表示左邊的duration</li>
+<li>R表示右邊的duration</li>
+<li>d表示任意的duration</li>
+<li>s表示一個表示單位(tick)的數值</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>運算子</th>
+<th>返回型態</th>
+<th>備註</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L+R</td>
+<td><code>CD(CD(L).count() + CD(R).count())</code></td>
+<td></td>
+</tr>
+<tr>
+<td>L-R</td>
+<td><code>CD(CD(L).count() - CD(R).count())</code></td>
+<td></td>
+</tr>
+<tr>
+<td>s*d 或 d*s</td>
+<td><code>CD(CD(d).count() * s)</code></td>
+<td>duration只能乘以純量</td>
+</tr>
+<tr>
+<td>L/s</td>
+<td><code>CD(CD(d).count() / s)</code></td>
+<td>duration除以純量還是duration</td>
+</tr>
+<tr>
+<td>L/R</td>
+<td><code>CD(L).count() / CD(R).count()</code></td>
+<td>duration除以duration是純量</td>
+</tr>
+<tr>
+<td>L%s</td>
+<td><code>CD(CD(L).count() % CD(R).count())</code></td>
+<td>duration對純量取餘數是duration</td>
+</tr>
+<tr>
+<td>L%R</td>
+<td><code>CD(CD(d).count() % s)</code></td>
+<td>duration對duration取餘數是duration</td>
+</tr>
+</tbody>
+</table>
+<p>比較運算皆是先轉換為<code>CD(L,R)</code>後，再使用<code>count()</code>來進行比較。</p>
+<h3 id="duration-輔助方法"><a href="#duration-輔助方法" class="headerlink" title="duration 輔助方法"></a>duration 輔助方法</h3><p>可查閱<a href="http://en.cppreference.com/w/cpp/chrono/duration" target="_blank" rel="external">cpp reference duration</a>，有預先定義<code>milliseconds</code>、<code>seconds</code>、<code>minutes</code>等等常用時間單位，並可使用<code>1s</code>，<code>10min</code>等Literals來表示<code>seconds(1)</code>與<code>minutes(10)</code>(C++14)。</p>
+<h4 id="輔助函數"><a href="#輔助函數" class="headerlink" title="輔助函數"></a>輔助函數</h4><table>
+<thead>
+<tr>
+<th>名稱</th>
+<th></th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>duration_cast<t>()</t></td>
+<td></td>
+<td>類似<code>static_cast</code>，用於型別轉換，若小數轉換為整數，整數無法表示該小數時，為未定義行為(undefined behavior)</td>
+</tr>
+<tr>
+<td>floor()</td>
+<td><code>C++17</code></td>
+<td>incomplete implementation</td>
+</tr>
+<tr>
+<td>ceil()</td>
+<td><code>C++17</code></td>
+<td>incomplete implementation</td>
+</tr>
+<tr>
+<td>round()</td>
+<td><code>C++17</code></td>
+<td>incomplete implementation</td>
+</tr>
+<tr>
+<td>abs()</td>
+<td><code>C++17</code></td>
+<td>incomplete implementation</td>
+</tr>
+</tbody>
+</table>
+<h3 id="版本變更與註記"><a href="#版本變更與註記" class="headerlink" title="版本變更與註記"></a>版本變更與註記</h3><ul>
+<li>C++11 正式加入</li>
+<li>C++14 加入一些literal representing(h,min,s,ms,us,ns)</li>
+<li>C++17 加入一些算術函數</li>
+</ul>
+<h2 id="Clocks"><a href="#Clocks" class="headerlink" title="Clocks"></a>Clocks</h2><p>Clocks題供了比C函數<code>clock()</code>解析度更高的時鐘，下面是標準規範的三種不同時鐘類別：</p>
+<table>
+<thead>
+<tr>
+<th>名稱</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>std::chrono::system_clock</td>
+<td>表示系統層級的時鐘</td>
+</tr>
+<tr>
+<td>std::chrono::steady_clock</td>
+<td>保證每次取值單調遞增的時鐘</td>
+</tr>
+<tr>
+<td>std::chrono::high_resolution_clock</td>
+<td>表示該系統上可使用解析度最高的時鐘</td>
+</tr>
+</tbody>
+</table>
+<p>由於有些作業系統可以調整時間，因此可能發生取值時，後取的時間比先取的還來的早，因此<code>steady_clock</code>可能使用其他測量方法(例：計算開機後經過的時間)，來保證遞增的性質。這些類別取值(<code>now()</code>)的回傳型態是time_point，將在下一章講解。</p>
+<p>三個類別的介面一致，皆是靜態類別，使用時不需額外宣告，詳細構造可參考<a href="http://en.cppreference.com/w/cpp/concept/TrivialClock" target="_blank" rel="external">C++ concepts: TrivialClock</a></p>
+<h3 id="成員列表-1"><a href="#成員列表-1" class="headerlink" title="成員列表"></a>成員列表</h3><table>
+<thead>
+<tr>
+<th>名稱</th>
+<th>備註</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>rep</td>
+<td>type 算術型態</td>
+<td>Clock用於存放標準單位的型態</td>
+</tr>
+<tr>
+<td>period</td>
+<td>type std::ratio</td>
+<td>rep與1秒的比例 ( Clock一個rep是多少秒 )</td>
+</tr>
+<tr>
+<td>duration</td>
+<td>type duration</td>
+<td><code>duration&lt;rep,period&gt;</code></td>
+</tr>
+<tr>
+<td>time_point</td>
+<td>type time_point</td>
+<td><code>time_point&lt;Clocks used&gt;</code></td>
+</tr>
+<tr>
+<td>is_steady</td>
+<td>static constexpr bool</td>
+<td>表示該Clock是否保證<code>now()</code>取值單調遞增，其值視實作環境。<code>steady_clock</code>恆為<code>true</code></td>
+</tr>
+<tr>
+<td>now()</td>
+<td>static time_point</td>
+<td>回傳目前時間點(time_point)</td>
+</tr>
+<tr>
+<td>to_time_t(time_point)</td>
+<td>static time_t</td>
+<td>由C++的time_point轉換C函數的時間類型</td>
+</tr>
+<tr>
+<td>from_time_t(time_t)</td>
+<td>static time_point</td>
+<td>由C函數的時間類型轉換為C++的time_point</td>
+</tr>
+</tbody>
+</table>
+<p>下面的範例來檢視每一個時鐘的精準度，在筆者電腦<code>Win10 x64 GCC5.1</code>上皆是1奈秒。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;chrono&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%.9f sec\n"</span>,<span class="keyword">static_cast</span>&lt;<span class="keyword">double</span>&gt;(T::period::num)/T::period::den);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    show&lt;<span class="built_in">std</span>::chrono::system_clock&gt;();</div><div class="line">    show&lt;<span class="built_in">std</span>::chrono::steady_clock&gt;();</div><div class="line">    show&lt;<span class="built_in">std</span>::chrono::high_resolution_clock&gt;();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>輸出可能隨環境而有差異。</p>
+<blockquote>
+<p>0.000000001 sec<br>0.000000001 sec<br>0.000000001 sec</p>
+</blockquote>
+<h3 id="實作備註"><a href="#實作備註" class="headerlink" title="實作備註"></a>實作備註</h3><p>筆者翻閱了VC++2015的原始碼與GCC5.1的來比較，發現了下幾點，更新網路上過時的資訊，測試系統為Win10 x64</p>
+<h4 id="VC-2015"><a href="#VC-2015" class="headerlink" title="VC++2015"></a>VC++2015</h4><ul>
+<li>system_clock::now() 呼叫<code>_Xtime_get_ticks</code>對應到WinAPI：<code>GetSystemTimePreciseAsFileTime</code>/<code>GetSystemTimeAsFileTime</code> (前者需求Win8以上)</li>
+</ul>
+<img src="/2016/04/15/chrono/Xtime_get_ticks.PNG" alt="Xtime_get_ticks逆向結果" title="Xtime_get_ticks逆向結果">
+<ul>
+<li>high_resolution_clock與steady_clock相等，對應到WinAPI：<code>QueryPerformanceCounter</code></li>
+</ul>
+<img src="/2016/04/15/chrono/Query_perf_counter.PNG" alt="Query_perf_counter逆向結果" title="Query_perf_counter逆向結果">
+<h4 id="TDM-GCC-5-1"><a href="#TDM-GCC-5-1" class="headerlink" title="TDM GCC 5.1"></a>TDM GCC 5.1</h4><p>原文件只有寫Map to C API，經過一點逆向後，發現呼叫了<code>clock_gettime</code></p>
+<ul>
+<li>high_resolution_clock與system_clock相等，呼叫clock_gettime(0,&amp;v3)，更進一步追蹤，發現使用WinAPI : <code>GetSystemTimeAsFileTime</code></li>
+</ul>
+<img src="/2016/04/15/chrono/tdm_gcc5.1_system_clock.PNG" alt="system_clock逆向結果" title="system_clock逆向結果">
+<img src="/2016/04/15/chrono/reverse_clock_gettime_0.PNG" alt="clock_gettime節錄" title="clock_gettime節錄">
+<ul>
+<li>steady_clock 呼叫clock_gettime(1,&amp;v3)，使用WinAPI：<code>QueryPerformanceCounter</code></li>
+</ul>
+<img src="/2016/04/15/chrono/reverse_clock_gettime_1.PNG" alt="clock_gettime節錄" title="clock_gettime節錄">
+<h4 id="比較"><a href="#比較" class="headerlink" title="比較"></a>比較</h4><p><code>GetSystemTimePreciseAsFileTime</code>具有號稱1微秒的精準度，是文件計時函數中最佳的精準度，但實際測試上卻是遠不及這個理想數據。網路上有許多這函數的比較與測試，在MSDN的說明頁提到<code>GetSystemTimePreciseAsFileTime</code>最佳狀況是用來精確度量日(time of day)或是用來同步時間，高精準測量應使用<code>QueryPerformanceCounter</code>。定義上<code>high_resolution_clock</code>要用系統最精確的時間，GCC用的是文件上的最佳，VC++用的實際上的最佳，導致用gcc編譯出的high_resolution_clock精準度比steady_clock低，實在是非常神奇。</p>
+<h2 id="Time-point"><a href="#Time-point" class="headerlink" title="Time point"></a>Time point</h2><p>用來表示時間點的類別，內部使用的型態與樣板參數傳入的Clocks一致，不再贅述，提供了一些算術上的函數可供使用。</p>
+<h3 id="標準定義"><a href="#標準定義" class="headerlink" title="標準定義"></a>標準定義</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span>&lt; </div><div class="line">    <span class="keyword">class</span> Clock, </div><div class="line">    <span class="keyword">class</span> Duration = <span class="keyword">typename</span> Clock::duration </div><div class="line">&gt; <span class="keyword">class</span> time_point;</div></pre></td></tr></table></figure>
+<h3 id="成員列表-2"><a href="#成員列表-2" class="headerlink" title="成員列表"></a>成員列表</h3><table>
+<thead>
+<tr>
+<th>名稱</th>
+<th>備註</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(constructor)</td>
+<td>建構子</td>
+<td>建構子</td>
+</tr>
+<tr>
+<td>time_since_epoch()</td>
+<td>duration</td>
+<td>回傳該時間點與計時原點(可能是<code>1970/1/1 00:00:00</code>)間所經過的時間</td>
+</tr>
+<tr>
+<td>加減運算子</td>
+<td></td>
+<td>可以與duration將加減，或是與另一個time_point運算</td>
+</tr>
+<tr>
+<td>比較運算子</td>
+<td></td>
+<td>比較兩個time_point表示時間點先後順序</td>
+</tr>
+<tr>
+<td>min</td>
+<td></td>
+<td>最小可表示的time_point，受Duration::min()影響</td>
+</tr>
+<tr>
+<td>max</td>
+<td></td>
+<td>最大可表示的time_point，受Duration::max()影響</td>
+</tr>
+</tbody>
+</table>
+<h4 id="time-point-加減運算子"><a href="#time-point-加減運算子" class="headerlink" title="time_point 加減運算子"></a>time_point 加減運算子</h4><ul>
+<li>time_point 與 duration加減時，表示將該時間點位移duration的長度，回傳time_point，型態Duration是兩者的common_type</li>
+<li>time_point 與 time_point 相減時，表示兩時間點間的長度，回傳duration，型態是兩者duration的common_type</li>
+</ul>
+<h3 id="輔助方法"><a href="#輔助方法" class="headerlink" title="輔助方法"></a>輔助方法</h3><p>可查閱<a href="http://en.cppreference.com/w/cpp/chrono/time_point" target="_blank" rel="external">cpp reference time_point</a></p>
+<h4 id="輔助函數-1"><a href="#輔助函數-1" class="headerlink" title="輔助函數"></a>輔助函數</h4><table>
+<thead>
+<tr>
+<th>名稱</th>
+<th></th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>std::common_type<t>()</t></td>
+<td></td>
+<td>類似<code>static_cast</code>，用於型別轉換，內部呼叫<code>duration_cast</code>進行處裡。</td>
+</tr>
+<tr>
+<td>floor()</td>
+<td><code>C++17</code></td>
+<td>incomplete implementation</td>
+</tr>
+<tr>
+<td>ceil()</td>
+<td><code>C++17</code></td>
+<td>incomplete implementation</td>
+</tr>
+<tr>
+<td>round()</td>
+<td><code>C++17</code></td>
+<td>incomplete implementation</td>
+</tr>
+</tbody>
+</table>
+<h3 id="版本變更與註記-1"><a href="#版本變更與註記-1" class="headerlink" title="版本變更與註記"></a>版本變更與註記</h3><ul>
+<li>C++14 運算子加上constexpr修飾</li>
+<li>C++17 加入一些算術函數</li>
+</ul>
+<h1 id="範例"><a href="#範例" class="headerlink" title="範例"></a>範例</h1><h2 id="計時器"><a href="#計時器" class="headerlink" title="計時器"></a>計時器</h2><p>一個簡單的小範例，來示範計時器，這份Code使用VC++ 2015編譯執行，TDM GCC5.1在Windows上Clock的表現慘不忍睹，驗證了逆向的結果，看下方輸出就知道了。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;chrono&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;numeric&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iomanip&gt;</span></span></div><div class="line"><span class="keyword">const</span> <span class="keyword">size_t</span> max_size = <span class="number">1000000000u</span>ll;</div><div class="line"><span class="comment">//簡化一些名稱 </span></div><div class="line"><span class="keyword">using</span> <span class="built_in">std</span>::chrono::high_resolution_clock;</div><div class="line"><span class="keyword">using</span> <span class="built_in">std</span>::chrono::duration;</div><div class="line"><span class="keyword">volatile</span> <span class="keyword">int</span> value;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="built_in">std</span>::fixed &lt;&lt; <span class="built_in">std</span>::setprecision(<span class="number">9</span>);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">1</span>;i&lt;max_size;i *= <span class="number">100</span>)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">auto</span> s = high_resolution_clock::now();</div><div class="line"></div><div class="line">        <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v(i, <span class="number">87</span>);</div><div class="line">        value = <span class="built_in">std</span>::accumulate(v.begin(), v.end(), <span class="number">0</span>);</div><div class="line"></div><div class="line">        <span class="keyword">auto</span> e = high_resolution_clock::now();</div><div class="line">        duration&lt;<span class="keyword">double</span>&gt; diff = e - s;</div><div class="line">        <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"accumulate "</span> &lt;&lt; <span class="built_in">std</span>::setw(<span class="number">9</span>) &lt;&lt; i &lt;&lt; <span class="string">" data use:"</span> </div><div class="line">                  &lt;&lt; diff.count() &lt;&lt; <span class="string">"s"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>VC++ 2015</p>
+<blockquote>
+<p>accumulate         1 data use:0.000001973s<br>accumulate       100 data use:0.000001974s<br>accumulate     10000 data use:0.000035921s<br>accumulate   1000000 data use:0.002394880s<br>accumulate 100000000 data use:0.257675991s</p>
+</blockquote>
+<p>TDM GCC 5.1</p>
+<blockquote>
+<p>accumulate         1 data use:0.000000000s<br>accumulate       100 data use:0.000000000s<br>accumulate     10000 data use:0.000000000s<br>accumulate   1000000 data use:0.002004100s<br>accumulate 100000000 data use:0.203404600s</p>
+</blockquote>
+<h1 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h1><ul>
+<li><a href="http://en.cppreference.com/w/cpp/chrono" target="_blank" rel="external">Cppreference chrono</a></li>
+<li><a href="https://github.com/cplusplus/draft/releases/tag/n4140" target="_blank" rel="external">C++ standards drafts n4140 20.12</a></li>
+<li><a href="https://kheresy.wordpress.com/2013/12/27/c-stl-chrono/" target="_blank" rel="external">C++11 STL 的時間函式庫：chrono</a></li>
+<li><a href="http://www.ahlinux.com/c/23415.html" target="_blank" rel="external">C++11时间详解</a></li>
+<li><a href="https://msdn.microsoft.com/zh-tw/library/windows/desktop/hh706895.aspx" target="_blank" rel="external">MSDN GetSystemTimePreciseAsFileTime</a></li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>文章標題:</span><a href="/2016/04/15/chrono/">Chrono 通用的時間處裡方法</a></p>
+        <p><span>文章作者:</span><a href="/" title="檢視 LFsWang 的個人網頁">LFsWang</a></p>
+        <p><span>發表時間:</span>2016年04月15日 - 23時41分</p>
+        <p><span>最後更新:</span>2016年04月19日 - 02時24分</p>
+        <p>
+            <span>原始連結:</span><a class="post-url" href="/2016/04/15/chrono/" title="Chrono 通用的時間處裡方法">https://lfswang.github.io/2016/04/15/chrono/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://lfswang.github.io/2016/04/15/chrono/　　作者: LFsWang" title="點擊複製文章連結"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>授權協議:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/3.0/tw/" title="CC BY-NC-SA 3.0 TW" target = "_blank">"創用 CC 姓名標示-非商業性-相同方式分享 3.0 台灣 授權條款。</a>
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2016/04/19/hash/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          std::hash 標準雜湊介面
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目錄</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#C-11-std-chrono-時間和日期的操作介面"><span class="toc-number">1.</span> <span class="toc-text">C++11 std::chrono 時間和日期的操作介面</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Duration"><span class="toc-number">1.1.</span> <span class="toc-text">Duration</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#類別定義"><span class="toc-number">1.1.1.</span> <span class="toc-text">類別定義</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#成員列表"><span class="toc-number">1.1.2.</span> <span class="toc-text">成員列表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#duration-建構子與設定運算子"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">duration 建構子與設定運算子</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#duration-算術運算子"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">duration 算術運算子</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#duration-輔助方法"><span class="toc-number">1.1.3.</span> <span class="toc-text">duration 輔助方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#輔助函數"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">輔助函數</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#版本變更與註記"><span class="toc-number">1.1.4.</span> <span class="toc-text">版本變更與註記</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Clocks"><span class="toc-number">1.2.</span> <span class="toc-text">Clocks</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#成員列表-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">成員列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#實作備註"><span class="toc-number">1.2.2.</span> <span class="toc-text">實作備註</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#VC-2015"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">VC++2015</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TDM-GCC-5-1"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">TDM GCC 5.1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#比較"><span class="toc-number">1.2.2.3.</span> <span class="toc-text">比較</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Time-point"><span class="toc-number">1.3.</span> <span class="toc-text">Time point</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#標準定義"><span class="toc-number">1.3.1.</span> <span class="toc-text">標準定義</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#成員列表-2"><span class="toc-number">1.3.2.</span> <span class="toc-text">成員列表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#time-point-加減運算子"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">time_point 加減運算子</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#輔助方法"><span class="toc-number">1.3.3.</span> <span class="toc-text">輔助方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#輔助函數-1"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">輔助函數</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#版本變更與註記-1"><span class="toc-number">1.3.4.</span> <span class="toc-text">版本變更與註記</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#範例"><span class="toc-number">2.</span> <span class="toc-text">範例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#計時器"><span class="toc-number">2.1.</span> <span class="toc-text">計時器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#參考資料"><span class="toc-number">3.</span> <span class="toc-text">參考資料</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隱藏目錄"  title="點擊按鈕隱藏或者顯示文章目錄">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隱藏目錄";
+    var valueShow = "顯示目錄";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+
+
+    
+        <section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'lfswang'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/04/19/hash/" title="上一篇: std::hash 標準雜湊介面">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/" title="回到首頁"><i class="fa fa-home"></i></a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/08/24/CF707/">CF707</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/16/TIS-100-31904-Sequence-counter/">TIS-100 Sequence counter</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/16/as-if-rule/">as-if-rule</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/17/range-for/">Range For C++11的範圍表達迴圈</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/19/hash/">std::hash 標準雜湊介面</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/chrono/">Chrono 通用的時間處裡方法</a></li></ul>
+    <script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2016 LFsWang
+            </div>
+            <div class="footer-right">
+                <a href="https://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div>
+        </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76508444-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
