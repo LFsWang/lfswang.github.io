@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <link rel="canonical" href="https://lfswang.github.io" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script>
   var getLocation = function(href) {
     var l = document.createElement("a");
@@ -71,6 +72,8 @@
         </hgroup>
 
         
+        <p class="header-subtitle">Something awesome</p>
+        
         
         
             <div id="switch-btn" class="switch-btn">
@@ -136,7 +139,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/Basic-C/" style="font-size: 10px;">Basic C++</a> <a href="/tags/C-11/" style="font-size: 20px;">C++11</a> <a href="/tags/C-14/" style="font-size: 15px;">C++14</a> <a href="/tags/C-17/" style="font-size: 20px;">C++17</a> <a href="/tags/Chrono/" style="font-size: 10px;">Chrono</a> <a href="/tags/cf707/" style="font-size: 10px;">cf707</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a>
+                        <a href="/tags/Basic-C/" style="font-size: 10px;">Basic C++</a> <a href="/tags/C-11/" style="font-size: 20px;">C++11</a> <a href="/tags/C-14/" style="font-size: 15px;">C++14</a> <a href="/tags/C-17/" style="font-size: 20px;">C++17</a> <a href="/tags/Chrono/" style="font-size: 10px;">Chrono</a> <a href="/tags/Codeforces/" style="font-size: 15px;">Codeforces</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a>
                     </div>
                 </section>
                 
@@ -146,6 +149,8 @@
                     <div id="js-friends">
                     
                       <a target="_blank" class="main-nav-link switch-friends-link" href="http://tfcis.org">TFcis</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://www.csie.ntu.edu.tw/~b04902114/blog/">johnchen902&#39;s Blog</a>
                     
                     </div>
                 </section>
@@ -179,6 +184,8 @@
             <hgroup>
               <h1 class="header-author"><a href="/" title="回到首頁">LFsWang</a></h1>
             </hgroup>
+            
+            <p class="header-subtitle">Something awesome</p>
             
             <nav class="header-menu">
                 <ul>
@@ -297,7 +304,15 @@
 </footer>
 
     </div>
-    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.min.js"></script>
+<script>
+requirejs.config({
+    "baseUrl": "/",
+    "paths": {
+      "jquery": "//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min"
+    }
+});
+</script>
 <script src="/js/main.js"></script>
 
     <script>
@@ -361,7 +376,6 @@ MathJax.Hub.Queue(function() {
 </script>
 
     <button class="hide-labels">TAG 開關</button>
-    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js">
     </script>
     <script>
         $(document).ready(function() {

@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="canonical" href="https://lfswang.github.io" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script>
+  var getLocation = function(href) {
+    var l = document.createElement("a");
+    l.href = href;
+    return l;
+  };
+  var host = getLocation("https://lfswang.github.io").hostname;
+  if ((host == window.location.host) && (window.location.protocol != "https:"))
+    window.location.protocol = "https";
+  </script>
+  
+  <title>AIM Tech Round 3 (CF708,709) | LFsWang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Source &amp;amp; Problems : 
+
+AIM Tech Round 3 (Div. 1)
+AIM Tech Round 3 (Div. 2)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AIM Tech Round 3 (CF708,709)">
+<meta property="og:url" content="https://lfswang.github.io/2016/08/25/CF708-709/index.html">
+<meta property="og:site_name" content="LFsWang">
+<meta property="og:description" content="Source &amp;amp; Problems : 
+
+AIM Tech Round 3 (Div. 1)
+AIM Tech Round 3 (Div. 2)">
+<meta property="og:updated_time" content="2016-08-25T19:00:12.925Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AIM Tech Round 3 (CF708,709)">
+<meta name="twitter:description" content="Source &amp;amp; Problems : 
+
+AIM Tech Round 3 (Div. 1)
+AIM Tech Round 3 (Div. 2)">
+  
+    <link rel="alternative" href="/atom.xml" title="LFsWang" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/LFS.jpg">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="https://www.gravatar.com/avatar/9dbf1cde5c869bc167a1b47179010378?s=400" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/">LFsWang</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">Something awesome</p>
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>選單</li>
+                        <li>Tags</li>
+                        
+                        <li>友站連結</li>
+                        
+                        
+                        <li>關於</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/LFsWang" title="github">github</a>
+                            
+                                <a class="fl facebook" target="_blank" href="https://www.facebook.com/Sylveon-1580376772211056/?ref=bookmarks" title="facebook">facebook</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/Basic-C/" style="font-size: 10px;">Basic C++</a> <a href="/tags/C-11/" style="font-size: 20px;">C++11</a> <a href="/tags/C-14/" style="font-size: 15px;">C++14</a> <a href="/tags/C-17/" style="font-size: 20px;">C++17</a> <a href="/tags/Chrono/" style="font-size: 10px;">Chrono</a> <a href="/tags/Codeforces/" style="font-size: 15px;">Codeforces</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://tfcis.org">TFcis</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://www.csie.ntu.edu.tw/~b04902114/blog/">johnchen902&#39;s Blog</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">LFs!?</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到首頁">LFsWang</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="https://www.gravatar.com/avatar/9dbf1cde5c869bc167a1b47179010378?s=400" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到首頁">LFsWang</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">Something awesome</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="https://github.com/LFsWang" title="github">github</a>
+                    
+                        <a class="facebook" target="_blank" href="https://www.facebook.com/Sylveon-1580376772211056/?ref=bookmarks" title="facebook">facebook</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-CF708-709" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/25/CF708-709/" class="article-date">
+      <time datetime="2016-08-25T15:52:31.000Z" itemprop="datePublished">2016-08-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      AIM Tech Round 3 (CF708,709)
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Codeforces/">Codeforces</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Codeforces/">Codeforces</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>Source &amp; Problems : </p>
+<ul>
+<li><a href="http://codeforces.com/contest/708" target="_blank" rel="external">AIM Tech Round 3 (Div. 1)</a></li>
+<li><a href="http://codeforces.com/contest/709" target="_blank" rel="external">AIM Tech Round 3 (Div. 2)</a></li>
+</ul>
+<a id="more"></a>
+<h1 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h1><p>一時性起來寫，感覺看英文題比以前快了，第四題有兩個小bug沒發現就爆炸了…</p>
+<h1 id="題目細解"><a href="#題目細解" class="headerlink" title="題目細解"></a>題目細解</h1><h2 id="Juicer-709A"><a href="#Juicer-709A" class="headerlink" title="Juicer (709A)"></a>Juicer (709A)</h2><ul>
+<li>Easy</li>
+<li>模擬</li>
+</ul>
+<p>有一個榨汁機有容量$d$，能放大小小於等於$b$的水果，依序放水果進去榨，大小太大的不用理會，容量滿了要全部倒掉。問總共要倒掉幾次。</p>
+<h3 id="解題方法"><a href="#解題方法" class="headerlink" title="解題方法"></a>解題方法</h3><p>就模擬R。</p>
+<h3 id="參考程式碼"><a href="#參考程式碼" class="headerlink" title="參考程式碼"></a>參考程式碼</h3><p><a href="http://codeforces.com/contest/709/submission/20111230" target="_blank" rel="external">CF</a><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;   </div><div class="line">    <span class="keyword">int</span> N,B,W,in,left=<span class="number">0</span>,times=<span class="number">0</span>;</div><div class="line">    <span class="built_in">cin</span>&gt;&gt;N&gt;&gt;B&gt;&gt;W;</div><div class="line">    </div><div class="line">    <span class="keyword">while</span>(N--)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">cin</span>&gt;&gt;in;</div><div class="line">        <span class="keyword">if</span>( in&gt;B )<span class="keyword">continue</span>;</div><div class="line">        left+=in;</div><div class="line">        <span class="keyword">if</span>( left&gt;W )&#123;</div><div class="line">            left = <span class="number">0</span>;</div><div class="line">            times++;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt; times &lt;&lt;<span class="string">'\n'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Checkpoints-709B"><a href="#Checkpoints-709B" class="headerlink" title="Checkpoints (709B)"></a>Checkpoints (709B)</h2><ul>
+<li>Easy</li>
+<li>枚舉</li>
+</ul>
+<p>直線上有$N$個點，由一個任意位置出發，碰到至少$N-1$個點，最少要走多遠。</p>
+<h3 id="解題方法-1"><a href="#解題方法-1" class="headerlink" title="解題方法"></a>解題方法</h3><p>就走N-1的點，要嘛不要最左邊，要嘛不要最右邊，先向左、先向右。共4種情況，輕鬆搞定。</p>
+<h3 id="參考程式碼-1"><a href="#參考程式碼-1" class="headerlink" title="參考程式碼"></a>參考程式碼</h3><p><a href="http://codeforces.com/contest/709/submission/20113682" target="_blank" rel="external">CF</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">long</span> <span class="keyword">long</span> P[<span class="number">100000</span>];</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> N;</div><div class="line">    <span class="keyword">long</span> <span class="keyword">long</span> S;</div><div class="line">    <span class="built_in">cin</span>&gt;&gt;N&gt;&gt;S;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;++i)</div><div class="line">        <span class="built_in">cin</span>&gt;&gt;P[i];</div><div class="line">    <span class="keyword">if</span>( N==<span class="number">1</span> )&#123;</div><div class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="number">0</span>&lt;&lt;<span class="string">'\n'</span>;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    sort(P,P+N);</div><div class="line">    <span class="keyword">auto</span> LSR = <span class="built_in">abs</span>(S-P[<span class="number">1</span>])+<span class="built_in">abs</span>(P[<span class="number">1</span>]-P[N<span class="number">-1</span>]);</div><div class="line">    <span class="keyword">auto</span> LRS = <span class="built_in">abs</span>(S-P[<span class="number">0</span>])+<span class="built_in">abs</span>(P[<span class="number">0</span>]-P[N<span class="number">-2</span>]);</div><div class="line">    <span class="keyword">auto</span> RSL = <span class="built_in">abs</span>(S-P[N<span class="number">-2</span>])+<span class="built_in">abs</span>(P[N<span class="number">-2</span>]-P[<span class="number">0</span>]);</div><div class="line">    <span class="keyword">auto</span> RLS = <span class="built_in">abs</span>(S-P[N<span class="number">-1</span>])+<span class="built_in">abs</span>(P[N<span class="number">-1</span>]-P[<span class="number">1</span>]);</div><div class="line">    <span class="built_in">cout</span>&lt;&lt; min(&#123;LSR,LRS,RSL,RLS&#125;) &lt;&lt;<span class="string">'\n'</span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Letters-Cyclic-Shift-708A-709C"><a href="#Letters-Cyclic-Shift-708A-709C" class="headerlink" title="Letters Cyclic Shift (708A,709C)"></a>Letters Cyclic Shift (708A,709C)</h2><ul>
+<li>Easy</li>
+<li>構造</li>
+</ul>
+<p>給一個全小寫字母的字串，選擇一個非空的子字串，將其每一個字母位移-1單位($c\rightarrow b,b\rightarrow a,a\rightarrow z$ …etc)，問位移完後，字典序最小的字串為何。</p>
+<h3 id="解題方法-2"><a href="#解題方法-2" class="headerlink" title="解題方法"></a>解題方法</h3><p>除了$a\rightarrow z$，都會使字典序變小，因此把前面不是a的位移即可，如果都是a就把尾巴改成z</p>
+<h3 id="參考程式碼-2"><a href="#參考程式碼-2" class="headerlink" title="參考程式碼"></a>參考程式碼</h3><p><a href="http://codeforces.com/contest/709/submission/20116850" target="_blank" rel="external">CF</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">string</span> S,tmp,ans;</div><div class="line">    <span class="built_in">cin</span>&gt;&gt;S;</div><div class="line">    <span class="keyword">auto</span> pos = S.find_first_not_of(<span class="string">'a'</span>);</div><div class="line">    <span class="keyword">if</span>( pos == <span class="built_in">string</span>::npos )&#123;</div><div class="line">        S.back() = <span class="string">'z'</span>;</div><div class="line">    &#125;<span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">while</span>( pos&lt;S.size() &amp;&amp; S[pos]!=<span class="string">'a'</span> )</div><div class="line">            S[pos++]--;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;S&lt;&lt;<span class="string">'\n'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Recover-the-String-708B-709D"><a href="#Recover-the-String-708B-709D" class="headerlink" title="Recover the String (708B,709D)"></a>Recover the String (708B,709D)</h2><ul>
+<li>Easy</li>
+<li>構造</li>
+</ul>
+<p>有一個由0與1組成的字串，已知裡面的<em>子序列(subsequences)</em> ${00,01,10,11}$的數量有多少個，請構造一個符合條件的字串。</p>
+<h3 id="解題方法-3"><a href="#解題方法-3" class="headerlink" title="解題方法"></a>解題方法</h3><p>On going</p>
+<h3 id="參考程式碼-3"><a href="#參考程式碼-3" class="headerlink" title="參考程式碼"></a>參考程式碼</h3><p><a href="http://codeforces.com/contest/709/submission/20135324" target="_blank" rel="external">CF</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;   </div><div class="line">    ll a00,a01,a10,a11;</div><div class="line">    <span class="built_in">cin</span>&gt;&gt;a00&gt;&gt;a01&gt;&gt;a10&gt;&gt;a11;</div><div class="line">    </div><div class="line">    <span class="built_in">vector</span>&lt;ll&gt; tb1;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">5000000</span>;++i)</div><div class="line">        tb1.push_back(i*i-i);</div><div class="line">    <span class="comment">//a00 a11 must be sol of 2a = K^2-K</span></div><div class="line">    <span class="keyword">auto</span> p_0 = find(tb1.begin(),tb1.end(),<span class="number">2</span>*a00);</div><div class="line">    <span class="keyword">auto</span> p_1 = find(tb1.begin(),tb1.end(),<span class="number">2</span>*a11);</div><div class="line">    <span class="keyword">if</span>( p_0==tb1.end() || p_1==tb1.end() )</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="string">"Impossible\n"</span>;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    ll n0 = p_0-tb1.begin();</div><div class="line">    ll n1 = p_1-tb1.begin();</div><div class="line">    <span class="keyword">if</span>( n0 == <span class="number">0</span> )<span class="keyword">if</span>(a01||a10)n0=<span class="number">1</span>;<span class="comment">//maybe 0 or 1</span></div><div class="line">    <span class="keyword">if</span>( n1 == <span class="number">0</span> )<span class="keyword">if</span>(a01||a10)n1=<span class="number">1</span>;</div><div class="line">    ll max_01 = n0*n1;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>( a01+a10 != max_01 )&#123;</div><div class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="string">"Impossible\n"</span>;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>( n0 == <span class="number">0</span> &amp;&amp; n1 == <span class="number">0</span> )&#123;</div><div class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="string">"0\n"</span>;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>( n0 == <span class="number">0</span> || n1 == <span class="number">0</span> )&#123;</div><div class="line">        <span class="keyword">while</span>(n0--)<span class="built_in">cout</span>&lt;&lt;<span class="string">'0'</span>;</div><div class="line">        <span class="keyword">while</span>(n1--)<span class="built_in">cout</span>&lt;&lt;<span class="string">'1'</span>;</div><div class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="string">'\n'</span>;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> head = a10/n0;n1-=head;</div><div class="line">    <span class="keyword">while</span>(head--)<span class="built_in">cout</span>&lt;&lt;<span class="string">'1'</span>;</div><div class="line">    <span class="keyword">int</span> left = a10%n0;</div><div class="line">    <span class="keyword">while</span>( n0-- )</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="string">'0'</span>;</div><div class="line">        <span class="keyword">if</span>(n0==left&amp;&amp; n0!=<span class="number">0</span>)&#123;</div><div class="line">            <span class="built_in">cout</span>&lt;&lt;<span class="string">'1'</span>;</div><div class="line">            n1-=<span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">while</span>(n1--)<span class="built_in">cout</span>&lt;&lt;<span class="string">'1'</span>;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">'\n'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>文章標題:</span><a href="/2016/08/25/CF708-709/">AIM Tech Round 3 (CF708,709)</a></p>
+        <p><span>文章作者:</span><a href="/" title="檢視 LFsWang 的個人網頁">LFsWang</a></p>
+        <p><span>發表時間:</span>2016年08月25日 - 23時52分</p>
+        <p><span>最後更新:</span>2016年08月26日 - 03時00分</p>
+        <p>
+            <span>原始連結:</span><a class="post-url" href="/2016/08/25/CF708-709/" title="AIM Tech Round 3 (CF708,709)">https://lfswang.github.io/2016/08/25/CF708-709/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://lfswang.github.io/2016/08/25/CF708-709/　　作者: LFsWang" title="點擊複製文章連結"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>授權協議:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/3.0/tw/" title="CC BY-NC-SA 3.0 TW" target = "_blank">"創用 CC 姓名標示-非商業性-相同方式分享 3.0 台灣 授權條款。</a>
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2016/08/26/Site/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          網站更新日誌
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/08/24/CF707/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">CF707</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目錄</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#心得"><span class="toc-number">1.</span> <span class="toc-text">心得</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#題目細解"><span class="toc-number">2.</span> <span class="toc-text">題目細解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Juicer-709A"><span class="toc-number">2.1.</span> <span class="toc-text">Juicer (709A)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#解題方法"><span class="toc-number">2.1.1.</span> <span class="toc-text">解題方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#參考程式碼"><span class="toc-number">2.1.2.</span> <span class="toc-text">參考程式碼</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Checkpoints-709B"><span class="toc-number">2.2.</span> <span class="toc-text">Checkpoints (709B)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#解題方法-1"><span class="toc-number">2.2.1.</span> <span class="toc-text">解題方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#參考程式碼-1"><span class="toc-number">2.2.2.</span> <span class="toc-text">參考程式碼</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Letters-Cyclic-Shift-708A-709C"><span class="toc-number">2.3.</span> <span class="toc-text">Letters Cyclic Shift (708A,709C)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#解題方法-2"><span class="toc-number">2.3.1.</span> <span class="toc-text">解題方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#參考程式碼-2"><span class="toc-number">2.3.2.</span> <span class="toc-text">參考程式碼</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Recover-the-String-708B-709D"><span class="toc-number">2.4.</span> <span class="toc-text">Recover the String (708B,709D)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#解題方法-3"><span class="toc-number">2.4.1.</span> <span class="toc-text">解題方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#參考程式碼-3"><span class="toc-number">2.4.2.</span> <span class="toc-text">參考程式碼</span></a></li></ol></li></ol></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隱藏目錄"  title="點擊按鈕隱藏或者顯示文章目錄">
+
+<script>
+    var valueHide = "隱藏目錄";
+    var valueShow = "顯示目錄";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+
+
+    
+        <section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'lfswang'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/08/26/Site/" title="上一篇: 網站更新日誌">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2016/08/24/CF707/" title="下一篇: CF707">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/08/26/Site/">網站更新日誌</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/25/CF708-709/">AIM Tech Round 3 (CF708,709)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/24/CF707/">CF707</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/16/TIS-100-31904-Sequence-counter/">TIS-100 Sequence counter</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/16/as-if-rule/">as-if-rule</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/17/range-for/">Range For C++11的範圍表達迴圈</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/19/hash/">std::hash 標準雜湊介面</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/chrono/">Chrono 通用的時間處裡方法</a></li></ul>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2016 LFsWang
+            </div>
+            <div class="footer-right">
+                <a href="https://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div>
+        </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.min.js"></script>
+<script>
+requirejs.config({
+    "baseUrl": "/",
+    "paths": {
+      "jquery": "//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min"
+    }
+});
+</script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76508444-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
