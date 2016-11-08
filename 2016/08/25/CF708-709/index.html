@@ -20,7 +20,8 @@
   <meta name="description" content="Source &amp;amp; Problems : 
 
 AIM Tech Round 3 (Div. 1)
-AIM Tech Round 3 (Div. 2)">
+AIM Tech Round 3 (Div. 2)
+官方題解">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AIM Tech Round 3 (CF708,709)">
 <meta property="og:url" content="https://lfswang.github.io/2016/08/25/CF708-709/index.html">
@@ -28,14 +29,16 @@ AIM Tech Round 3 (Div. 2)">
 <meta property="og:description" content="Source &amp;amp; Problems : 
 
 AIM Tech Round 3 (Div. 1)
-AIM Tech Round 3 (Div. 2)">
-<meta property="og:updated_time" content="2016-08-25T19:00:12.925Z">
+AIM Tech Round 3 (Div. 2)
+官方題解">
+<meta property="og:updated_time" content="2016-08-27T10:24:30.427Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AIM Tech Round 3 (CF708,709)">
 <meta name="twitter:description" content="Source &amp;amp; Problems : 
 
 AIM Tech Round 3 (Div. 1)
-AIM Tech Round 3 (Div. 2)">
+AIM Tech Round 3 (Div. 2)
+官方題解">
   
     <link rel="alternative" href="/atom.xml" title="LFsWang" type="application/atom+xml">
   
@@ -152,7 +155,7 @@ AIM Tech Round 3 (Div. 2)">
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/Basic-C/" style="font-size: 10px;">Basic C++</a> <a href="/tags/C-11/" style="font-size: 20px;">C++11</a> <a href="/tags/C-14/" style="font-size: 15px;">C++14</a> <a href="/tags/C-17/" style="font-size: 20px;">C++17</a> <a href="/tags/Chrono/" style="font-size: 10px;">Chrono</a> <a href="/tags/Codeforces/" style="font-size: 15px;">Codeforces</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a>
+                        <a href="/tags/Basic-C/" style="font-size: 10px;">Basic C++</a> <a href="/tags/C-11/" style="font-size: 20px;">C++11</a> <a href="/tags/C-14/" style="font-size: 15px;">C++14</a> <a href="/tags/C-17/" style="font-size: 20px;">C++17</a> <a href="/tags/Chrono/" style="font-size: 10px;">Chrono</a> <a href="/tags/Codeforces/" style="font-size: 20px;">Codeforces</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a>
                     </div>
                 </section>
                 
@@ -264,8 +267,9 @@ AIM Tech Round 3 (Div. 2)">
 <ul>
 <li><a href="http://codeforces.com/contest/708" target="_blank" rel="external">AIM Tech Round 3 (Div. 1)</a></li>
 <li><a href="http://codeforces.com/contest/709" target="_blank" rel="external">AIM Tech Round 3 (Div. 2)</a></li>
+<li><a href="http://codeforces.com/blog/entry/46763" target="_blank" rel="external">官方題解</a><a id="more"></a>
+</li>
 </ul>
-<a id="more"></a>
 <h1 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h1><p>一時性起來寫，感覺看英文題比以前快了，第四題有兩個小bug沒發現就爆炸了…</p>
 <h1 id="題目細解"><a href="#題目細解" class="headerlink" title="題目細解"></a>題目細解</h1><h2 id="Juicer-709A"><a href="#Juicer-709A" class="headerlink" title="Juicer (709A)"></a>Juicer (709A)</h2><ul>
 <li>Easy</li>
@@ -295,7 +299,10 @@ AIM Tech Round 3 (Div. 2)">
 <li>構造</li>
 </ul>
 <p>有一個由0與1組成的字串，已知裡面的<em>子序列(subsequences)</em> ${00,01,10,11}$的數量有多少個，請構造一個符合條件的字串。</p>
-<h3 id="解題方法-3"><a href="#解題方法-3" class="headerlink" title="解題方法"></a>解題方法</h3><p>On going</p>
+<h3 id="解題方法-3"><a href="#解題方法-3" class="headerlink" title="解題方法"></a>解題方法</h3><p>考慮 $00,11$ 的數量只跟字串中有多少$0,1$有關，要滿足$a00,a11 = \frac{K(K-1)}{2}$，使得$K$是整數解，而當$a00,a11$等於0時，可行解可能為0或是1，此時根據$a01,a10$來判斷何者正確。</p>
+<p>知道$0$與$1$的數量後，那$00+01+10+11$的數量就是已知的，又根據剛剛上面的驗證，$01+10$的數量要等於$sum(0)*sum(1)-num(00)-num(11)$，如果都正確，就可以開始構造解答了。</p>
+<p>我個人的構造方法是假設一開始是$…00000111111…$透過微調1的位置來滿足需求，把$sum(10)/sum(0)$個1移到開頭，在把一個插在中間補齊剩下的就OK了</p>
+<p>注意$0,0,0,0$可以用單一一個$0$或是$1$構造出來，並非無解。</p>
 <h3 id="參考程式碼-3"><a href="#參考程式碼-3" class="headerlink" title="參考程式碼"></a>參考程式碼</h3><p><a href="http://codeforces.com/contest/709/submission/20135324" target="_blank" rel="external">CF</a></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;   </div><div class="line">    ll a00,a01,a10,a11;</div><div class="line">    <span class="built_in">cin</span>&gt;&gt;a00&gt;&gt;a01&gt;&gt;a10&gt;&gt;a11;</div><div class="line">    </div><div class="line">    <span class="built_in">vector</span>&lt;ll&gt; tb1;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">5000000</span>;++i)</div><div class="line">        tb1.push_back(i*i-i);</div><div class="line">    <span class="comment">//a00 a11 must be sol of 2a = K^2-K</span></div><div class="line">    <span class="keyword">auto</span> p_0 = find(tb1.begin(),tb1.end(),<span class="number">2</span>*a00);</div><div class="line">    <span class="keyword">auto</span> p_1 = find(tb1.begin(),tb1.end(),<span class="number">2</span>*a11);</div><div class="line">    <span class="keyword">if</span>( p_0==tb1.end() || p_1==tb1.end() )</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="string">"Impossible\n"</span>;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    ll n0 = p_0-tb1.begin();</div><div class="line">    ll n1 = p_1-tb1.begin();</div><div class="line">    <span class="keyword">if</span>( n0 == <span class="number">0</span> )<span class="keyword">if</span>(a01||a10)n0=<span class="number">1</span>;<span class="comment">//maybe 0 or 1</span></div><div class="line">    <span class="keyword">if</span>( n1 == <span class="number">0</span> )<span class="keyword">if</span>(a01||a10)n1=<span class="number">1</span>;</div><div class="line">    ll max_01 = n0*n1;</div><div class="line">    </div><div class="line">    <span class="keyword">if</span>( a01+a10 != max_01 )&#123;</div><div class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="string">"Impossible\n"</span>;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>( n0 == <span class="number">0</span> &amp;&amp; n1 == <span class="number">0</span> )&#123;</div><div class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="string">"0\n"</span>;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>( n0 == <span class="number">0</span> || n1 == <span class="number">0</span> )&#123;</div><div class="line">        <span class="keyword">while</span>(n0--)<span class="built_in">cout</span>&lt;&lt;<span class="string">'0'</span>;</div><div class="line">        <span class="keyword">while</span>(n1--)<span class="built_in">cout</span>&lt;&lt;<span class="string">'1'</span>;</div><div class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="string">'\n'</span>;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">int</span> head = a10/n0;n1-=head;</div><div class="line">    <span class="keyword">while</span>(head--)<span class="built_in">cout</span>&lt;&lt;<span class="string">'1'</span>;</div><div class="line">    <span class="keyword">int</span> left = a10%n0;</div><div class="line">    <span class="keyword">while</span>( n0-- )</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="string">'0'</span>;</div><div class="line">        <span class="keyword">if</span>(n0==left&amp;&amp; n0!=<span class="number">0</span>)&#123;</div><div class="line">            <span class="built_in">cout</span>&lt;&lt;<span class="string">'1'</span>;</div><div class="line">            n1-=<span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">while</span>(n1--)<span class="built_in">cout</span>&lt;&lt;<span class="string">'1'</span>;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">'\n'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
@@ -308,7 +315,7 @@ AIM Tech Round 3 (Div. 2)">
         <p><span>文章標題:</span><a href="/2016/08/25/CF708-709/">AIM Tech Round 3 (CF708,709)</a></p>
         <p><span>文章作者:</span><a href="/" title="檢視 LFsWang 的個人網頁">LFsWang</a></p>
         <p><span>發表時間:</span>2016年08月25日 - 23時52分</p>
-        <p><span>最後更新:</span>2016年08月26日 - 03時00分</p>
+        <p><span>最後更新:</span>2016年08月27日 - 18時24分</p>
         <p>
             <span>原始連結:</span><a class="post-url" href="/2016/08/25/CF708-709/" title="AIM Tech Round 3 (CF708,709)">https://lfswang.github.io/2016/08/25/CF708-709/</a>
             <span class="copy-path" data-clipboard-text="原文: https://lfswang.github.io/2016/08/25/CF708-709/　　作者: LFsWang" title="點擊複製文章連結"><i class="fa fa-clipboard"></i></span>
@@ -425,7 +432,7 @@ AIM Tech Round 3 (Div. 2)">
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/08/26/Site/">網站更新日誌</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/25/CF708-709/">AIM Tech Round 3 (CF708,709)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/24/CF707/">CF707</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/16/TIS-100-31904-Sequence-counter/">TIS-100 Sequence counter</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/16/as-if-rule/">as-if-rule</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/17/range-for/">Range For C++11的範圍表達迴圈</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/19/hash/">std::hash 標準雜湊介面</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/chrono/">Chrono 通用的時間處裡方法</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/11/03/CF733/">Codeforces Round #378 (Div. 2)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/26/Site/">網站更新日誌</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/25/CF708-709/">AIM Tech Round 3 (CF708,709)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/24/CF707/">CF707</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/16/TIS-100-31904-Sequence-counter/">TIS-100 Sequence counter</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/16/as-if-rule/">as-if-rule</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/17/range-for/">Range For C++11的範圍表達迴圈</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/19/hash/">std::hash 標準雜湊介面</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/chrono/">Chrono 通用的時間處裡方法</a></li></ul>
     <script>
         $(".post-list").addClass("toc-article");
         $(".post-list-item a").attr("target","_blank");
@@ -538,8 +545,8 @@ MathJax.Hub.Queue(function() {
     })
 </script>
 
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
+<!--<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>-->
 
   <script language="javascript">
     $(function() {
