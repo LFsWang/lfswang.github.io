@@ -15,21 +15,21 @@
     window.location.protocol = "https";
   </script>
   
-  <title>Range For C++11的範圍表達迴圈 | LFsWang</title>
+  <title>TIOJ 1136 3.熱鍋上的螞蟻 | LFsWang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="#Range-based for loop
-範圍For迴圈是C++11引入的新語法，提供了更容易解讀的語法介面，也簡化了許多STL資料存取的方法。">
+  <meta name="description" content="原題 : TIOJ
+題意有一隻螞蟻在圖上遊走，問T秒後停在特定點的機率為何。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Range For C++11的範圍表達迴圈">
-<meta property="og:url" content="https://lfswang.github.io/2016/05/17/range-for/index.html">
+<meta property="og:title" content="TIOJ 1136 3.熱鍋上的螞蟻">
+<meta property="og:url" content="https://lfswang.github.io/2016/11/21/TIOJ1136/index.html">
 <meta property="og:site_name" content="LFsWang">
-<meta property="og:description" content="#Range-based for loop
-範圍For迴圈是C++11引入的新語法，提供了更容易解讀的語法介面，也簡化了許多STL資料存取的方法。">
-<meta property="og:updated_time" content="2016-05-17T12:00:58.822Z">
+<meta property="og:description" content="原題 : TIOJ
+題意有一隻螞蟻在圖上遊走，問T秒後停在特定點的機率為何。">
+<meta property="og:updated_time" content="2016-11-23T15:45:58.756Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Range For C++11的範圍表達迴圈">
-<meta name="twitter:description" content="#Range-based for loop
-範圍For迴圈是C++11引入的新語法，提供了更容易解讀的語法介面，也簡化了許多STL資料存取的方法。">
+<meta name="twitter:title" content="TIOJ 1136 3.熱鍋上的螞蟻">
+<meta name="twitter:description" content="原題 : TIOJ
+題意有一隻螞蟻在圖上遊走，問T秒後停在特定點的機率為何。">
   
     <link rel="alternative" href="/atom.xml" title="LFsWang" type="application/atom+xml">
   
@@ -212,11 +212,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-range-for" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-TIOJ1136" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/05/17/range-for/" class="article-date">
-      <time datetime="2016-05-17T11:08:34.000Z" itemprop="datePublished">2016-05-17</time>
+      <a href="/2016/11/21/TIOJ1136/" class="article-date">
+      <time datetime="2016-11-21T13:09:25.000Z" itemprop="datePublished">2016-11-21</time>
 </a>
     </div>
   
@@ -229,7 +229,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Range For C++11的範圍表達迴圈
+      TIOJ 1136 3.熱鍋上的螞蟻
     </h1>
   
 
@@ -238,13 +238,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/C/">C++</a>
+    <a class="article-category-link" href="/categories/TIOJ/">TIOJ</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-11/">C++11</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-17/">C++17</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/機率/">機率</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/矩陣/">矩陣</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -254,14 +254,14 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>#Range-based for loop</p>
-<p>範圍For迴圈是C++11引入的新語法，提供了更容易解讀的語法介面，也簡化了許多STL資料存取的方法。</p>
+        <p>原題 : <a href="http://tioj.ck.tp.edu.tw/problems/1136" target="_blank" rel="external">TIOJ</a></p>
+<h1 id="題意"><a href="#題意" class="headerlink" title="題意"></a>題意</h1><p>有一隻螞蟻在圖上遊走，問T秒後停在特定點的機率為何。</p>
 <a id="more"></a>
-<p>#語法格式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">attr for ( range_declaration : range_expression ) loop_statement</div></pre></td></tr></table></figure>
-<p>上語法等價於下原有for迴圈，其中<code>__begin</code>,<code>__end</code>,<code>__range</code>在此僅為表達語法用。</p>
-<figure class="highlight cpp"><figcaption><span>Since C++17</span><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0184r0.html" target="_blank" rel="external">P0184R0</a></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="keyword">auto</span> &amp;&amp; __range = range_expression ; </div><div class="line">    <span class="keyword">auto</span> __begin = begin_expr ;</div><div class="line">    <span class="keyword">auto</span> __end = end_expr ;</div><div class="line">    <span class="keyword">for</span> ( ; __begin != __end; ++__begin) &#123; </div><div class="line">        range_declaration = *__begin; </div><div class="line">        loop_statement </div><div class="line">    &#125; </div><div class="line">&#125; </div></pre></td></tr></table></figure>
-<p><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0184r0.html" target="_blank" rel="external">http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0184r0.html</a></p>
+<h1 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h1><p>可以用高中的轉移矩陣來解決這一題，如範例測資第一用數學表示：</p>
+<p>$\begin{bmatrix}<br>0.2 &amp; 0.2 &amp; 0.2 &amp; 0.2 &amp; 0.2<br>\end{bmatrix}<br>\begin{bmatrix}<br>1  &amp;0  &amp;0  &amp;0  &amp;0  \\<br>0.5&amp;0  &amp;0.5&amp;0  &amp;0  \\<br>0  &amp;0.5&amp;0  &amp;0.5&amp;0  \\<br>0  &amp;0  &amp;0.5&amp;0  &amp;0.5 \\<br>0  &amp;0  &amp;0  &amp;0  &amp;1  \end{bmatrix}^2\\<br>=\begin{bmatrix}<br>0.15  &amp;0.2  &amp;0.3  &amp;0.2  &amp;0.15 \end{bmatrix}$</p>
+<p>就可以把所以有點上的機率求出來了。</p>
+<h2 id="AC-Code"><a href="#AC-Code" class="headerlink" title="AC Code"></a>AC Code</h2><p>本題使用了額外的矩陣模板，未附在AC Code裡面。<br><a href="">Matrix</a></p>
+<p>不小心又挖出了一個highlight.js的Bug…不小心又挖出了一個highlight.js的Bug… <a href="https://github.com/isagalaev/highlight.js/issues/1363" target="_blank" rel="external">#1363</a><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></div><div class="line"><span class="keyword">using</span> matrix = Matrix&lt;<span class="keyword">double</span>&gt;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</div><div class="line">    <span class="built_in">cin</span>.tie(<span class="number">0</span>);</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;fixed&lt;&lt;setprecision(<span class="number">4</span>);</div><div class="line">    <span class="keyword">int</span> N,T,E,Q,s,t;</div><div class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;N&gt;&gt;T,N)</div><div class="line">    &#123;</div><div class="line">        <span class="built_in">cin</span>&gt;&gt;E;</div><div class="line">        <span class="function">matrix <span class="title">tran</span><span class="params">(N,N)</span></span>;</div><div class="line">        <span class="function">matrix <span class="title">st</span><span class="params">(<span class="number">1</span>,N)</span></span>;</div><div class="line">        matrix&lt;<span class="keyword">int</span>&gt; tran(N,N),st(<span class="number">1</span>,N); <span class="comment">//highlight js bug...</span></div><div class="line">        <span class="keyword">while</span>(E--)&#123;</div><div class="line">            <span class="built_in">cin</span>&gt;&gt;s&gt;&gt;t;s--;t--;</div><div class="line">            tran[s][t]+=<span class="number">1</span>;</div><div class="line">            tran[t][s]+=<span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;++i)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">double</span> sum=<span class="number">0</span>;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;N;++j)</div><div class="line">                sum+=tran[i][j];</div><div class="line">            <span class="keyword">if</span>(sum)</div><div class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;N;++j)</div><div class="line">                    tran[i][j]/=sum;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;++i)</div><div class="line">            st[<span class="number">0</span>][i]=<span class="number">1.0</span>/N;</div><div class="line"></div><div class="line">        <span class="keyword">while</span>(T)</div><div class="line">        &#123;</div><div class="line">            <span class="keyword">if</span>(T&amp;<span class="number">1</span>)st=st*tran;</div><div class="line">            tran=tran*tran;</div><div class="line">            T&gt;&gt;=<span class="number">1</span>;</div><div class="line">        &#125;st.print();</div><div class="line"></div><div class="line">        <span class="built_in">cin</span>&gt;&gt;Q;</div><div class="line">        <span class="built_in">cout</span>&lt;&lt;st[<span class="number">0</span>][Q<span class="number">-1</span>]&lt;&lt;<span class="string">'\n'</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -270,13 +270,13 @@
   
     
     <div class="copyright">
-        <p><span>文章標題:</span><a href="/2016/05/17/range-for/">Range For C++11的範圍表達迴圈</a></p>
+        <p><span>文章標題:</span><a href="/2016/11/21/TIOJ1136/">TIOJ 1136 3.熱鍋上的螞蟻</a></p>
         <p><span>文章作者:</span><a href="/" title="檢視 LFsWang 的個人網頁">LFsWang</a></p>
-        <p><span>發表時間:</span>2016年05月17日 - 19時08分</p>
-        <p><span>最後更新:</span>2016年05月17日 - 20時00分</p>
+        <p><span>發表時間:</span>2016年11月21日 - 21時09分</p>
+        <p><span>最後更新:</span>2016年11月23日 - 23時45分</p>
         <p>
-            <span>原始連結:</span><a class="post-url" href="/2016/05/17/range-for/" title="Range For C++11的範圍表達迴圈">https://lfswang.github.io/2016/05/17/range-for/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://lfswang.github.io/2016/05/17/range-for/　　作者: LFsWang" title="點擊複製文章連結"><i class="fa fa-clipboard"></i></span>
+            <span>原始連結:</span><a class="post-url" href="/2016/11/21/TIOJ1136/" title="TIOJ 1136 3.熱鍋上的螞蟻">https://lfswang.github.io/2016/11/21/TIOJ1136/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://lfswang.github.io/2016/11/21/TIOJ1136/　　作者: LFsWang" title="點擊複製文章連結"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -289,18 +289,18 @@
 
 <nav id="article-nav">
   
-    <a href="/2016/07/16/as-if-rule/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/11/28/CF735-CF736/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          as-if-rule
+          CF735-CF736
         
       </div>
     </a>
   
   
-    <a href="/2016/04/19/hash/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">std::hash 標準雜湊介面</div>
+    <a href="/2016/11/16/Lowest-common-ancestor/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Lowest common ancestor(LCA)</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -311,7 +311,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目錄</strong>
-    
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#題意"><span class="toc-number">1.</span> <span class="toc-text">題意</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#題解"><span class="toc-number">2.</span> <span class="toc-text">題解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#AC-Code"><span class="toc-number">2.1.</span> <span class="toc-text">AC Code</span></a></li></ol></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -379,13 +379,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/07/16/as-if-rule/" title="上一篇: as-if-rule">
+            <a href="/2016/11/28/CF735-CF736/" title="上一篇: CF735-CF736">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2016/04/19/hash/" title="下一篇: std::hash 標準雜湊介面">
+            <a href="/2016/11/16/Lowest-common-ancestor/" title="下一篇: Lowest common ancestor(LCA)">
                 <i class="fa fa-angle-right"></i>
             </a>
         

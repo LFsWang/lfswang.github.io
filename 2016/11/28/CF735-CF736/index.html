@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="canonical" href="https://lfswang.github.io" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script>
+  var getLocation = function(href) {
+    var l = document.createElement("a");
+    l.href = href;
+    return l;
+  };
+  var host = getLocation("https://lfswang.github.io").hostname;
+  if ((host == window.location.host) && (window.location.protocol != "https:"))
+    window.location.protocol = "https";
+  </script>
+  
+  <title>CF735-CF736 | LFsWang</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Source &amp;amp; Problems : 
+
+Codeforces Round #382 (Div. 2)
+Codeforces Round #382 (Div. 1)
+官方題解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CF735-CF736">
+<meta property="og:url" content="https://lfswang.github.io/2016/11/28/CF735-CF736/index.html">
+<meta property="og:site_name" content="LFsWang">
+<meta property="og:description" content="Source &amp;amp; Problems : 
+
+Codeforces Round #382 (Div. 2)
+Codeforces Round #382 (Div. 1)
+官方題解">
+<meta property="og:updated_time" content="2016-11-27T19:39:55.633Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CF735-CF736">
+<meta name="twitter:description" content="Source &amp;amp; Problems : 
+
+Codeforces Round #382 (Div. 2)
+Codeforces Round #382 (Div. 1)
+官方題解">
+  
+    <link rel="alternative" href="/atom.xml" title="LFsWang" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/LFS.jpg">
+  
+  
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="https://www.gravatar.com/avatar/9dbf1cde5c869bc167a1b47179010378?s=400" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/">LFsWang</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">Something awesome</p>
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>選單</li>
+                        <li>Tags</li>
+                        
+                        <li>友站連結</li>
+                        
+                        
+                        <li>關於</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/LFsWang" title="github">github</a>
+                            
+                                <a class="fl facebook" target="_blank" href="https://www.facebook.com/Sylveon-1580376772211056/?ref=bookmarks" title="facebook">facebook</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/Basic-C/" style="font-size: 10px;">Basic C++</a> <a href="/tags/C-11/" style="font-size: 16.67px;">C++11</a> <a href="/tags/C-14/" style="font-size: 13.33px;">C++14</a> <a href="/tags/C-17/" style="font-size: 16.67px;">C++17</a> <a href="/tags/Chrono/" style="font-size: 10px;">Chrono</a> <a href="/tags/Codeforces/" style="font-size: 20px;">Codeforces</a> <a href="/tags/LCA/" style="font-size: 10px;">LCA</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/機率/" style="font-size: 10px;">機率</a> <a href="/tags/矩陣/" style="font-size: 10px;">矩陣</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://tfcis.org">TFcis</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://www.csie.ntu.edu.tw/~b04902114/blog/">johnchen902&#39;s Blog</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">LFs!?</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到首頁">LFsWang</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="https://www.gravatar.com/avatar/9dbf1cde5c869bc167a1b47179010378?s=400" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到首頁">LFsWang</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">Something awesome</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="github" target="_blank" href="https://github.com/LFsWang" title="github">github</a>
+                    
+                        <a class="facebook" target="_blank" href="https://www.facebook.com/Sylveon-1580376772211056/?ref=bookmarks" title="facebook">facebook</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-CF735-CF736" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/11/28/CF735-CF736/" class="article-date">
+      <time datetime="2016-11-27T18:49:21.000Z" itemprop="datePublished">2016-11-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CF735-CF736
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Codeforces/">Codeforces</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Codeforces/">Codeforces</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>Source &amp; Problems : </p>
+<ul>
+<li><a href="http://codeforces.com/contest/735" target="_blank" rel="external">Codeforces Round #382 (Div. 2)</a></li>
+<li><a href="http://codeforces.com/contest/736" target="_blank" rel="external">Codeforces Round #382 (Div. 1)</a></li>
+<li><a href="">官方題解</a><a id="more"></a>
+</li>
+</ul>
+<h1 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h1><p>開起來看到離註冊結束還有一小時，就來寫個練習一下。原本衝完4題在80幾名，最後20分鐘被hack調一題，看一眼發現漏掉一個Case…，終場就掉到299去了，等System testing後擠回後擠回243，因為這次題目很簡單，我覺得打得頗爛的。最後一題搞了一個樹形DP，不過有Bug來不及改了，就無聊的Hack看別人的Code，不過實際上有寫的都長得差不多就是了</p>
+<h1 id="題目細解"><a href="#題目細解" class="headerlink" title="題目細解"></a>題目細解</h1><h2 id="Ostap-and-Grasshopper-735A"><a href="#Ostap-and-Grasshopper-735A" class="headerlink" title="Ostap and Grasshopper (735A)"></a>Ostap and Grasshopper (735A)</h2><ul>
+<li>Easy</li>
+<li>模擬</li>
+</ul>
+<p>有隻蚱蜢恰巧能跳$T$單位，問從起點是否能跳到終點，且不被擋住。</p>
+<h3 id="解題方法"><a href="#解題方法" class="headerlink" title="解題方法"></a>解題方法</h3><p>就模擬R。</p>
+<h3 id="參考程式碼"><a href="#參考程式碼" class="headerlink" title="參考程式碼"></a>參考程式碼</h3><p><a href="http://codeforces.com/contest/735/submission/22531481" target="_blank" rel="external">CF</a><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> L,K;</div><div class="line">    <span class="built_in">string</span> str;</div><div class="line">    <span class="keyword">int</span> a=<span class="number">-1</span>,b=<span class="number">-1</span>;</div><div class="line">    <span class="keyword">bool</span> f=<span class="literal">false</span>;</div><div class="line">    <span class="built_in">cin</span>&gt;&gt;L&gt;&gt;K&gt;&gt;str;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;L;++i)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span>(str[i]==<span class="string">'T'</span>)a=i;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(str[i]==<span class="string">'G'</span>)b=i;</div><div class="line">        <span class="keyword">if</span>( ((a!=<span class="number">-1</span>) ^ (b!=<span class="number">-1</span>)) &amp;&amp; (i-max(a,b))%K==<span class="number">0</span> &amp;&amp; str[i]==<span class="string">'#'</span> )f=<span class="literal">true</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt; (( <span class="built_in">abs</span>(a-b)%K==<span class="number">0</span>&amp;&amp; !f )?<span class="string">"YES"</span>:<span class="string">"NO"</span>) &lt;&lt;<span class="string">'\n'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Urbanization-735B"><a href="#Urbanization-735B" class="headerlink" title="Urbanization (735B)"></a>Urbanization (735B)</h2><ul>
+<li>Easy</li>
+<li>Gready</li>
+</ul>
+<p>有$N$個數字，以及兩個集合的大小$a,b$，$a+b\leq N$，把這些數字分到這兩個集合後(多的數字不管)，兩個集合數字算數平均數最大是多少</p>
+<h3 id="解題方法-1"><a href="#解題方法-1" class="headerlink" title="解題方法"></a>解題方法</h3><p>把最大的$a+b$個數字前a個個給a，後b個給b，以及換過來前b個給b，後a個給a，取最大即可。</p>
+<h3 id="參考程式碼-1"><a href="#參考程式碼-1" class="headerlink" title="參考程式碼"></a>參考程式碼</h3><p><a href="http://codeforces.com/contest/735/submission/22534386" target="_blank" rel="external">CF</a><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; peo;</div><div class="line">    <span class="keyword">int</span> N,a,b,in;</div><div class="line">    <span class="built_in">cin</span>&gt;&gt;N&gt;&gt;a&gt;&gt;b;</div><div class="line">    <span class="keyword">while</span>(N--)&#123;</div><div class="line">        <span class="built_in">cin</span>&gt;&gt;in;</div><div class="line">        peo.push_back(in);</div><div class="line">    &#125;</div><div class="line">    sort(peo.begin(),peo.end(),greater&lt;<span class="keyword">int</span>&gt;());</div><div class="line">    <span class="comment">//</span></div><div class="line">    <span class="keyword">double</span> sa=<span class="number">0</span>,sb=<span class="number">0</span>;</div><div class="line">    <span class="keyword">double</span> tb=<span class="number">0</span>,ta=<span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;a;++i)sa+=peo[i];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;b;++i)sb+=peo[a+i];</div><div class="line">    </div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;b;++i)tb+=peo[i];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;a;++i)ta+=peo[b+i];</div><div class="line">    </div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%.9f\n"</span>, max(&#123; sa/a+sb/b , tb/b+ta/a   &#125;));</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Tennis-Championship-736A-735C"><a href="#Tennis-Championship-736A-735C" class="headerlink" title="Tennis Championship (736A,735C)"></a>Tennis Championship (736A,735C)</h2><ul>
+<li>Construct</li>
+<li>Math</li>
+</ul>
+<p>有N個人打一個單淘汰制的比賽，如果兩個人要一起打比賽，有一個額外的限制：兩人的勝場數差要$\leq 1$，問要成為冠軍最多要打幾場。</p>
+<h3 id="解題方法-待補"><a href="#解題方法-待補" class="headerlink" title="解題方法(待補)"></a>解題方法(待補)</h3><p>觀察畫了一下圖，看來就像費式數列。</p>
+<h3 id="參考程式碼-2"><a href="#參考程式碼-2" class="headerlink" title="參考程式碼"></a>參考程式碼</h3><p><a href="http://codeforces.com/contest/735/submission/22539680" target="_blank" rel="external">CF</a><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">using</span> T = <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span>;</div><div class="line">    T F2,F1=<span class="number">1</span>,F0=<span class="number">2</span>;</div><div class="line">    T a;</div><div class="line">    <span class="keyword">int</span> ans=<span class="number">1</span>;</div><div class="line">    <span class="built_in">cin</span>&gt;&gt;a;</div><div class="line">    <span class="keyword">while</span>( F0&lt;=a )&#123;</div><div class="line">        F2=F1;</div><div class="line">        F1=F0;</div><div class="line">        F0=F2+F1;</div><div class="line">        ans++;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;ans<span class="number">-1</span>&lt;&lt;<span class="string">'\n'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Taxes-736B-735D"><a href="#Taxes-736B-735D" class="headerlink" title="Taxes (736B,735D)"></a>Taxes (736B,735D)</h2><ul>
+<li>Math</li>
+</ul>
+<p>有一個國家的稅金是這樣算的：$N$元要繳 <em>能整除$N$且且$&lt;N$的除數中，最大的除數</em> 那麼多的稅金，比如說$2$要繳$1$元，$6$要繳$3$元。有一個節稅方法是這樣的，你可以把這$N$元分成很多份，比如說把$27$元原本要繳$9$元的稅金，分成$7,7,13$只要繳$3$元的稅金，給你$N$，問稅最少要繳多少</p>
+<h3 id="解題方法-待補-1"><a href="#解題方法-待補-1" class="headerlink" title="解題方法(待補)"></a>解題方法(待補)</h3><p>很顯然的是質數只要繳$1$元，所以盡可能地拆成質數就對了，怎麼拆最好呢?回想高中數學一個神奇的東西：</p>
+<blockquote>
+<p>哥德巴赫猜想 Goldbach’s conjecture<br>任一大於2的偶數，都可表示成兩個質數之和。</p>
+</blockquote>
+<p>以及另一個看到猜想也會找到的東西</p>
+<blockquote>
+<p>勒穆瓦納猜想 Lemoine’s conjecture<br>任一大於5的奇數，都可表示成一個質數及偶半質數之和。 ($2n + 1 = p + 2q$)</p>
+</blockquote>
+<p>根據上猜想判一下奇偶就能輕鬆解出來了 </p>
+<ul>
+<li>注意有比猜想給的答案更好的解，要判掉，很簡單的，這裡我漏了P-2那個case被搞掉一次掉了大量分數)</li>
+<li>我真的不知道為什麼我為了判斷1,2個數字寫了一個質數表…</li>
+</ul>
+<h3 id="參考程式碼-3"><a href="#參考程式碼-3" class="headerlink" title="參考程式碼"></a>參考程式碼</h3><p><a href="http://codeforces.com/contest/735/submission/22552950" target="_blank" rel="external">CF</a><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">bool</span> isnp[<span class="number">70000</span>]=&#123;<span class="literal">true</span>,<span class="literal">true</span>,<span class="literal">false</span>&#125;;</div><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; pl;</div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isp</span><span class="params">(<span class="keyword">int</span> N)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span>( find(pl.begin(),pl.end(),N)!=pl.end() )</div><div class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">    <span class="keyword">if</span>( N&lt;pl.back() )<span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i:pl)</div><div class="line">        <span class="keyword">if</span>(N%i==<span class="number">0</span>)<span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">int</span> a=<span class="number">2</span>,b;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> a=<span class="number">2</span>;a&lt;=<span class="number">1000</span>;++a)</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span>(!isnp[a])</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> b=a*a;b&lt;<span class="number">70000</span>;b+=a)</div><div class="line">                isnp[b]=<span class="literal">true</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;<span class="number">70000</span>;++i)</div><div class="line">        <span class="keyword">if</span>(!isnp[i])pl.push_back(i);</div><div class="line">    <span class="keyword">int</span> N;</div><div class="line">    <span class="built_in">cin</span>&gt;&gt;N;</div><div class="line">    <span class="keyword">if</span>( N==<span class="number">2</span> )&#123;</div><div class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="string">"1\n"</span>;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>( N%<span class="number">2</span>==<span class="number">0</span> )&#123;</div><div class="line">        <span class="comment">//Goldbach's conjecture</span></div><div class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="string">"2\n"</span>;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>( isp(N) )&#123;</div><div class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="string">"1\n"</span>;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//Lemoine's conjecture</span></div><div class="line">    <span class="keyword">if</span>(isp(N<span class="number">-2</span>))&#123;</div><div class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="string">"2\n"</span>;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"3\n"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Taxes-736B-735D-1"><a href="#Taxes-736B-735D-1" class="headerlink" title="Taxes (736B,735D)"></a>Taxes (736B,735D)</h2><ul>
+<li>樹形DP</li>
+</ul>
+<p>no</p>
+<h3 id="解題方法-待補-2"><a href="#解題方法-待補-2" class="headerlink" title="解題方法(待補)"></a>解題方法(待補)</h3><p>no</p>
+<h3 id="參考程式碼-4"><a href="#參考程式碼-4" class="headerlink" title="參考程式碼"></a>參考程式碼</h3><p><a href="">CF</a><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">No</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>文章標題:</span><a href="/2016/11/28/CF735-CF736/">CF735-CF736</a></p>
+        <p><span>文章作者:</span><a href="/" title="檢視 LFsWang 的個人網頁">LFsWang</a></p>
+        <p><span>發表時間:</span>2016年11月28日 - 02時49分</p>
+        <p><span>最後更新:</span>2016年11月28日 - 03時39分</p>
+        <p>
+            <span>原始連結:</span><a class="post-url" href="/2016/11/28/CF735-CF736/" title="CF735-CF736">https://lfswang.github.io/2016/11/28/CF735-CF736/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://lfswang.github.io/2016/11/28/CF735-CF736/　　作者: LFsWang" title="點擊複製文章連結"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>授權協議:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/3.0/tw/" title="CC BY-NC-SA 3.0 TW" target = "_blank">"創用 CC 姓名標示-非商業性-相同方式分享 3.0 台灣 授權條款。</a>
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2016/11/21/TIOJ1136/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">TIOJ 1136 3.熱鍋上的螞蟻</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目錄</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#心得"><span class="toc-number">1.</span> <span class="toc-text">心得</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#題目細解"><span class="toc-number">2.</span> <span class="toc-text">題目細解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Ostap-and-Grasshopper-735A"><span class="toc-number">2.1.</span> <span class="toc-text">Ostap and Grasshopper (735A)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#解題方法"><span class="toc-number">2.1.1.</span> <span class="toc-text">解題方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#參考程式碼"><span class="toc-number">2.1.2.</span> <span class="toc-text">參考程式碼</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Urbanization-735B"><span class="toc-number">2.2.</span> <span class="toc-text">Urbanization (735B)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#解題方法-1"><span class="toc-number">2.2.1.</span> <span class="toc-text">解題方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#參考程式碼-1"><span class="toc-number">2.2.2.</span> <span class="toc-text">參考程式碼</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tennis-Championship-736A-735C"><span class="toc-number">2.3.</span> <span class="toc-text">Tennis Championship (736A,735C)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#解題方法-待補"><span class="toc-number">2.3.1.</span> <span class="toc-text">解題方法(待補)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#參考程式碼-2"><span class="toc-number">2.3.2.</span> <span class="toc-text">參考程式碼</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Taxes-736B-735D"><span class="toc-number">2.4.</span> <span class="toc-text">Taxes (736B,735D)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#解題方法-待補-1"><span class="toc-number">2.4.1.</span> <span class="toc-text">解題方法(待補)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#參考程式碼-3"><span class="toc-number">2.4.2.</span> <span class="toc-text">參考程式碼</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Taxes-736B-735D-1"><span class="toc-number">2.5.</span> <span class="toc-text">Taxes (736B,735D)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#解題方法-待補-2"><span class="toc-number">2.5.1.</span> <span class="toc-text">解題方法(待補)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#參考程式碼-4"><span class="toc-number">2.5.2.</span> <span class="toc-text">參考程式碼</span></a></li></ol></li></ol></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隱藏目錄"  title="點擊按鈕隱藏或者顯示文章目錄">
+
+<script>
+    var valueHide = "隱藏目錄";
+    var valueShow = "顯示目錄";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+
+
+    
+        <section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'lfswang'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到首頁"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2016/11/21/TIOJ1136/" title="下一篇: TIOJ 1136 3.熱鍋上的螞蟻">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/11/28/CF735-CF736/">CF735-CF736</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/21/TIOJ1136/">TIOJ 1136 3.熱鍋上的螞蟻</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/16/Lowest-common-ancestor/">Lowest common ancestor(LCA)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/03/CF733/">Codeforces Round #378 (Div. 2)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/26/Site/">網站更新日誌</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/25/CF708-709/">AIM Tech Round 3 (CF708,709)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/24/CF707/">CF707</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/16/TIS-100-31904-Sequence-counter/">TIS-100 Sequence counter</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/16/as-if-rule/">as-if-rule</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/17/range-for/">Range For C++11的範圍表達迴圈</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/19/hash/">std::hash 標準雜湊介面</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/chrono/">Chrono 通用的時間處裡方法</a></li></ul>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2016 LFsWang
+            </div>
+            <div class="footer-right">
+                <a href="https://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div>
+        </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.min.js"></script>
+<script>
+requirejs.config({
+    "baseUrl": "/",
+    "paths": {
+      "jquery": "//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min"
+    }
+});
+</script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76508444-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<!--<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>-->
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>

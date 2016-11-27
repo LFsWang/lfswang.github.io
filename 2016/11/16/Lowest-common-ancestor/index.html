@@ -15,14 +15,18 @@
     window.location.protocol = "https";
   </script>
   
-  <title>Archives: 2016/4 | LFsWang</title>
+  <title>Lowest common ancestor(LCA) | LFsWang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="LFsWang">
-<meta property="og:url" content="https://lfswang.github.io/archives/2016/04/index.html">
+  <meta name="description" content="簡介Lowest common ancestor (LCA,最近公同祖先)，是解圖論-樹類型題目時非常重要的一個概念。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lowest common ancestor(LCA)">
+<meta property="og:url" content="https://lfswang.github.io/2016/11/16/Lowest-common-ancestor/index.html">
 <meta property="og:site_name" content="LFsWang">
+<meta property="og:description" content="簡介Lowest common ancestor (LCA,最近公同祖先)，是解圖論-樹類型題目時非常重要的一個概念。">
+<meta property="og:updated_time" content="2016-11-16T11:38:00.208Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LFsWang">
+<meta name="twitter:title" content="Lowest common ancestor(LCA)">
+<meta name="twitter:description" content="簡介Lowest common ancestor (LCA,最近公同祖先)，是解圖論-樹類型題目時非常重要的一個概念。">
   
     <link rel="alternative" href="/atom.xml" title="LFsWang" type="application/atom+xml">
   
@@ -47,8 +51,8 @@
           fancybox: true,
           animate: true,
           isHome: false,
-          isPost: false,
-          isArchive: true,
+          isPost: true,
+          isArchive: false,
           isTag: false,
           isCategory: false,
           open_in_new: false
@@ -205,93 +209,241 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-Lowest-common-ancestor" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/04/19/hash/" class="archive-article-date">
-      <time datetime="2016-04-19T06:27:47.000Z" itemprop="datePublished">04-19</time>
+    <div class="article-meta">
+      <a href="/2016/11/16/Lowest-common-ancestor/" class="article-date">
+      <time datetime="2016-11-16T05:17:21.000Z" itemprop="datePublished">2016-11-16</time>
 </a>
-        </div>
-         
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/04/19/hash/">std::hash 標準雜湊介面</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Lowest common ancestor(LCA)
     </h1>
   
 
-        <div class="article-info info-on-archive">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/C/">C++</a>
+    <a class="article-category-link" href="/categories/Template/">Template</a>
     </div>
 
 
-          
+        
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-11/">C++11</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-14/">C++14</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-17/">C++17</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hash/">hash</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LCA/">LCA</a></li></ul>
     </div>
 
-        </div>
         <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
+      </div>
+      
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2016/04/15/chrono/" class="archive-article-date">
-      <time datetime="2016-04-15T15:41:32.000Z" itemprop="datePublished">04-15</time>
-</a>
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/04/15/chrono/">Chrono 通用的時間處裡方法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
+    <div class="article-entry" itemprop="articleBody">
+      
           
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/C/">C++</a>
+        <h1 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h1><p>Lowest common ancestor (LCA,最近公同祖先)，是解圖論-樹類型題目時非常重要的一個概念。</p>
+<a id="more"></a>
+<p>我們假定樹是有根樹，且B的深度大於等於A的深度，那會有兩種狀況：</p>
+<ol>
+<li>$A$與$B$在同一條鏈上</li>
+</ol>
+<p>那$A$就是$A,B$的LCA。</p>
+<ol>
+<li>$A$與$B$在不同鏈上</li>
+</ol>
+<p>那兩條鏈會合的點就是LCA。</p>
+<h1 id="求解"><a href="#求解" class="headerlink" title="求解"></a>求解</h1><p>使用樸素的DFS就可以簡單的找到LCA，只不過太沒有效率了，這裡要介紹一些方法來快速的求取LCA</p>
+<ul>
+<li>整理複雜度</li>
+</ul>
+<p>N代表點的數量</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>預處理</th>
+<th>查詢</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DFS</td>
+<td></td>
+<td>$\mathcal{O}(N)$</td>
+</tr>
+<tr>
+<td>倍增法</td>
+<td>$\mathcal{O}(N\log{}N)$</td>
+<td>$\mathcal{O}(\log{}\log{}N)$</td>
+</tr>
+</tbody>
+</table>
+<script src="//gist.github.com/9564e354fd06ef45f1335f9a4a8c1295.js"></script>
+<script src="//gist.github.com/f97610e9879327387f58d6bebbe6497c.js"></script>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>文章標題:</span><a href="/2016/11/16/Lowest-common-ancestor/">Lowest common ancestor(LCA)</a></p>
+        <p><span>文章作者:</span><a href="/" title="檢視 LFsWang 的個人網頁">LFsWang</a></p>
+        <p><span>發表時間:</span>2016年11月16日 - 13時17分</p>
+        <p><span>最後更新:</span>2016年11月16日 - 19時38分</p>
+        <p>
+            <span>原始連結:</span><a class="post-url" href="/2016/11/16/Lowest-common-ancestor/" title="Lowest common ancestor(LCA)">https://lfswang.github.io/2016/11/16/Lowest-common-ancestor/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://lfswang.github.io/2016/11/16/Lowest-common-ancestor/　　作者: LFsWang" title="點擊複製文章連結"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>授權協議:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/3.0/tw/" title="CC BY-NC-SA 3.0 TW" target = "_blank">"創用 CC 姓名標示-非商業性-相同方式分享 3.0 台灣 授權條款。</a>
+        </p>
     </div>
 
 
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-11/">C++11</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-14/">C++14</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-17/">C++17</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Chrono/">Chrono</a></li></ul>
-    </div>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
+<nav id="article-nav">
+  
+    <a href="/2016/11/21/TIOJ1136/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          TIOJ 1136 3.熱鍋上的螞蟻
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/11/03/CF733/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Codeforces Round #378 (Div. 2)</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目錄</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#簡介"><span class="toc-number">1.</span> <span class="toc-text">簡介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#求解"><span class="toc-number">2.</span> <span class="toc-text">求解</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隱藏目錄"  title="點擊按鈕隱藏或者顯示文章目錄">
+
+<script>
+    var valueHide = "隱藏目錄";
+    var valueShow = "顯示目錄";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+
 
     
+        <section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'lfswang'; // required: replace example with your forum shortname
 
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2016/11/21/TIOJ1136/" title="上一篇: TIOJ 1136 3.熱鍋上的螞蟻">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2016/11/03/CF733/" title="下一篇: Codeforces Round #378 (Div. 2)">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/11/28/CF735-CF736/">CF735-CF736</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/21/TIOJ1136/">TIOJ 1136 3.熱鍋上的螞蟻</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/16/Lowest-common-ancestor/">Lowest common ancestor(LCA)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/03/CF733/">Codeforces Round #378 (Div. 2)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/26/Site/">網站更新日誌</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/25/CF708-709/">AIM Tech Round 3 (CF708,709)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/24/CF707/">CF707</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/16/TIS-100-31904-Sequence-counter/">TIS-100 Sequence counter</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/16/as-if-rule/">as-if-rule</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/17/range-for/">Range For C++11的範圍表達迴圈</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/19/hash/">std::hash 標準雜湊介面</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/chrono/">Chrono 通用的時間處裡方法</a></li></ul>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
@@ -378,16 +530,6 @@ MathJax.Hub.Queue(function() {
         };
     })
 </script>
-
-    <button class="hide-labels">TAG 開關</button>
-    </script>
-    <script>
-        $(document).ready(function() {
-            $("button").click(function() {
-                $(".article-info").toggle(200);
-            });
-        });
-    </script>
 
 <!--<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>-->
