@@ -23,7 +23,7 @@
 <meta property="og:url" content="https://lfswang.github.io/2016/11/16/Lowest-common-ancestor/index.html">
 <meta property="og:site_name" content="LFsWang">
 <meta property="og:description" content="簡介Lowest common ancestor (LCA,最近公同祖先)，是解圖論-樹類型題目時非常重要的一個概念。">
-<meta property="og:updated_time" content="2016-11-16T11:38:00.208Z">
+<meta property="og:updated_time" content="2016-12-10T06:37:46.149Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Lowest common ancestor(LCA)">
 <meta name="twitter:description" content="簡介Lowest common ancestor (LCA,最近公同祖先)，是解圖論-樹類型題目時非常重要的一個概念。">
@@ -286,10 +286,23 @@
 <td>$\mathcal{O}(N\log{}N)$</td>
 <td>$\mathcal{O}(\log{}\log{}N)$</td>
 </tr>
+<tr>
+<td>數練剖分</td>
+<td>$\mathcal{O}(N)$</td>
+<td>$\mathcal{O}(\log{}^2N)$</td>
+</tr>
 </tbody>
 </table>
-<script src="//gist.github.com/9564e354fd06ef45f1335f9a4a8c1295.js"></script>
-<script src="//gist.github.com/f97610e9879327387f58d6bebbe6497c.js"></script>
+<h2 id="倍增法"><a href="#倍增法" class="headerlink" title="倍增法"></a>倍增法</h2><p>倍增法的Jump可以實現在樹上的移動，解題上相當的實用。</p>
+<p>說明待補</p>
+<script src="//gist.github.com/ceed6ec03e4e73b2f31cafbc294928fa.js"></script>
+<h2 id="樹練剖分"><a href="#樹練剖分" class="headerlink" title="樹練剖分"></a>樹練剖分</h2><p>說明待補</p>
+<p><a href="http://sunmoon-template.blogspot.tw/2015/07/heavy-light-decomposition.html" target="_blank" rel="external">日月卦長的模板庫</a></p>
+<h1 id="練習題"><a href="#練習題" class="headerlink" title="練習題"></a>練習題</h1><ul>
+<li>TIOJ 1163</li>
+<li>TIOJ 1307</li>
+<li>TIOJ 1687</li>
+</ul>
 
       
     </div>
@@ -301,7 +314,7 @@
         <p><span>文章標題:</span><a href="/2016/11/16/Lowest-common-ancestor/">Lowest common ancestor(LCA)</a></p>
         <p><span>文章作者:</span><a href="/" title="檢視 LFsWang 的個人網頁">LFsWang</a></p>
         <p><span>發表時間:</span>2016年11月16日 - 13時17分</p>
-        <p><span>最後更新:</span>2016年11月16日 - 19時38分</p>
+        <p><span>最後更新:</span>2016年12月10日 - 14時37分</p>
         <p>
             <span>原始連結:</span><a class="post-url" href="/2016/11/16/Lowest-common-ancestor/" title="Lowest common ancestor(LCA)">https://lfswang.github.io/2016/11/16/Lowest-common-ancestor/</a>
             <span class="copy-path" data-clipboard-text="原文: https://lfswang.github.io/2016/11/16/Lowest-common-ancestor/　　作者: LFsWang" title="點擊複製文章連結"><i class="fa fa-clipboard"></i></span>
@@ -339,7 +352,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目錄</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#簡介"><span class="toc-number">1.</span> <span class="toc-text">簡介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#求解"><span class="toc-number">2.</span> <span class="toc-text">求解</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#簡介"><span class="toc-number">1.</span> <span class="toc-text">簡介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#求解"><span class="toc-number">2.</span> <span class="toc-text">求解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#倍增法"><span class="toc-number">2.1.</span> <span class="toc-text">倍增法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#樹練剖分"><span class="toc-number">2.2.</span> <span class="toc-text">樹練剖分</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#練習題"><span class="toc-number">3.</span> <span class="toc-text">練習題</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -418,7 +431,7 @@
             </a>
         
     </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/11/28/CF735-CF736/">CF735-CF736</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/21/TIOJ1136/">TIOJ 1136 3.熱鍋上的螞蟻</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/16/Lowest-common-ancestor/">Lowest common ancestor(LCA)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/03/CF733/">Codeforces Round #378 (Div. 2)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/26/Site/">網站更新日誌</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/25/CF708-709/">AIM Tech Round 3 (CF708,709)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/24/CF707/">CF707</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/16/TIS-100-31904-Sequence-counter/">TIS-100 Sequence counter</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/16/as-if-rule/">as-if-rule</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/17/range-for/">Range For C++11的範圍表達迴圈</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/19/hash/">std::hash 標準雜湊介面</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/chrono/">Chrono 通用的時間處裡方法</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/11/28/CF735-CF736/">Codeforces Round #382</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/21/TIOJ1136/">TIOJ 1136 3.熱鍋上的螞蟻</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/16/Lowest-common-ancestor/">Lowest common ancestor(LCA)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/11/03/CF733/">Codeforces Round #378 (Div. 2)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/26/Site/">網站更新日誌</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/25/CF708-709/">AIM Tech Round 3 (CF708,709)</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/24/CF707/">CF707</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/16/TIS-100-31904-Sequence-counter/">TIS-100 Sequence counter</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/07/16/as-if-rule/">as-if-rule</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/05/17/range-for/">Range For C++11的範圍表達迴圈</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/19/hash/">std::hash 標準雜湊介面</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/15/chrono/">Chrono 通用的時間處裡方法</a></li></ul>
     <script>
         $(".post-list").addClass("toc-article");
         $(".post-list-item a").attr("target","_blank");
