@@ -15,18 +15,20 @@
     window.location.protocol = "https";
   </script>
   
-  <title>Lowest common ancestor(LCA) | LFsWang</title>
+  <title>ACM2016-Marnila | LFsWang</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="簡介Lowest common ancestor (LCA,最近公同祖先)，是解圖論-樹類型題目時非常重要的一個概念。">
+  <meta name="description" content="Day 1我們搭乘華航下午定期前往馬尼拉的航班，不過要登機時，櫃檯刷機票條碼的電腦故障，改以人工登記，因此延誤了非常的久才讓所有乘客上機。機上提供了雞肉麵，我覺得味道還可以，不過學長不是很喜歡就沒吃了。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Lowest common ancestor(LCA)">
-<meta property="og:url" content="https://lfswang.github.io/2016/11/16/Lowest-common-ancestor/index.html">
+<meta property="og:title" content="ACM2016-Marnila">
+<meta property="og:url" content="https://lfswang.github.io/2016/12/13/ACM2016-Marnila/index.html">
 <meta property="og:site_name" content="LFsWang">
-<meta property="og:description" content="簡介Lowest common ancestor (LCA,最近公同祖先)，是解圖論-樹類型題目時非常重要的一個概念。">
-<meta property="og:updated_time" content="2016-12-11T16:38:21.863Z">
+<meta property="og:description" content="Day 1我們搭乘華航下午定期前往馬尼拉的航班，不過要登機時，櫃檯刷機票條碼的電腦故障，改以人工登記，因此延誤了非常的久才讓所有乘客上機。機上提供了雞肉麵，我覺得味道還可以，不過學長不是很喜歡就沒吃了。">
+<meta property="og:image" content="https://lfswang.github.io/2016/12/13/ACM2016-Marnila/157.PNG">
+<meta property="og:updated_time" content="2016-12-19T08:16:19.132Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lowest common ancestor(LCA)">
-<meta name="twitter:description" content="簡介Lowest common ancestor (LCA,最近公同祖先)，是解圖論-樹類型題目時非常重要的一個概念。">
+<meta name="twitter:title" content="ACM2016-Marnila">
+<meta name="twitter:description" content="Day 1我們搭乘華航下午定期前往馬尼拉的航班，不過要登機時，櫃檯刷機票條碼的電腦故障，改以人工登記，因此延誤了非常的久才讓所有乘客上機。機上提供了雞肉麵，我覺得味道還可以，不過學長不是很喜歡就沒吃了。">
+<meta name="twitter:image" content="https://lfswang.github.io/2016/12/13/ACM2016-Marnila/157.PNG">
   
     <link rel="alternative" href="/atom.xml" title="LFsWang" type="application/atom+xml">
   
@@ -209,11 +211,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-Lowest-common-ancestor" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-ACM2016-Marnila" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/11/16/Lowest-common-ancestor/" class="article-date">
-      <time datetime="2016-11-16T05:17:21.000Z" itemprop="datePublished">2016-11-16</time>
+      <a href="/2016/12/13/ACM2016-Marnila/" class="article-date">
+      <time datetime="2016-12-13T14:53:31.000Z" itemprop="datePublished">2016-12-13</time>
 </a>
     </div>
   
@@ -226,7 +228,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Lowest common ancestor(LCA)
+      ACM2016-Marnila
     </h1>
   
 
@@ -235,13 +237,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Template/">Template</a>
+    <a class="article-category-link" href="/categories/ACM/">ACM</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LCA/">LCA</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ACM-Manila/">ACM Manila</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -251,74 +253,18 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h1><p>Lowest common ancestor (LCA,最近公同祖先)，是解圖論-樹類型題目時非常重要的一個概念。</p>
+        <h1 id="Day-1"><a href="#Day-1" class="headerlink" title="Day 1"></a>Day 1</h1><p>我們搭乘華航下午定期前往馬尼拉的航班，不過要登機時，櫃檯刷機票條碼的電腦故障，改以人工登記，因此延誤了非常的久才讓所有乘客上機。機上提供了雞肉麵，我覺得味道還可以，不過學長不是很喜歡就沒吃了。</p>
+<img src="/2016/12/13/ACM2016-Marnila/157.PNG" alt="TPA to MNA" title="TPA to MNA">
 <a id="more"></a>
-<p>我們假定樹是有根樹，且B的深度大於等於A的深度，那會有兩種狀況：</p>
-<ol>
-<li>$A$與$B$在同一條鏈上</li>
-</ol>
-<p>那$A$就是$A,B$的LCA。</p>
-<ol>
-<li>$A$與$B$在不同鏈上</li>
-</ol>
-<p>那兩條鏈會合的點就是LCA。</p>
-<h1 id="求解"><a href="#求解" class="headerlink" title="求解"></a>求解</h1><p>使用樸素的DFS就可以簡單的找到LCA，只不過太沒有效率了，這裡要介紹一些方法來快速的求取LCA</p>
-<ul>
-<li>整理複雜度</li>
-</ul>
-<p>N代表點的數量，Q代表查詢的數量，h表示樹最高的高度</p>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>預處理</th>
-<th>查詢</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>DFS</td>
-<td></td>
-<td>$\mathcal{O}(N)$</td>
-</tr>
-<tr>
-<td>Tarjan’s off-line LCA Algorithm</td>
-<td>$\mathcal{O}((N+Q)*\alpha(N))$</td>
-<td>$\mathcal{O}(1)$</td>
-</tr>
-<tr>
-<td>倍增法</td>
-<td>$\mathcal{O}(N\log{}N)$</td>
-<td>$\mathcal{O}(\log{}h)$</td>
-</tr>
-<tr>
-<td>樹練剖分</td>
-<td>$\mathcal{O}(N)$</td>
-<td>$\mathcal{O}(\log{}^2N)$</td>
-</tr>
-<tr>
-<td>樹壓平RMQ</td>
-<td>$\mathcal{O}(N)$</td>
-<td>$\mathcal{O}(\log{}N)$</td>
-</tr>
-<tr>
-<td>樹壓平約束RMQ</td>
-<td>$\mathcal{O}(N)$</td>
-<td>$\mathcal{O}(1)$</td>
-</tr>
-</tbody>
-</table>
-<h2 id="倍增法"><a href="#倍增法" class="headerlink" title="倍增法"></a>倍增法</h2><p>倍增法的Jump可以實現在樹上的移動，解題上相當的實用。</p>
-<p>說明待補</p>
-<script src="//gist.github.com/ceed6ec03e4e73b2f31cafbc294928fa.js?file=lca_double.cpp"></script>
-<h2 id="Tarjan’s-off-line-LCA-Algorithm"><a href="#Tarjan’s-off-line-LCA-Algorithm" class="headerlink" title="Tarjan’s off-line LCA Algorithm"></a>Tarjan’s off-line LCA Algorithm</h2><script src="//gist.github.com/ceed6ec03e4e73b2f31cafbc294928fa.js?file=lca_tarjan.cpp"></script>
-<h2 id="樹練剖分"><a href="#樹練剖分" class="headerlink" title="樹練剖分"></a>樹練剖分</h2><p>說明待補</p>
-<p><a href="http://sunmoon-template.blogspot.tw/2015/07/heavy-light-decomposition.html" target="_blank" rel="external">日月卦長的模板庫</a></p>
-<h1 id="練習題"><a href="#練習題" class="headerlink" title="練習題"></a>練習題</h1><ul>
-<li>TIOJ 1163</li>
-<li>TIOJ 1307</li>
-<li>TIOJ 1687</li>
-</ul>
+<p>到了馬尼拉要入關的時候看到超長的人龍，原本以為要排很久，結果這邊是本國人專用，另一邊沒什麼人的才是外國人用的，有點神奇。我這排的海關似乎不是很喜歡問問題，連個話都沒說，只收了下文件處理張拍照就通過了。後來到出口換了錢，弄了一張sim卡來上網，找到我們訂的車之後就前往飯店了。在馬尼拉極度混亂壅擠的車陣中折騰了兩個小時才到飯店 Microtel by Wyndham，白色外觀，看起來還滿不錯的，也有一台正常的電視機可以看BBC,CNN,Discovery之類的，奇種有一台剛好在放sia的歌，滿潮的。</p>
+<div class="video-container"><iframe src="//www.youtube.com/embed/GKSRyLdjsPA" frameborder="0" allowfullscreen></iframe></div>
+<p>由於班機延誤加上塞車，我們趕在附近的肯德基打烊前跑出去吃個晚餐，台灣上把吐司麵包夾配料的叫三明治，剩下的都叫漢堡，不過英文上剛好倒過來，只有特定的款式叫burger，廣義上常說sandwich。原本要點一個便宜的雞肉飯，不過店員說賣光了，最後選了一個一樣便宜的雞肉堡(sandwich)套餐，跟台灣一樣有飲料薯條，還滿好吃的，只是真的滿小的。而其他人點了炸雞套餐，不小心中了地雷頗悲劇，炸雞皮軟肉硬，飯也不是台灣的口感。大家吃完離開後在回程的路上逛了一下，幾乎每家店門口都站了一位警察幫出入的人開門，路口則有持槍的員警駐守，傳聞治安十分不好看來是真的。附近的便利商店有mini stop(也有賣炸雞)、7-11(超小間)以及mercury drug(有賣零食的藥局)，東西不是比台灣便宜一點，就是貴很多，買了一瓶汽水及餅乾就回飯店休息了</p>
+<h1 id="Day-2"><a href="#Day-2" class="headerlink" title="Day 2"></a>Day 2</h1><p>第二天測機日下午才開始，中午時我們前往比賽的主辦學校，報到完後我們拿到了這次比賽的贈禮：後背包以及水壺，不過大會沒提供午餐，要我們到學生餐廳去買，不過不知道為什麼餐廳沒什麼人，只有兩三家店開著，晃了一圈覺得自助餐難度很高，因此只買了一個熱狗堡(sandwich)，意外的好吃，剩下的時間都在看學長完精靈寶可夢日月(aka 神奇寶貝)。開幕式跟泰國一要大家站起來聽一個好像是國歌的歌曲，台灣沒有這種要求，但是後面致詞都滿冗長就是了，聽完了致詞便發放點心，有一杯香蕉風味的仙草茶，香蕉風味的麵包，以及甜到爆炸的炸香蕉，弄完這些乎滯銷的甜食後便到了這次比賽的會場，開始上機測試，這次我們有攜帶我們的吉祥物，一開始搞不清楚狀況的工讀生要我們收起來，剛好巧遇這次比賽的Director，就要她們檢查一下布偶裡面有沒有電子產品，沒問題就可以讓我們擺著，總共有9題，比賽時間設了五個小時，一開始我簡單的傳了下水題，像卦長示範default setting怎麼設，因為表定測到晚上六點，因此學長Chuck接手過去寫題目，我到一旁休息等最後一小時再繼續測試，順便把最後一題的式子推出來放著(詢問區間$\sum\sum\sum a_ia_ja_k$,$i\neq j,i\neq k,j\neq k$)，然後突然Chuck跟我說judge傳訊息，說測機只剩15分鐘，一個傻眼，現在還不到五點，於是我趕緊測了一些簡單的東西，stack size，RE 判定，然後就莫名的結束了，由於我們機胡沒有測試到什麼東西，所以我們的隊員Chuck就去想主辦單位反映，我們也從其他隊伍得知本次測試時編譯器參數沒有優化，有沒有開C++11，所以就一同到judge房吵架，最後是承諾會在比賽前公布參數，也意外得知之所以突然結束是因為場館要閉館，原先預約到晚上8點，卻被管理員趕走，有點莫名其妙。之後搭車回飯店，到了一旁的Pizza店吃晚餐，這應該是我們這趟旅程中最好的餐點。</p>
+<div class="video-container"><iframe src="//www.youtube.com/embed/IYXiWSmfAlE" frameborder="0" allowfullscreen></iframe></div>
+<h1 id="Day-3"><a href="#Day-3" class="headerlink" title="Day 3"></a>Day 3</h1><p>今天就是比賽日了，一大早我們就前往學校準備，前也題供了一點小點心給大家。到了比賽會場後，座位又重新配置，只是我們的吉象物竟然被擺錯位置到另一隊去了，有點傻眼，拿回來時一度還被阻止，莫名其妙。這次比賽開場依照我們原先的計畫，我和Chuck一人分一半的題目先看，卦長打default code以及設定，我分到的第一題喵一眼就發現是水題，於是我立刻跑去打code，那是一個判斷合法數獨的問題，由於測資超長，我只測了一組，沒錯後就立刻上傳，結果是第二個傳的，早知道就不測直接傳就會有全場首殺了，之後我們也很快地解出另一個水題，維持在全場第二好一段時間，可是接下來就沒那麼順利了，卦長的動態MST老是不知原因的爛掉，最後我把它code的assert拿掉後上傳，竟然AC了，令人傻眼，接著就卡到封版後，A與B一直搞不定，計分板上A沒有人做出來，B一堆爛掉，而回歸直線的式子也忘了，而這時我們隊員發現J可以本地建表，跑了一下後就AC了，B則是想我反映精度不足，要我用Java翻寫Code，不過時間上已經來不及了，打字過程中有想到把沒誤差的地方做出來後暴力做剩下的部分，實際上正解就這樣…，最後就4題作收，第一名6題，十分殘念。</p>
+<p>賽後有簡單的校園導覽，然後到一個禮堂裡面看迪士尼的花木蘭等頒獎。最後1,2名都是NTU的隊伍，Jbros太猛拉把第一名的電腦抱回家了。雖然只拿到了不知道是什麼獎的獎狀，不果過感覺比上次泰國好一點了，還是有很多要改進的地方，明年由於Chuck要退休了，我必須擔任主要的寫手，壓力其實很大，也沒辦法，後面除了新人有沒人可以比了，這學校的ACM來看又要靠我們這隊扛了，同屆的也沒幾個願意比，其實前景頗慘，希望現在的大一會有好的起色。</p>
+<h1 id="Day-4"><a href="#Day-4" class="headerlink" title="Day 4"></a>Day 4</h1><p>這次塞了兩個半小時才到機場，交通狀況依然十分傻眼，回程十分順利，除了學長的行李丟失以外。接下來就要準備期末了，有不少的事情等待我去策畫，就讓大家期待吧。</p>
+<p><a href="http://penoy.admu.edu.ph/~acmicpc/final-scoreboard/" target="_blank" rel="external">Final Scoreboard</a></p>
 
       
     </div>
@@ -327,13 +273,13 @@
   
     
     <div class="copyright">
-        <p><span>文章標題:</span><a href="/2016/11/16/Lowest-common-ancestor/">Lowest common ancestor(LCA)</a></p>
+        <p><span>文章標題:</span><a href="/2016/12/13/ACM2016-Marnila/">ACM2016-Marnila</a></p>
         <p><span>文章作者:</span><a href="/" title="檢視 LFsWang 的個人網頁">LFsWang</a></p>
-        <p><span>發表時間:</span>2016年11月16日 - 13時17分</p>
-        <p><span>最後更新:</span>2016年12月12日 - 00時38分</p>
+        <p><span>發表時間:</span>2016年12月13日 - 22時53分</p>
+        <p><span>最後更新:</span>2016年12月19日 - 16時16分</p>
         <p>
-            <span>原始連結:</span><a class="post-url" href="/2016/11/16/Lowest-common-ancestor/" title="Lowest common ancestor(LCA)">https://lfswang.github.io/2016/11/16/Lowest-common-ancestor/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://lfswang.github.io/2016/11/16/Lowest-common-ancestor/　　作者: LFsWang" title="點擊複製文章連結"><i class="fa fa-clipboard"></i></span>
+            <span>原始連結:</span><a class="post-url" href="/2016/12/13/ACM2016-Marnila/" title="ACM2016-Marnila">https://lfswang.github.io/2016/12/13/ACM2016-Marnila/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://lfswang.github.io/2016/12/13/ACM2016-Marnila/　　作者: LFsWang" title="點擊複製文章連結"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -346,18 +292,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2016/11/21/TIOJ1136/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          TIOJ 1136 3.熱鍋上的螞蟻
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/11/03/CF733/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Codeforces Round #378 (Div. 2)</div>
+    <a href="/2016/11/28/CF735-CF736/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Codeforces Round #382</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -368,7 +305,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目錄</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#簡介"><span class="toc-number">1.</span> <span class="toc-text">簡介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#求解"><span class="toc-number">2.</span> <span class="toc-text">求解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#倍增法"><span class="toc-number">2.1.</span> <span class="toc-text">倍增法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tarjan’s-off-line-LCA-Algorithm"><span class="toc-number">2.2.</span> <span class="toc-text">Tarjan’s off-line LCA Algorithm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#樹練剖分"><span class="toc-number">2.3.</span> <span class="toc-text">樹練剖分</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#練習題"><span class="toc-number">3.</span> <span class="toc-text">練習題</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Day-1"><span class="toc-number">1.</span> <span class="toc-text">Day 1</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Day-2"><span class="toc-number">2.</span> <span class="toc-text">Day 2</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Day-3"><span class="toc-number">3.</span> <span class="toc-text">Day 3</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Day-4"><span class="toc-number">4.</span> <span class="toc-text">Day 4</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -436,13 +373,11 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/11/21/TIOJ1136/" title="上一篇: TIOJ 1136 3.熱鍋上的螞蟻">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到首頁"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2016/11/03/CF733/" title="下一篇: Codeforces Round #378 (Div. 2)">
+            <a href="/2016/11/28/CF735-CF736/" title="下一篇: Codeforces Round #382">
                 <i class="fa fa-angle-right"></i>
             </a>
         
