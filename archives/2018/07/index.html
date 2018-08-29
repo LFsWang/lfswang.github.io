@@ -64,6 +64,18 @@
     <script defer type="text/javascript" src="/js/lg-zoom.min.js"></script>
     
     
+    <script defer type="text/javascript" src="/js/search.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "search.xml";
+      if (searchPath.length === 0) {
+        searchPath = "search.xml";
+      }
+      var path = "/" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    
     
     
     <script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
@@ -129,7 +141,7 @@
 <div id="archive" class="archive">
   <h1 class="archive-counter">
     
-    你已經寫了 1 篇文章，積少成多，再接再厲！
+    你已經寫了 2 篇文章！
     
   </h1>
   
@@ -140,11 +152,11 @@
   
   <article class="archive-article card" itemscope itemtype="http://schema.org/Article">
     <h1 class="post-title" itemprop="name headline">
-      <a class="post-title-link post-title-link-external" href="/2018/07/04/hello-world/" itemprop="url">Hello World</a>
+      <a class="post-title-link post-title-link-external" href="/2018/07/05/CF-ECR46/" itemprop="url">Educational Codeforces Round 46</a>
     </h1>
     
     <span class="post-date">
-      <time title="post-date" itemprop="dateCreated datePublished" datetime="2018-07-04T23:56:16+08:00">07-04</time>
+      <time title="post-date" itemprop="dateCreated datePublished" datetime="2018-07-05T17:14:22+08:00">07-05</time>
     </span>
     
   </article>
@@ -158,6 +170,13 @@
           
 <aside class="sidebar" id="sidebar" style="background: url(/images/sidebar_background.png);">
   
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="搜索" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  
   
 <div class="info sidebar-item" id="info">
   
@@ -169,7 +188,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">歸檔</div>
-      <div><a href="/archives/">1</a></div>
+      <div><a href="/archives/">2</a></div>
     </div>
     
     
@@ -208,11 +227,9 @@
   <div><i class="fas fa-link"></i>友情鏈接</div>
   <ul>
     
-    <li><a href="https://github.com/" target="_blank">GitHub</a></li>
+    <li><a href="https://en.cppreference.com/w/" target="_blank">CppReference</a></li>
     
-    <li><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
-    
-    <li><a href="https://mozilla.github.io/nunjucks/" target="_blank">Nunjucks</a></li>
+    <li><a href="https://www.tfcis.org/" target="_blank">TFcis</a></li>
     
   </ul>
 </div>
@@ -253,5 +270,5 @@
 </footer>
 
 
-  </body>
+  <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":100,"height":200},"mobile":{"show":true}});</script></body>
 </html>
