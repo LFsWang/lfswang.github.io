@@ -112,23 +112,28 @@
         <h1 class="title"><a href="/">LFsWang's World</a></h1>
         <h2 class="subtitle"></h2>
       </div>
+      
       <div class="logo">
         <img src="/images/ARIA_logo.png" alt="logo">
       </div>
+      
     </div>
-    
-<nav id="nav" class="nav">
-  <a id="nav-toggle" class="nav-toggle"><i class="fas fa-bars"></i></a>
-  <ul id="menu">
-    
-    <li><a href="/">首頁</a></li>
-    
-    <li><a href="/archives/">歸檔</a></li>
-    
-  </ul>
-</nav>
-
-
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切換導覽列"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        
+        <li role="menuitem"><a href="/">首頁</a></li>
+        
+        <li role="menuitem"><a href="/archives/">歸檔</a></li>
+        
+        <li role="menuitem"><a href="/categories/">分類</a></li>
+        
+        <li role="menuitem"><a href="/tags/">標籤</a></li>
+        
+        <li role="menuitem"><a href="/about/">關於</a></li>
+        
+      </ul>
+    </nav>
   </div>
 </header>
 
@@ -138,9 +143,9 @@
         <div class="main-container">
           <div class="content">
             
-<div id="post" class="post">
+<div id="post" class="page">
   
-  <article class="post-article card" itemscope itemtype="http://schema.org/Article">
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="https://lfswang.github.io/2018/08/29/TIOJ-1201/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -162,6 +167,14 @@
         
         
         
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/解題/" itemprop="url" rel="index"><span itemprop="name">解題</span></a></span><i class="fas fa-angle-right"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/解題/TIOJ/" itemprop="url" rel="index"><span itemprop="name">TIOJ</span></a></span>
+        </span>
+        
+        
       </div>
     </header>
     <main class="post-main" itemprop="articleBody">
@@ -175,13 +188,11 @@
 <p>可以先讓所有人以最緊密的方法排列進去，第一個是怪人，再下$M$個空房間，然後再一個怪人，以此類推。最後會剩下$K - ( S+(S-1)\times M )$間自由擺放的房間，數量用$L$表示。根據排列組合，$L$個相同物有$S+1$個相異位置可放入，共有$\binom{L+S}{L}$種方法，故總方法數是$\sum\binom{L+S}{L}\times {N}^{K-S}$，因為不能保證$P$是質數，硬幹$C^n_m$複雜度過高，化簡$C$找通項DP化很麻煩，因此該方法不太合適。</p>
 <p>如果是排組問題，可以考慮回到DP的基本想法，因為怪人的數量是任意多的，前面的怪人數量不影響答案，因此狀態可以如無限背包問題一樣，設$dp[i]=$有$i$個房間時，答案為何，考慮最後一個房間的狀況：</p>
 <ol>
-<li>是怪人</li>
+<li><p>是怪人：那樣要扣掉$1+M$個位置給怪人與空位，答案有$N^M\times dp[i-M-1]$那麼多種</p>
+</li>
+<li><p>不是怪人：最後一個格子有$N$種可能，答案有$N\times dp[i-1]$那麼多種</p>
+</li>
 </ol>
-<p>那樣要扣掉$1+M$個位置給怪人與空位，答案有$N^M\times dp[i-M-1]$那麼多種</p>
-<ol start="2">
-<li>不是怪人</li>
-</ol>
-<p>最後一個格子有$N$種可能，答案有$N\times dp[i-1]$那麼多種</p>
 <p>最後的答案即上兩狀況的和，狀態與轉移都超乾淨，複雜度是$O(K)$</p>
 <h1 id="AC-Code"><a href="#AC-Code" class="headerlink" title="AC Code"></a>AC Code</h1><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><span class="hljs-keyword">using</span> ll=<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span>;<br>ll dp[<span class="hljs-number">65536</span>+<span class="hljs-number">1</span>];<br>ll pw[<span class="hljs-number">65536</span>+<span class="hljs-number">1</span>];<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span><br></span>&#123;<br>    ios::sync_with_stdio(<span class="hljs-literal">false</span>);<br>    <span class="hljs-built_in">cin</span>.tie(<span class="hljs-number">0</span>);<br><br>    ll N,M,K,P,ans;<br>    <br>    <span class="hljs-keyword">while</span>(<span class="hljs-built_in">cin</span>&gt;&gt;N&gt;&gt;M&gt;&gt;K&gt;&gt;P,N)<br>    &#123;<br>        ans = <span class="hljs-number">0</span>;<br>        pw[<span class="hljs-number">0</span>]=dp[<span class="hljs-number">0</span>]=<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">for</span>(ll i=<span class="hljs-number">1</span>;i&lt;=K;++i)<br>        &#123;<br>            pw[i] = pw[i<span class="hljs-number">-1</span>] * N % P;<br>            ll v1 = dp[i<span class="hljs-number">-1</span>] * N % P;<br>            ll L = min(M,i<span class="hljs-number">-1</span>) ;<br>            ll v2 = dp[i<span class="hljs-number">-1</span>-L]*pw[L]%P;<br>            dp[i]=(v1+v2)%P;<br>        &#125;<br>        <span class="hljs-built_in">cout</span>&lt;&lt; dp[K] &lt;&lt; <span class="hljs-string">'\n'</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
     </main>
@@ -189,12 +200,7 @@
       
       <div class="post-tags">
         
-        
-        
-        
-        <a class="post-tag button" href="/tags/TIOJ/" style="background: #fc6423;" rel="tag"><i class="fas fa-tags"></i>TIOJ</a>
-        
-        <a class="post-tag button" href="/tags/DP/" style="background: #a3bb54;" rel="tag"><i class="fas fa-tags"></i>DP</a>
+        <a class="post-tag button" href="/tags/DP/" rel="tag"><i class="fas fa-tags"></i>DP</a>
         
       </div>
       
@@ -202,16 +208,18 @@
   </article>
   
   
-  <div class="post-nav">
-    <div class="post-nav-next post-nav-item">
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
       
       <a href="/2018/07/05/CF-ECR46/" rel="next" title="Educational Codeforces Round 46"><i class="fas fa-angle-left"></i><span class="nav-title">Educational Codeforces Round 46</span></a>
       
     </div>
-    <div class="post-nav-prev post-nav-item">
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2018/08/30/TIOJ-1210/" rel="prev" title="1210 . 圖論 之 簡單圖測試"><span class="nav-title">1210 . 圖論 之 簡單圖測試</span><i class="fas fa-angle-right"></i></a>
       
     </div>
-  </div>
+  </nav>
   
   
 </div>
@@ -220,7 +228,7 @@
           
           
           
-<aside class="sidebar" id="sidebar" style="background: url(/images/sidebar_background.png);">
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
   
   <div class="search">
     <div class="form-group">
@@ -235,15 +243,31 @@
   <img class="author-avatar" src="/images/avatar.jpg" alt="LFsWang">
   
   <h1 class="author-name">LFsWang</h1>
-  <h2 class="author-description"> </h2>
+  <h2 class="author-description"></h2>
   <div class="site-count">
     
     <div class="archives-count">
       <div class="site-count-title">歸檔</div>
-      <div><a href="/archives/">2</a></div>
+      <div><a href="/archives/">3</a></div>
     </div>
     
     
+    
+    <span class="site-count-divider divider">|</span>
+    
+    <div class="categories-count">
+      <div class="site-count-title">分類</div>
+      <div><a href="/categories/">2</a></div>
+    </div>
+    
+    
+    
+    <span class="site-count-divider divider">|</span>
+    
+    <div class="tags-count">
+      <div class="site-count-title">標籤</div>
+      <div><a href="/tags/">3</a></div>
+    </div>
     
   </div>
   
@@ -257,50 +281,41 @@
   <div class="sidebar-sticky">
     
     
-
-
-
-
-<hr>
-<div class="post-toc sidebar-item" id="toc-div">
-  <div><i class="fas fa-list-ol"></i>文章目錄</div>
-  <div class="post-toc-content"><ol class="list-group toc"><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#題目大意"><span class="toc-text">題目大意</span></a></li><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#題解"><span class="toc-text">題解</span></a></li><li class="toc-item toc-level-1"><a class="list-group-item toc-link" href="#AC-Code"><span class="toc-text">AC Code</span></a></li></ol></div>
-</div>
-
-
-
     
     
     
-<hr>
-<div class="social-link sidebar-item">
-  <div><i class="far fa-address-card"></i>社交鏈接</p></div>
-  <ul>
-    
-    <li><i class="fab fa-github"></i><a href="https://github.com/LFsWan" target="_blank">GitHub</a></li>
-    
-    <li><i class="fab fa-facebook"></i><a href="https://www.facebook.com/Sylveon-1580376772211056/?ref=bookmarks" target="_blank">Facebook</a></li>
-    
-  </ul>
-</div>
-
-
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目錄</div>
+      <div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#題目大意"><span class="toc-text">題目大意</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#題解"><span class="toc-text">題解</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AC-Code"><span class="toc-text">AC Code</span></a></li></ol></div>
+    </div>
     
     
     
-<hr>
-<div class="blogroll sidebar-item">
-  <div><i class="fas fa-link"></i>友情鏈接</div>
-  <ul>
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>社交鏈接</p></div>
+      <ul>
+        
+        <li><i class="fab fa-github"></i><a href="https://github.com/LFsWan" target="_blank">GitHub</a></li>
+        
+        <li><i class="fab fa-facebook"></i><a href="https://www.facebook.com/Sylveon-1580376772211056/?ref=bookmarks" target="_blank">Facebook</a></li>
+        
+      </ul>
+    </div>
     
-    <li><a href="https://en.cppreference.com/w/" target="_blank">CppReference</a></li>
     
-    <li><a href="https://www.tfcis.org/" target="_blank">TFcis</a></li>
-    
-  </ul>
-</div>
-
-
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>友情鏈接</div>
+      <ul>
+        
+        <li><a href="https://en.cppreference.com/w/" target="_blank">CppReference</a></li>
+        
+        <li><a href="https://www.tfcis.org/" target="_blank">TFcis</a></li>
+        
+      </ul>
+    </div>
     
   </div>
 </aside>
@@ -314,7 +329,7 @@
 <footer id="footer" class="footer" style="background: #33363b;">
   <div class="container">
     <div class="back-to-top">
-      <a id="back-to-top"><i class="fas fa-angle-double-up"></i></a>
+      <button id="back-to-top"><i class="fas fa-angle-double-up" aria-label="回到頂部"></i></button>
     </div>
     <div class="footer-container">
       <div class="footer-left">
