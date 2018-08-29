@@ -5,6 +5,7 @@
   color: #eee;
 }
 .header .header-container {
+  background-image: url("/images/head-background.png");
   display: -webkit-box;
   display: -moz-box;
   display: -webkit-flex;
@@ -38,6 +39,7 @@
   padding: 1em;
 }
 .header .header-container .header-title {
+  text-shadow: 2px 2px #000;
   text-align: left;
   width: 50%;
   word-wrap: break-word;
