@@ -103,7 +103,7 @@
     <script defer type="text/javascript" src="/js/index.js"></script>
     
     <script defer type="text/javascript" src="/js/custom.js"></script>
-    <title>LFsWang's World</title>
+    <title>1306. 字串中的字串 | LFsWang's World</title>
   </head>
   <body itemscope itemtype="http://schema.org/WebPage" lang="zh_TW"  data-spy="scroll" data-target=".list-group">
     
@@ -124,7 +124,7 @@
       <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="切換導覽列"></i></a>
       <ul id="menu" role="menubar" aria-hidden="false">
         
-        <li role="menuitem"><a href="/" class="current">首頁</a></li>
+        <li role="menuitem"><a href="/">首頁</a></li>
         
         <li role="menuitem"><a href="/archives/">歸檔</a></li>
         
@@ -145,25 +145,22 @@
         <div class="main-container">
           <div class="content">
             
-
-<div id="index" class="index page">
+<div id="post" class="page">
   
   <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="https://lfswang.github.io/2018/08/31/TIOJ-1306/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="LFsWang">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/images/avatar.jpg">
+       <meta itemprop="name" content="LFsWang">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.jpg">
       </span>
       <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="LFsWang's World">
+       <meta itemprop="name" content="LFsWang's World">
       </span>
     </div>
     <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2018/08/31/TIOJ-1306/" itemprop="url">1306. 字串中的字串</a>
-      </h1>
+      <h1 class="post-title" itemprop="name headline">1306. 字串中的字串</h1>
       <div class="post-meta">
         
         <span class="post-date">
@@ -183,7 +180,6 @@
       </div>
     </header>
     <main class="post-main" itemprop="articleBody">
-      
       <p>連結：</p>
 <h1 id="題目大意"><a href="#題目大意" class="headerlink" title="題目大意"></a>題目大意</h1><p>有一個字串 $T$，詢問多個字串 $P_i$ 分別在 $T$ 中出現幾次。</p>
 <h1 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h1><p>很久以前寫過這題，用的是雜湊，不過看起來WA了之後這題就被擱置了，無聊又點開這題，意外地找到當初WA的BUG… 給大家猜猜看：</p>
@@ -201,7 +197,6 @@
 <h1 id="AC-Code"><a href="#AC-Code" class="headerlink" title="AC Code"></a>AC Code</h1><h2 id="AC-自動機"><a href="#AC-自動機" class="headerlink" title="AC 自動機"></a>AC 自動機</h2><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">node</span>&#123;</span><br>    <span class="hljs-keyword">int</span> next[<span class="hljs-number">26</span>];<br>    <span class="hljs-keyword">int</span> fail;<br>    <span class="hljs-keyword">int</span> tag;<br>    <span class="hljs-keyword">int</span> hit;<br>&#125;;<br><br><span class="hljs-keyword">int</span> nwid;<br><span class="hljs-built_in">vector</span>&lt;node&gt; buf(<span class="hljs-number">310000</span>);<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">newnode</span><span class="hljs-params">()</span><br></span>&#123;<br>    nwid++;<br>    <span class="hljs-keyword">if</span>( nwid == buf.size() ) <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>);<br>    <span class="hljs-built_in">memset</span>(&amp;buf[nwid], <span class="hljs-number">0</span>,<span class="hljs-keyword">sizeof</span>(buf[<span class="hljs-number">0</span>]));<br>    <br>    <span class="hljs-keyword">return</span> nwid;<br>&#125;<br><span class="hljs-keyword">using</span> pnode = <span class="hljs-keyword">int</span>;<br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> nullptr 0</span><br><br>pnode root = <span class="hljs-literal">nullptr</span>;<br><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; query;<br><span class="hljs-built_in">map</span>&lt;<span class="hljs-keyword">int</span>,<span class="hljs-keyword">int</span>&gt; ans;<br><span class="hljs-built_in">map</span>&lt;<span class="hljs-built_in">string</span>,<span class="hljs-keyword">int</span>&gt; sid;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">build</span><span class="hljs-params">()</span><br></span>&#123;<br>    <span class="hljs-built_in">queue</span>&lt;pnode&gt; qu;<br>    qu.push(root);<br><br>    buf[root].fail = root;<br><br>    <span class="hljs-keyword">while</span>(!qu.empty())<br>    &#123;<br>        pnode ptr = qu.front();<br>        qu.pop();<br>        <br>        <span class="hljs-keyword">int</span> i=<span class="hljs-number">-1</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> e:buf[ptr].next)<br>        &#123;<br>            i++;<br>            <span class="hljs-keyword">if</span>(!e) <span class="hljs-keyword">continue</span>;<br>            qu.push(e);<br>            <span class="hljs-keyword">auto</span> tmp = buf[ptr].fail;<br>            <span class="hljs-keyword">while</span>( tmp!=root &amp;&amp; !buf[tmp].next[i] )<br>                tmp=buf[tmp].fail;<br>            <span class="hljs-keyword">if</span>( ptr!=root &amp;&amp; buf[tmp].next[i] )<br>                tmp = buf[tmp].next[i];<br>            buf[e].fail = tmp;<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">eval</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span> &amp;s)</span><br></span>&#123;<br>    pnode ptr = root;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> c:s)<br>    &#123;<br>        c-=<span class="hljs-string">'a'</span>;<br>        <span class="hljs-keyword">while</span>( ptr!=root &amp;&amp; !buf[ptr].next[c] )<br>            ptr = buf[ptr].fail;<br>        <span class="hljs-keyword">if</span>( buf[ptr].next[c])<br>            ptr = buf[ptr].next[c];<br>        buf[ptr].hit++;<br>    &#125;<br>&#125;<br><br><span class="hljs-built_in">map</span>&lt;pnode,<span class="hljs-keyword">int</span>&gt; deg;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(pnode r)</span><br></span>&#123;<br>    deg[r];<br>    deg[buf[r].fail]++;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> e:buf[r].next)<br>        <span class="hljs-keyword">if</span>(e) dfs(e);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">calc</span><span class="hljs-params">()</span><br></span>&#123;<br>    deg.clear();<br>    ans.clear();<br>    dfs(root);<br>    deg[root]--;<br>    <span class="hljs-built_in">queue</span>&lt;pnode&gt; qu;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> p:deg)<br>        <span class="hljs-keyword">if</span>(p.second==<span class="hljs-number">0</span>)<br>            qu.push(p.first);<br>    <br>    <span class="hljs-keyword">while</span>( !qu.empty() )<br>    &#123;<br>        <span class="hljs-keyword">auto</span> ptr = qu.front();<br>        qu.pop();<br>        <br>        <span class="hljs-keyword">if</span>(buf[ptr].tag) <br>            ans[buf[ptr].tag]=buf[ptr].hit;<br>        <br>        deg[buf[ptr].fail]--;<br>        <span class="hljs-keyword">if</span>( deg[buf[ptr].fail] == <span class="hljs-number">0</span> )<br>            qu.push(buf[ptr].fail);<br>        buf[buf[ptr].fail].hit += buf[ptr].hit;<br>    &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span><br></span>&#123;<br>    ios::sync_with_stdio(<span class="hljs-literal">false</span>);<br>    <span class="hljs-built_in">cin</span>.tie(<span class="hljs-number">0</span>);<br><br>    <span class="hljs-keyword">int</span> T,N;<br>    <span class="hljs-built_in">string</span> tmpl, str;<br>    <span class="hljs-built_in">cin</span>&gt;&gt;T;<br>    <span class="hljs-keyword">while</span>(T--)<br>    &#123;<br>        query.clear();<br>        sid.clear();<br>        nwid=<span class="hljs-number">0</span>;<br>        root = newnode();<br>        <span class="hljs-built_in">cin</span>&gt;&gt;tmpl&gt;&gt;N;<br>        <br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;N;++i)<br>        &#123;<br>            <span class="hljs-built_in">cin</span>&gt;&gt;str;<br>            <span class="hljs-keyword">if</span>( sid[str] == <span class="hljs-number">0</span> )<br>                sid[str] = sid.size();<br>            query.push_back(sid[str]);<br><br>            <span class="hljs-keyword">auto</span> ptr = root;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">char</span> c:str)<br>            &#123;<br>                <span class="hljs-keyword">if</span>( buf[ptr].next[c-<span class="hljs-string">'a'</span>] == <span class="hljs-literal">nullptr</span> )<br>                    buf[ptr].next[c-<span class="hljs-string">'a'</span>] = newnode();<br>                ptr = buf[ptr].next[c-<span class="hljs-string">'a'</span>];<br>            &#125;<br>            buf[ptr].tag = query.back();<br>        &#125;<br>        build();<br>        eval(tmpl);<br>        calc();<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i:query)<span class="hljs-built_in">cout</span>&lt;&lt;ans[i]&lt;&lt;<span class="hljs-string">'\n'</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <h2 id="Rolling-Hash"><a href="#Rolling-Hash" class="headerlink" title="Rolling Hash"></a>Rolling Hash</h2><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstdio&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;algorithm&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;vector&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstring&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ll;<br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> P1  26</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MOD 1000000009</span><br><br>ll pw1[<span class="hljs-number">10005</span>];<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">()</span><br></span>&#123;<br>    pw1[<span class="hljs-number">0</span>]=<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;<span class="hljs-number">10005</span>;++i)<br>    &#123;<br>        pw1[i]=pw1[i<span class="hljs-number">-1</span>]*P1%MOD;<br>    &#125;<br>&#125;<br><br>ll ht1[<span class="hljs-number">10001</span>];<br><span class="hljs-keyword">char</span> tmpl[<span class="hljs-number">10001</span>];<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">build</span><span class="hljs-params">(<span class="hljs-keyword">char</span> *str)</span><br></span>&#123;<br>    ht1[<span class="hljs-number">0</span>]=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span>( str[i<span class="hljs-number">-1</span>] )<br>    &#123;<br>        ht1[i] = (ht1[i<span class="hljs-number">-1</span>]*P1+str[i<span class="hljs-number">-1</span>])%MOD;<br>        ++i;<br>    &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> ll <span class="hljs-title">gethash1</span><span class="hljs-params">(<span class="hljs-keyword">int</span> L, <span class="hljs-keyword">int</span> R)</span><br></span>&#123;<br>    ll tmp = ht1[R] - ht1[L<span class="hljs-number">-1</span>]*pw1[R-L+<span class="hljs-number">1</span>]%MOD;<br>    <span class="hljs-keyword">if</span>( tmp &lt; <span class="hljs-number">0</span> ) tmp += MOD;<br>    <span class="hljs-keyword">return</span> tmp;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">inline</span> ll <span class="hljs-title">calc</span><span class="hljs-params">( <span class="hljs-keyword">char</span> *str, ll p )</span><br></span>&#123;<br>    ll res = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span>(str[i])<br>    &#123;<br>        res = ( res * p + str[i] ) % MOD;<br>        ++i;<br>    &#125;<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span><br></span>&#123;<br>    ios::sync_with_stdio(<span class="hljs-literal">false</span>);<br>    <span class="hljs-built_in">cin</span>.tie(<span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">int</span> T,N;<br>    ll hA,lent,len;<br>    <span class="hljs-built_in">cin</span>&gt;&gt;T;<br>    init();<br>    <span class="hljs-keyword">while</span>(T--)<br>    &#123;<br>        <span class="hljs-built_in">cin</span>&gt;&gt;tmpl;<br>        lent = <span class="hljs-built_in">strlen</span>(tmpl);<br>        build(tmpl);<br>        <span class="hljs-built_in">cin</span>&gt;&gt;N;<br>        <span class="hljs-keyword">while</span>(N--)<br>        &#123;<br>            <span class="hljs-built_in">cin</span>&gt;&gt;tmpl;<br>            len = <span class="hljs-built_in">strlen</span>(tmpl);<br>            hA = calc(tmpl,P1);<br><br>            <span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">int</span> pos = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">while</span>( pos + len &lt;= lent )<br>            &#123;<br>                <span class="hljs-keyword">if</span>( hA == gethash1( pos+<span class="hljs-number">1</span>,pos+len ) ) sum++;<br>                pos++;<br>            &#125;<br>            <span class="hljs-built_in">cout</span>&lt;&lt;sum&lt;&lt;<span class="hljs-string">'\n'</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-      
     </main>
     <footer class="post-footer">
       
@@ -218,241 +213,17 @@
     </footer>
   </article>
   
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="https://lfswang.github.io/2018/08/30/TIOJ-1214/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="LFsWang">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/images/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="LFsWang's World">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2018/08/30/TIOJ-1214/" itemprop="url">1214 . 樹論 之 樹同構測試</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-08-30T21:21:04+08:00">2018-08-30 21:21:04</time></span>
-        </span>
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-categories">
-          
-          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/解題/" itemprop="url" rel="index"><span itemprop="name">解題</span></a></span><i class="fas fa-angle-right"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/解題/TIOJ/" itemprop="url" rel="index"><span itemprop="name">TIOJ</span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p>連結：<a href="https://tioj.ck.tp.edu.tw/problems/1214" target="_blank" rel="noopener">https://tioj.ck.tp.edu.tw/problems/1214</a></p>
-<h1 id="題目大意"><a href="#題目大意" class="headerlink" title="題目大意"></a>題目大意</h1><p>判斷兩棵樹是否同構</p>
-<h1 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h1><p>如果兩棵樹是一樣的，那可以先將樹上唯二的重心、或直徑中點找出來，那就可以一個相同的點，然後再比對樹的最小括號表示法即可完成題目要求。</p>
-<h1 id="AC-Code"><a href="#AC-Code" class="headerlink" title="AC Code"></a>AC Code</h1><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><br><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; V[<span class="hljs-number">100</span>];<br><br><span class="hljs-keyword">int</span> far,far2;<br><span class="hljs-keyword">int</span> dist=<span class="hljs-number">0</span>;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> v, <span class="hljs-keyword">int</span> fa, <span class="hljs-keyword">int</span> d)</span><br></span>&#123;<br>    <span class="hljs-keyword">if</span>( d &gt; dist )&#123;<br>        far=v;<br>        dist=d;<br>    &#125;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> e:V[v])<br>    &#123;<br>        <span class="hljs-keyword">if</span>(e==fa)<span class="hljs-keyword">continue</span>;<br>        dfs(e,v,d+<span class="hljs-number">1</span>);<br>    &#125;<br>&#125;<br><br><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; path;<br><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">findpath</span><span class="hljs-params">(<span class="hljs-keyword">int</span> v, <span class="hljs-keyword">int</span> fa)</span><br></span>&#123;<br>    path.push_back(v);<br>    <span class="hljs-keyword">if</span>( v == far2 ) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> e:V[v])<br>    &#123;<br>        <span class="hljs-keyword">if</span>( e==fa ) <span class="hljs-keyword">continue</span>;<br>        <span class="hljs-keyword">if</span>( findpath(e,v) ) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br>    path.pop_back();<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; findMid()<br>&#123;<br>    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; ans;<br>    far=<span class="hljs-number">1</span>;<br>    dist=<span class="hljs-number">0</span>;<br>    dfs(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>);<br>    dist=<span class="hljs-number">0</span>;<br>    far2=far;<br>    dfs(far,far,<span class="hljs-number">0</span>);<br>    path.clear();<br>    findpath(far,far);<br>    <br>    <span class="hljs-keyword">int</span> sz = path.size();<br>    ans.push_back(path[sz/<span class="hljs-number">2</span>]);<br>    <span class="hljs-keyword">if</span>( sz%<span class="hljs-number">2</span> == <span class="hljs-number">0</span> )<br>        ans.push_back(path[sz/<span class="hljs-number">2</span><span class="hljs-number">-1</span>]);<br>    <span class="hljs-keyword">return</span> ans;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">hash</span><span class="hljs-params">(<span class="hljs-keyword">int</span> v,<span class="hljs-keyword">int</span> fa)</span><br></span>&#123;<br>    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">string</span>&gt; res;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> e:V[v])<br>    &#123;<br>        <span class="hljs-keyword">if</span>(e==fa)<span class="hljs-keyword">continue</span>;<br>        res.push_back( ::hash(e,v) );<br>    &#125;<br>    sort(res.begin(),res.end());<br>    <span class="hljs-built_in">string</span> h=<span class="hljs-string">"("</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> &amp;s:res) h+=s;<br>    h+=<span class="hljs-string">")"</span>;<br>    <span class="hljs-keyword">return</span> h;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span><br></span>&#123;<br>    ios::sync_with_stdio(<span class="hljs-literal">false</span>);<br>    <span class="hljs-built_in">cin</span>.tie(<span class="hljs-number">0</span>);<br><br>    <span class="hljs-keyword">int</span> s,e,N;<br>    <span class="hljs-keyword">while</span>(<span class="hljs-built_in">cin</span>&gt;&gt;N,N)<br>    &#123;<br>        <span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">string</span>&gt; h[<span class="hljs-number">2</span>];<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> _=<span class="hljs-number">0</span>;_&lt;<span class="hljs-number">2</span>;_++)<br>        &#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=N;++i)<br>                V[i].clear();<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;N;++i)<br>            &#123;<br>                <span class="hljs-built_in">cin</span>&gt;&gt;s&gt;&gt;e;<br>                V[s].push_back(e);<br>                V[e].push_back(s);<br>            &#125;<br>            <span class="hljs-keyword">auto</span> mids = findMid();<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> v:mids)<br>                h[_].push_back(::hash(v,v));<br>            sort(h[_].begin(),h[_].end());<br>        &#125;<br>        <span class="hljs-keyword">if</span>( h[<span class="hljs-number">0</span>]==h[<span class="hljs-number">1</span>] )<span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">"Same\n"</span>;<br>        <span class="hljs-keyword">else</span> <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">"Different\n"</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/Tree/" rel="tag"><i class="fas fa-tags"></i>Tree</a>
-        
-      </div>
-      
-    </footer>
-  </article>
   
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="https://lfswang.github.io/2018/08/30/TIOJ-1210/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="LFsWang">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/images/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="LFsWang's World">
-      </span>
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2018/08/30/TIOJ-1214/" rel="next" title="1214 . 樹論 之 樹同構測試"><i class="fas fa-angle-left"></i><span class="nav-title">1214 . 樹論 之 樹同構測試</span></a>
+      
     </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2018/08/30/TIOJ-1210/" itemprop="url">1210 . 圖論 之 簡單圖測試</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-08-30T00:12:25+08:00">2018-08-30 00:12:25</time></span>
-        </span>
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-categories">
-          
-          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/解題/" itemprop="url" rel="index"><span itemprop="name">解題</span></a></span><i class="fas fa-angle-right"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/解題/TIOJ/" itemprop="url" rel="index"><span itemprop="name">TIOJ</span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
+    <div class="page-nav-prev page-nav-item">
       
-      <p>連結：<a href="https://tioj.ck.tp.edu.tw/problems/1210" target="_blank" rel="noopener">https://tioj.ck.tp.edu.tw/problems/1210</a></p>
-<h1 id="題目大意"><a href="#題目大意" class="headerlink" title="題目大意"></a>題目大意</h1><p>給定一個度序列，問這個度序列是否能構成一張簡單圖？</p>
-<h1 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h1><p>最近恰好讀了圖論的書，若一個度序列可以構造出一個簡單圖，該序列又可稱為圖序列，利用度序列判定是否為簡單圖(無自環、重邊)在這本書<a href="https://www.books.com.tw/products/0010769614" target="_blank" rel="noopener">【演算法觀點的圖論】</a>第一章就有提到了，有兩個定理可以使用：</p>
-<ol>
-<li><a href="https://en.wikipedia.org/wiki/Erd%C5%91s%E2%80%93Gallai_theorem" target="_blank" rel="noopener">Erdős–Gallai theorem</a></li>
-</ol>
-<p>若度序列 $d:d_1\geq d_2\geq\dots d_n$ 是圖序列 $\iff$ $\sum d$ 是偶數，且對於 $1\leq k \leq n$都有</p>
-<p>$$\sum_{i=1}^k d_i\leq k(k-1) + \sum_{j=k+1}^n \min\{k,d_j\}$$</p>
-<ol start="2">
-<li><a href="https://en.wikipedia.org/wiki/Havel%E2%80%93Hakimi_algorithm" target="_blank" rel="noopener">Havel–Hakimi algorithm</a></li>
-</ol>
-<p>對於$n\geq 2$，若度序列 $d:d_1\geq d_2\geq\dots d_n$ 是圖序列 $\iff$ </p>
-<p>$$d’:d_2-1, d_3-1, \dots, d_{1+d_1}-1, d_{2+d_1}, d_{2+d_1},\dots, d_n$$</p>
-<p>也是圖序列</p>
-<p>可以發現第二個方法比較好實作，就是把度數最大的點，都接一條邊到度數較多的邊上。由於數字都是整數，可以利用Counting Sort或是一些技巧，就能在$O(V)$的時間判定是否為簡單圖了。</p>
-<h1 id="AC-Code"><a href="#AC-Code" class="headerlink" title="AC Code"></a>AC Code</h1><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><br><span class="hljs-keyword">int</span> c[<span class="hljs-number">10001</span>];<br><span class="hljs-keyword">int</span> tmp[<span class="hljs-number">10001</span>];<br><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">test</span><span class="hljs-params">(<span class="hljs-keyword">int</span> mx)</span><br></span>&#123;<br>    <span class="hljs-built_in">memset</span>(tmp,<span class="hljs-number">0</span>,<span class="hljs-keyword">sizeof</span>(tmp));<br>    <span class="hljs-keyword">while</span>( mx &gt; <span class="hljs-number">0</span> )<br>    &#123;<br>        <span class="hljs-keyword">int</span> req = mx, la = mx;<br>        c[mx]--;<br>        <span class="hljs-keyword">while</span>(req&gt;<span class="hljs-number">0</span>&amp;&amp;la&gt;<span class="hljs-number">0</span>)<br>        &#123;<br>            <span class="hljs-keyword">int</span> del = min(c[la],req);<br>            c[la]-=del;<br>            tmp[la<span class="hljs-number">-1</span>]+=del;<br>            req-=del;<br>            la--;<br>        &#125;<br>        <span class="hljs-keyword">if</span>( req ) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        <span class="hljs-keyword">while</span>(la&lt;=mx)<br>        &#123;<br>            c[la]+=tmp[la];<br>            tmp[la]=<span class="hljs-number">0</span>;<br>            la++;<br>        &#125;<br>        <span class="hljs-keyword">while</span>( !c[mx] ) mx--;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span><br></span>&#123;<br>    ios::sync_with_stdio(<span class="hljs-literal">false</span>);<br>    <span class="hljs-built_in">cin</span>.tie(<span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">int</span> N, tmp;<br>    <br>    <span class="hljs-keyword">while</span>(<span class="hljs-built_in">cin</span>&gt;&gt;N,N)<br>    &#123;<br>        <span class="hljs-keyword">int</span> deg=<span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> mx=<span class="hljs-number">0</span>;<br>        <span class="hljs-built_in">memset</span>(c,<span class="hljs-number">0</span>,<span class="hljs-keyword">sizeof</span>(c));<br>        <span class="hljs-keyword">bool</span> isSimple = <span class="hljs-literal">true</span>;<br>        <br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;N;++i)<br>        &#123;<br>            <span class="hljs-built_in">cin</span>&gt;&gt;tmp;<br>            deg+=tmp;<br>            mx=max(mx,tmp);<br>            c[tmp]++;<br>        &#125;<br>        <br>        <span class="hljs-keyword">if</span>( deg%<span class="hljs-number">2</span>!=<span class="hljs-number">0</span> ) isSimple = <span class="hljs-literal">false</span>;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>( mx &gt;= N ) isSimple = <span class="hljs-literal">false</span>;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>( !test(mx) ) isSimple = <span class="hljs-literal">false</span>;<br>        <br>        <span class="hljs-keyword">if</span>( isSimple )<span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">"Yes\n"</span>;<br>        <span class="hljs-keyword">else</span> <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">"No\n"</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/Graph/" rel="tag"><i class="fas fa-tags"></i>Graph</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="https://lfswang.github.io/2018/08/29/TIOJ-1201/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="LFsWang">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/images/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="LFsWang's World">
-      </span>
     </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2018/08/29/TIOJ-1201/" itemprop="url">1201. 消逝於黃昏中的風</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-08-29T16:14:22+08:00">2018-08-29 16:14:22</time></span>
-        </span>
-        
-        
-        
-        <span class="post-meta-divider divider">|</span>
-        
-        <span class="post-categories">
-          
-          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/解題/" itemprop="url" rel="index"><span itemprop="name">解題</span></a></span><i class="fas fa-angle-right"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/解題/TIOJ/" itemprop="url" rel="index"><span itemprop="name">TIOJ</span></a></span>
-        </span>
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <p>連結：<a href="https://tioj.ck.tp.edu.tw/problems/1201" target="_blank" rel="noopener">https://tioj.ck.tp.edu.tw/problems/1201</a></p>
-<h1 id="題目大意"><a href="#題目大意" class="headerlink" title="題目大意"></a>題目大意</h1><p>直線上有$K$個房間，每個房間要不就是社團的人，要不就是怪人(沒社團的人)，任兩怪人之間要相隔$M$個房間，已知有$N$種不同的社團，總共有幾種，問有幾種合法的人員放置方法，取除以$P$的餘數。</p>
-<h1 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h1><p>一開始想到數學解，由枚舉怪人的數量，再把方法數加起來，如果現在有$S$位怪人，顯然要滿足：</p>
-<ul>
-<li>$ K \geq ( S+(S-1)\times M ) $</li>
-<li>$ K \geq S + N $</li>
-</ul>
-<p>可以先讓所有人以最緊密的方法排列進去，第一個是怪人，再下$M$個空房間，然後再一個怪人，以此類推。最後會剩下$K - ( S+(S-1)\times M )$間自由擺放的房間，數量用$L$表示。根據排列組合，$L$個相同物有$S+1$個相異位置可放入，共有$\binom{L+S}{L}$種方法，故總方法數是$\sum\binom{L+S}{L}\times {N}^{K-S}$，因為不能保證$P$是質數，硬幹$C^n_m$複雜度過高，化簡$C$找通項DP化很麻煩，因此該方法不太合適。</p>
-<p>如果是排組問題，可以考慮回到DP的基本想法，因為怪人的數量是任意多的，前面的怪人數量不影響答案，因此狀態可以如無限背包問題一樣，設$dp[i]=$有$i$個房間時，答案為何，考慮最後一個房間的狀況：</p>
-<ol>
-<li><p>是怪人：那樣要扣掉$1+M$個位置給怪人與空位，答案有$N^M\times dp[i-M-1]$那麼多種</p>
-</li>
-<li><p>不是怪人：最後一個格子有$N$種可能，答案有$N\times dp[i-1]$那麼多種</p>
-</li>
-</ol>
-<p>最後的答案即上兩狀況的和，狀態與轉移都超乾淨，複雜度是$O(K)$</p>
-<h1 id="AC-Code"><a href="#AC-Code" class="headerlink" title="AC Code"></a>AC Code</h1><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><span class="hljs-keyword">using</span> ll=<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span>;<br>ll dp[<span class="hljs-number">65536</span>+<span class="hljs-number">1</span>];<br>ll pw[<span class="hljs-number">65536</span>+<span class="hljs-number">1</span>];<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span><br></span>&#123;<br>    ios::sync_with_stdio(<span class="hljs-literal">false</span>);<br>    <span class="hljs-built_in">cin</span>.tie(<span class="hljs-number">0</span>);<br><br>    ll N,M,K,P,ans;<br>    <br>    <span class="hljs-keyword">while</span>(<span class="hljs-built_in">cin</span>&gt;&gt;N&gt;&gt;M&gt;&gt;K&gt;&gt;P,N)<br>    &#123;<br>        ans = <span class="hljs-number">0</span>;<br>        pw[<span class="hljs-number">0</span>]=dp[<span class="hljs-number">0</span>]=<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">for</span>(ll i=<span class="hljs-number">1</span>;i&lt;=K;++i)<br>        &#123;<br>            pw[i] = pw[i<span class="hljs-number">-1</span>] * N % P;<br>            ll v1 = dp[i<span class="hljs-number">-1</span>] * N % P;<br>            ll L = min(M,i<span class="hljs-number">-1</span>) ;<br>            ll v2 = dp[i<span class="hljs-number">-1</span>-L]*pw[L]%P;<br>            dp[i]=(v1+v2)%P;<br>        &#125;<br>        <span class="hljs-built_in">cout</span>&lt;&lt; dp[K] &lt;&lt; <span class="hljs-string">'\n'</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/DP/" rel="tag"><i class="fas fa-tags"></i>DP</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="https://lfswang.github.io/2018/07/05/CF-ECR46/">
-      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <meta itemprop="name" content="LFsWang">
-        <meta itemprop="description" content="">
-        <meta itemprop="image" content="/images/avatar.jpg">
-      </span>
-      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="LFsWang's World">
-      </span>
-    </div>
-    <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2018/07/05/CF-ECR46/" itemprop="url">Educational Codeforces Round 46</a>
-      </h1>
-      <div class="post-meta">
-        
-        <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-07-05T17:14:22+08:00">2018-07-05 17:14:22</time></span>
-        </span>
-        
-        
-        
-      </div>
-    </header>
-    <main class="post-main" itemprop="articleBody">
-      
-      <h1 id="心得"><a href="#心得" class="headerlink" title="心得"></a>心得</h1><p>平日練習隨意寫的</p>
-<h2 id="A"><a href="#A" class="headerlink" title="A"></a>A</h2><p>水題，略</p>
-<h2 id="B"><a href="#B" class="headerlink" title="B"></a>B</h2><p>水題，略</p>
-<h2 id="C-Covered-Points-Count"><a href="#C-Covered-Points-Count" class="headerlink" title="C. Covered Points Count"></a>C. Covered Points Count</h2><p><a href="http://codeforces.com/contest/1000/submission/39890972" target="_blank" rel="noopener">AC code</a></p>
-<p>利用掃描線的概念，按照$x$軸順序排序，將事件排好記數即可。</p>
-<h2 id="D-Yet-Another-Problem-On-a-Subsequence"><a href="#D-Yet-Another-Problem-On-a-Subsequence" class="headerlink" title="D. Yet Another Problem On a Subsequence"></a>D. Yet Another Problem On a Subsequence</h2><p><a href="http://codeforces.com/contest/1000/submission/39930076" target="_blank" rel="noopener">AC code</a></p>
-<p>可以利用動態規劃(DP)來計算答案，若子序列$p$是合法的，則將$p$的第一個 <em>good array</em> 去掉後剩餘的部分也是合法的，假定$dp[i]$表示子序列開頭在第$i$項時，有多少數列滿足題目的條件，若$a_i\leq 0 $，則答案為$0$，否則，可以在第$i$項後的$j$個數字任意挑$a_i$個數字，挑完後在乘上$dp[j+1]$，為剩下的部分有多少合法序列。最後的答案即為$dp$陣列的總和。</p>
-<p>$$dp[i]=\begin{cases}  1 &amp; i = N+1 \\ \sum_{j=i+a_i}^{N} \binom{j}{i}dp[j+1] &amp; \text{otherwise} \end{cases}$$</p>
-<h2 id="E-We-Need-More-Bosses"><a href="#E-We-Need-More-Bosses" class="headerlink" title="E. We Need More Bosses"></a>E. We Need More Bosses</h2><h2 id="F"><a href="#F" class="headerlink" title="F"></a>F</h2><h2 id="G"><a href="#G" class="headerlink" title="G"></a>G</h2>
-      
-    </main>
-    <footer class="post-footer">
-      
-      <div class="post-tags">
-        
-        <a class="post-tag button" href="/tags/Codeforce/" rel="tag"><i class="fas fa-tags"></i>Codeforce</a>
-        
-      </div>
-      
-    </footer>
-  </article>
-  
+  </nav>
   
   
 </div>
@@ -512,6 +283,17 @@
 
 
   <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目錄</div>
+      <div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#題目大意"><span class="toc-text">題目大意</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#題解"><span class="toc-text">題解</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AC-Code"><span class="toc-text">AC Code</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#AC-自動機"><span class="toc-text">AC 自動機</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rolling-Hash"><span class="toc-text">Rolling Hash</span></a></li></ol></li></ol></div>
+    </div>
+    
     
     
     <hr>
