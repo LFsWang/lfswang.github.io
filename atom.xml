@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lfswang.github.io/"/>
-  <updated>2018-08-30T17:24:55.327Z</updated>
+  <updated>2018-08-31T04:36:21.841Z</updated>
   <id>https://lfswang.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>1331. 索拉數列</title>
+    <link href="https://lfswang.github.io/2018/08/31/TIOJ-1331/"/>
+    <id>https://lfswang.github.io/2018/08/31/TIOJ-1331/</id>
+    <published>2018-08-31T04:22:17.000Z</published>
+    <updated>2018-08-31T04:36:21.841Z</updated>
+    
+    <content type="html"><![CDATA[<p>連結：<a href="https://tioj.ck.tp.edu.tw/problems/1331" target="_blank" rel="noopener">https://tioj.ck.tp.edu.tw/problems/1331</a></p><h1 id="題目大意"><a href="#題目大意" class="headerlink" title="題目大意"></a>題目大意</h1><p>給定 $a,b,x,y$ 問下遞迴數列第 $n$ 項的數值是多少，取其除以 $2^{32}$ 的餘數：</p><p>$$\begin{cases}S_0&amp;=a\\S_1&amp;=b\\S_n&amp;=xS_{n-2}+yS_{n-1}\end{cases}$$</p><h1 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h1><p>因為 $n$ 的範圍是 $10^9$，很顯然的要用矩陣快速冪來計算。矩陣的構造方法就如同費式數列</p><p>$$\begin{bmatrix}0&amp;1\\x&amp;y\end{bmatrix}^n\begin{bmatrix}S_0\\S_1\end{bmatrix}=\begin{bmatrix}S_n\\S_{n+1}\end{bmatrix}$$</p><p>利運快速冪來計算可以在 $O(2^3\times\log{n})$ 計算出答案。</p><h1 id="AC-Code"><a href="#AC-Code" class="headerlink" title="AC Code"></a>AC Code</h1><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><br><span class="hljs-keyword">using</span> u32 = <span class="hljs-keyword">uint32_t</span>;<br><span class="hljs-keyword">using</span> matrix = <span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">vector</span>&lt;u32&gt;&gt;;<br>matrix A,T;<br><span class="hljs-comment">//a*=b;</span><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-keyword">void</span> <span class="hljs-title">mul</span><span class="hljs-params">(matrix &amp;a, <span class="hljs-keyword">const</span> matrix &amp;b)</span><br></span>&#123;<br>    <span class="hljs-comment">//static matrix c(2, vector&lt;u32&gt;(2)); //highlight.js render bug...</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">2</span>;++i)<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j&lt;<span class="hljs-number">2</span>;++j)<br>            c[i][j]=a[i][<span class="hljs-number">0</span>]*b[<span class="hljs-number">0</span>][j]+a[i][<span class="hljs-number">1</span>]*b[<span class="hljs-number">1</span>][j];<br>    a.swap(c);<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span><br></span>&#123;<br>    ios::sync_with_stdio(<span class="hljs-literal">false</span>);<br>    <span class="hljs-built_in">cin</span>.tie(<span class="hljs-number">0</span>);<br><br>    u32 n,a,b,x,y;<br>    <span class="hljs-keyword">while</span>( <span class="hljs-built_in">cin</span>&gt;&gt;n, n&lt;INT_MAX )<br>    &#123;<br>        <span class="hljs-built_in">cin</span>&gt;&gt;a&gt;&gt;b&gt;&gt;x&gt;&gt;y;<br>        <br>        A = &#123; &#123; <span class="hljs-number">0</span>,<span class="hljs-number">1</span> &#125;,<br>              &#123; x,y &#125; &#125;;<br>        T = &#123; &#123; <span class="hljs-number">1</span>,<span class="hljs-number">0</span> &#125;,<br>              &#123; <span class="hljs-number">0</span>,<span class="hljs-number">1</span> &#125; &#125;;<br>        <span class="hljs-keyword">while</span>( n )<br>        &#123;<br>            <span class="hljs-keyword">if</span>( n&amp;<span class="hljs-number">1</span> ) mul(T,A); <br>            mul(A,A);<br>            n/=<span class="hljs-number">2</span>;<br>        &#125;<br>        <br>        u32 ans = a*T[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] + b*T[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>];<br>        <span class="hljs-built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="hljs-string">'\n'</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;連結：&lt;a href=&quot;https://tioj.ck.tp.edu.tw/problems/1331&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://tioj.ck.tp.edu.tw/problems/1331&lt;/a&gt;&lt;/p&gt;
+&lt;h1 i
+      
+    
+    </summary>
+    
+      <category term="解題" scheme="https://lfswang.github.io/categories/%E8%A7%A3%E9%A1%8C/"/>
+    
+      <category term="TIOJ" scheme="https://lfswang.github.io/categories/%E8%A7%A3%E9%A1%8C/TIOJ/"/>
+    
+    
+      <category term="Matrix" scheme="https://lfswang.github.io/tags/Matrix/"/>
+    
+  </entry>
   
   <entry>
     <title>1306. 字串中的字串</title>
