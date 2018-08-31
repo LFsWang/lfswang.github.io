@@ -186,7 +186,7 @@
     <main class="post-main" itemprop="articleBody">
       <p>連結：<a href="https://tioj.ck.tp.edu.tw/problems/1418" target="_blank" rel="noopener">https://tioj.ck.tp.edu.tw/problems/1418</a></p>
 <h1 id="題目大意"><a href="#題目大意" class="headerlink" title="題目大意"></a>題目大意</h1><p>有$N$位同學要每三個人湊成一組，每湊成一組可以計算出一個雷度，問要怎麼湊才能使整體雷度最低。</p>
-<h1 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h1><p>這題時限我覺得設計的很差，只有特定的實作才能過最後一筆。</p>
+<h1 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h1><p>這題目名稱感覺挺容易起爭議的，而且這題時限我覺得設計的很差，只有特定的實作才能過最後一筆。</p>
 <p>如果不記最後一筆，可以很簡單的用位元DP處裡掉，因為可以任選三人，DP時因此可以固定先選一人，再任選兩人，讓枚舉的複雜度變低，可以再$O(N^2 2^N)$的時間完成。</p>
 <p>$$dp[S]=\begin{cases}0 &amp; \text{if }S=\emptyset \\min{dp[S-{i,j,k}]+v[i][j]+v[j][k]+v[k][i]}&amp;\text{otherwise}\end{cases}$$</p>
 <p>其中 $i,j,k\in S$</p>
