@@ -154,6 +154,173 @@
   
   <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="https://lfswang.github.io/2018/09/02/TIOJ-2037/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="LFsWang">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/images/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="LFsWang's World">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/09/02/TIOJ-2037/" itemprop="url">2037. 警力配置</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-09-02T02:28:42+08:00">2018-09-02 02:28:42</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/解題/" itemprop="url" rel="index"><span itemprop="name">解題</span></a></span><i class="fas fa-angle-right"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/解題/TIOJ/" itemprop="url" rel="index"><span itemprop="name">TIOJ</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>連結：<a href="https://tioj.ck.tp.edu.tw/problems/2037" target="_blank" rel="noopener">https://tioj.ck.tp.edu.tw/problems/2037</a></p>
+<h1 id="題目大意"><a href="#題目大意" class="headerlink" title="題目大意"></a>題目大意</h1><p>題目寫得很亂，總結一下：給一張二分圖，問最小點覆蓋是多少，即要最少要選幾個點，才能使每一條邊至少有一端點被選中。</p>
+<h1 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h1><p>二分圖上有<br>$$\text{最大匹配}=\text{最小點覆蓋}$$</p>
+<p>證明待補，完整的證明我有用到cut。可以直接用匈牙利演算法 (Kőnig’s theorem) 簡單的求出最大匹配。</p>
+<h1 id="AC-Code"><a href="#AC-Code" class="headerlink" title="AC Code"></a>AC Code</h1><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; V[<span class="hljs-number">100001</span>];<br><span class="hljs-keyword">int</span> m[<span class="hljs-number">100001</span>];<br><br><span class="hljs-keyword">int</span> P,Q,K,T,s,t;<br><br><span class="hljs-keyword">bool</span> used[<span class="hljs-number">100001</span>];<br><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> v)</span><br></span>&#123;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> e:V[v])<br>    &#123;<br>        <span class="hljs-keyword">if</span>(used[e])<span class="hljs-keyword">continue</span>;<br>        used[e]=<span class="hljs-literal">true</span>;<br>        <span class="hljs-keyword">if</span>( m[e]==<span class="hljs-number">-1</span> || dfs(m[e]) )<br>        &#123;<br>            m[e]=v;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span><br></span>&#123;<br>    ios::sync_with_stdio(<span class="hljs-literal">false</span>);<br>    <span class="hljs-built_in">cin</span>.tie(<span class="hljs-number">0</span>);<br><br>    <span class="hljs-built_in">cin</span>&gt;&gt;T;<br>    <span class="hljs-keyword">while</span>(T--)<br>    &#123;<br>        <span class="hljs-built_in">cin</span>&gt;&gt;P&gt;&gt;Q&gt;&gt;K;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=P;++i)V[i].clear();<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=Q;++i)m[i]=<span class="hljs-number">-1</span>;<br>        <span class="hljs-keyword">while</span>(K--)<br>        &#123;<br>            <span class="hljs-built_in">cin</span>&gt;&gt;s&gt;&gt;t;<br>            V[s].emplace_back(t);<br>        &#125;<br>        <br>        <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=P;++i)<br>        &#123;<br>            <span class="hljs-built_in">memset</span>(used,<span class="hljs-number">0</span>,Q+<span class="hljs-number">1</span>);<br>            <span class="hljs-keyword">if</span>(dfs(i))ans++;<br>        &#125;<br>        <span class="hljs-built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="hljs-string">'\n'</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/二分圖/" rel="tag"><i class="fas fa-tags"></i>二分圖</a>
+        
+        <a class="post-tag button" href="/tags/最小點覆蓋/" rel="tag"><i class="fas fa-tags"></i>最小點覆蓋</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="https://lfswang.github.io/2018/09/02/TIOJ-1443/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="LFsWang">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/images/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="LFsWang's World">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/09/02/TIOJ-1443/" itemprop="url">1443. 遞迴問題</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-09-02T02:09:57+08:00">2018-09-02 02:09:57</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/解題/" itemprop="url" rel="index"><span itemprop="name">解題</span></a></span><i class="fas fa-angle-right"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/解題/TIOJ/" itemprop="url" rel="index"><span itemprop="name">TIOJ</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>連結：<a href="https://tioj.ck.tp.edu.tw/problems/1443" target="_blank" rel="noopener">https://tioj.ck.tp.edu.tw/problems/1443</a></p>
+<h1 id="題目大意"><a href="#題目大意" class="headerlink" title="題目大意"></a>題目大意</h1><p>$$F(n)=\begin{cases}0&amp;\text{if }n=0\\F([\frac{n}{2}])+n-2[\frac{n}{2}]&amp;\text{otherwise}\end{cases}$$</p>
+<p>給定$n$，問$F(0),F(1)\dots, F(n)$中的最大值為何。</p>
+<h1 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h1><p>如果仔細觀察一下，$F(n)$的結果是$n$寫成二進位時有多少$1$，因此這題要問的答案就很明顯了，就是到數字$n$二進位最多有幾個$1$。答案等於$\lfloor\log_2{(N+1)}\rfloor$。</p>
+<p>這裡做法有點懶惰，直接用python大數算，速度跟自己開大數模板差不多。</p>
+<h1 id="AC-Code"><a href="#AC-Code" class="headerlink" title="AC Code"></a>AC Code</h1><figure class="hljs highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> math<br>print(math.floor(math.log(int(input())+<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)))<br></code></pre></td></tr></table></figure>
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/Math/" rel="tag"><i class="fas fa-tags"></i>Math</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="https://lfswang.github.io/2018/09/02/TIOJ-1704/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="LFsWang">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/images/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="LFsWang's World">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/09/02/TIOJ-1704/" itemprop="url">1704. 烏龜吃橘子</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-09-02T01:53:56+08:00">2018-09-02 01:53:56</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/解題/" itemprop="url" rel="index"><span itemprop="name">解題</span></a></span><i class="fas fa-angle-right"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/解題/TIOJ/" itemprop="url" rel="index"><span itemprop="name">TIOJ</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>連結：<a href="https://tioj.ck.tp.edu.tw/problems/1704" target="_blank" rel="noopener">https://tioj.ck.tp.edu.tw/problems/1704</a></p>
+<h1 id="題目大意"><a href="#題目大意" class="headerlink" title="題目大意"></a>題目大意</h1><p>今天有$N$個橘子，每個橘子都有相異的重量。今天要挑出一些橘子，由重量小到大吃掉這些橘子。已知第 $i$ 在第 $j$ 順位吃掉的話，那就有$A_{i,j}$的飽足感。問至少要吃幾顆橘子才能有至少$k$的飽足感</p>
+<h1 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h1><p>可以考慮動態規劃。先將橘子由小到大排序，用$p_i$表示排完序後的橘子，原來的編號是什麼，設$dp[i][j]$表示全部吃了$j$個橘子，且最後一顆是$p_i$的最大飽足度，那可以很輕鬆地發現</p>
+<p>$$dp[i][j] = A_{p_i,j} + \max_{j=1,2,\dots i-1}\{dp[i-1][j]\}$$</p>
+<p>因為max的部分可以在$O(1)$時間解決掉，故該方法可以在$O(N^2)$的時間找出滿足條件答案。</p>
+<h1 id="AC-Code"><a href="#AC-Code" class="headerlink" title="AC Code"></a>AC Code</h1><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><br><span class="hljs-built_in">vector</span>&lt;pair&lt;<span class="hljs-keyword">int</span>,<span class="hljs-keyword">int</span>&gt;&gt; d;<br><br><span class="hljs-keyword">int</span> m[<span class="hljs-number">2001</span>][<span class="hljs-number">2001</span>];<br><span class="hljs-keyword">int</span> dp[<span class="hljs-number">2001</span>];<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">calc</span><span class="hljs-params">(<span class="hljs-keyword">int</span> N, <span class="hljs-keyword">int</span> K)</span><br></span>&#123;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=N;++j)<br>    &#123;<br>        <span class="hljs-keyword">int</span> mx = dp[j<span class="hljs-number">-1</span>];<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=j;i&lt;=N;++i)<br>        &#123;<br>            <span class="hljs-keyword">int</span> tmp = dp[i];<br>            dp[i] = mx + m[ d[i<span class="hljs-number">-1</span>].second ][j];<br>            mx = max(mx, tmp);<br>            <span class="hljs-keyword">if</span>( dp[i] &gt;=K ) <span class="hljs-keyword">return</span> j;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span><br></span>&#123;<br>    ios::sync_with_stdio(<span class="hljs-literal">false</span>);<br>    <span class="hljs-built_in">cin</span>.tie(<span class="hljs-number">0</span>);<br>    <br>    <span class="hljs-keyword">int</span> N,K,W;<br>    <span class="hljs-built_in">cin</span>&gt;&gt;N&gt;&gt;K;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=N;++i)<br>    &#123;<br>        <span class="hljs-built_in">cin</span>&gt;&gt;W;<br>        d.emplace_back(W,i);<br>    &#125;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=N;++i)<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;=N;++j)<br>            <span class="hljs-built_in">cin</span>&gt;&gt;m[i][j];<br>    sort(d.begin(), d.end());<br>    <span class="hljs-built_in">cout</span>&lt;&lt;calc(N, K)&lt;&lt;<span class="hljs-string">'\n'</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/DP/" rel="tag"><i class="fas fa-tags"></i>DP</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="https://lfswang.github.io/2018/08/31/TIOJ-1418/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="LFsWang">
@@ -598,7 +765,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">歸檔</div>
-      <div><a href="/archives/">7</a></div>
+      <div><a href="/archives/">10</a></div>
     </div>
     
     
@@ -616,7 +783,7 @@
     
     <div class="tags-count">
       <div class="site-count-title">標籤</div>
-      <div><a href="/tags/">9</a></div>
+      <div><a href="/tags/">12</a></div>
     </div>
     
   </div>

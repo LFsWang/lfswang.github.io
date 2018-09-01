@@ -107,7 +107,7 @@
     <script defer type="text/javascript" src="/js/index.js"></script>
     
     <script defer type="text/javascript" src="/js/custom.js"></script>
-    <title>歸檔 | LFsWang's World</title>
+    <title>2037. 警力配置 | LFsWang's World</title>
   </head>
   <body itemscope itemtype="http://schema.org/WebPage" lang="zh_TW"  data-spy="scroll" data-target=".list-group">
     
@@ -149,31 +149,72 @@
         <div class="main-container">
           <div class="content">
             
-<div id="archive" class="archive page">
-  <h1 class="page-title">歸檔</h1>
-  <h2 class="page-counter">
-    
-    你已經寫了 10 篇文章！
-    
-  </h2>
-  
-  
-  
-  
-  <h2 class="page-title">2018</h1>
+<div id="post" class="page">
   
   <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <header id="post-header" class="post-header">
-      <h1 class="post-title-simple" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2018/07/05/CF-ECR46/" itemprop="url">Educational Codeforces Round 46</a>
-      </h1>
-      
-      <span class="post-date">
-        <time title="post-date" itemprop="dateCreated datePublished" datetime="2018-07-05T17:14:22+08:00">07-05</time>
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="https://lfswang.github.io/2018/09/02/TIOJ-2037/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="LFsWang">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.jpg">
       </span>
-      
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="LFsWang's World">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">2037. 警力配置</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-09-02T02:28:42+08:00">2018-09-02 02:28:42</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/解題/" itemprop="url" rel="index"><span itemprop="name">解題</span></a></span><i class="fas fa-angle-right"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/解題/TIOJ/" itemprop="url" rel="index"><span itemprop="name">TIOJ</span></a></span>
+        </span>
+        
+        
+      </div>
     </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>連結：<a href="https://tioj.ck.tp.edu.tw/problems/2037" target="_blank" rel="noopener">https://tioj.ck.tp.edu.tw/problems/2037</a></p>
+<h1 id="題目大意"><a href="#題目大意" class="headerlink" title="題目大意"></a>題目大意</h1><p>題目寫得很亂，總結一下：給一張二分圖，問最小點覆蓋是多少，即要最少要選幾個點，才能使每一條邊至少有一端點被選中。</p>
+<h1 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h1><p>二分圖上有<br>$$\text{最大匹配}=\text{最小點覆蓋}$$</p>
+<p>證明待補，完整的證明我有用到cut。可以直接用匈牙利演算法 (Kőnig’s theorem) 簡單的求出最大匹配。</p>
+<h1 id="AC-Code"><a href="#AC-Code" class="headerlink" title="AC Code"></a>AC Code</h1><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; V[<span class="hljs-number">100001</span>];<br><span class="hljs-keyword">int</span> m[<span class="hljs-number">100001</span>];<br><br><span class="hljs-keyword">int</span> P,Q,K,T,s,t;<br><br><span class="hljs-keyword">bool</span> used[<span class="hljs-number">100001</span>];<br><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> v)</span><br></span>&#123;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> e:V[v])<br>    &#123;<br>        <span class="hljs-keyword">if</span>(used[e])<span class="hljs-keyword">continue</span>;<br>        used[e]=<span class="hljs-literal">true</span>;<br>        <span class="hljs-keyword">if</span>( m[e]==<span class="hljs-number">-1</span> || dfs(m[e]) )<br>        &#123;<br>            m[e]=v;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span><br></span>&#123;<br>    ios::sync_with_stdio(<span class="hljs-literal">false</span>);<br>    <span class="hljs-built_in">cin</span>.tie(<span class="hljs-number">0</span>);<br><br>    <span class="hljs-built_in">cin</span>&gt;&gt;T;<br>    <span class="hljs-keyword">while</span>(T--)<br>    &#123;<br>        <span class="hljs-built_in">cin</span>&gt;&gt;P&gt;&gt;Q&gt;&gt;K;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=P;++i)V[i].clear();<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=Q;++i)m[i]=<span class="hljs-number">-1</span>;<br>        <span class="hljs-keyword">while</span>(K--)<br>        &#123;<br>            <span class="hljs-built_in">cin</span>&gt;&gt;s&gt;&gt;t;<br>            V[s].emplace_back(t);<br>        &#125;<br>        <br>        <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=P;++i)<br>        &#123;<br>            <span class="hljs-built_in">memset</span>(used,<span class="hljs-number">0</span>,Q+<span class="hljs-number">1</span>);<br>            <span class="hljs-keyword">if</span>(dfs(i))ans++;<br>        &#125;<br>        <span class="hljs-built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="hljs-string">'\n'</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/二分圖/" rel="tag"><i class="fas fa-tags"></i>二分圖</a>
+        
+        <a class="post-tag button" href="/tags/最小點覆蓋/" rel="tag"><i class="fas fa-tags"></i>最小點覆蓋</a>
+        
+      </div>
+      
+    </footer>
   </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2018/09/02/TIOJ-1443/" rel="next" title="1443. 遞迴問題"><i class="fas fa-angle-left"></i><span class="nav-title">1443. 遞迴問題</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+    </div>
+  </nav>
   
   
 </div>
@@ -233,6 +274,17 @@
 
 
   <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目錄</div>
+      <div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#題目大意"><span class="toc-text">題目大意</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#題解"><span class="toc-text">題解</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AC-Code"><span class="toc-text">AC Code</span></a></li></ol></div>
+    </div>
+    
     
     
     <hr>

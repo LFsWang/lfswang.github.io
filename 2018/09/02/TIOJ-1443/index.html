@@ -107,7 +107,7 @@
     <script defer type="text/javascript" src="/js/index.js"></script>
     
     <script defer type="text/javascript" src="/js/custom.js"></script>
-    <title>歸檔 | LFsWang's World</title>
+    <title>1443. 遞迴問題 | LFsWang's World</title>
   </head>
   <body itemscope itemtype="http://schema.org/WebPage" lang="zh_TW"  data-spy="scroll" data-target=".list-group">
     
@@ -149,31 +149,72 @@
         <div class="main-container">
           <div class="content">
             
-<div id="archive" class="archive page">
-  <h1 class="page-title">歸檔</h1>
-  <h2 class="page-counter">
-    
-    你已經寫了 10 篇文章！
-    
-  </h2>
-  
-  
-  
-  
-  <h2 class="page-title">2018</h1>
+<div id="post" class="page">
   
   <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <header id="post-header" class="post-header">
-      <h1 class="post-title-simple" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2018/07/05/CF-ECR46/" itemprop="url">Educational Codeforces Round 46</a>
-      </h1>
-      
-      <span class="post-date">
-        <time title="post-date" itemprop="dateCreated datePublished" datetime="2018-07-05T17:14:22+08:00">07-05</time>
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="https://lfswang.github.io/2018/09/02/TIOJ-1443/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="LFsWang">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.jpg">
       </span>
-      
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="LFsWang's World">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">1443. 遞迴問題</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-09-02T02:09:57+08:00">2018-09-02 02:09:57</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/解題/" itemprop="url" rel="index"><span itemprop="name">解題</span></a></span><i class="fas fa-angle-right"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/解題/TIOJ/" itemprop="url" rel="index"><span itemprop="name">TIOJ</span></a></span>
+        </span>
+        
+        
+      </div>
     </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>連結：<a href="https://tioj.ck.tp.edu.tw/problems/1443" target="_blank" rel="noopener">https://tioj.ck.tp.edu.tw/problems/1443</a></p>
+<h1 id="題目大意"><a href="#題目大意" class="headerlink" title="題目大意"></a>題目大意</h1><p>$$F(n)=\begin{cases}0&amp;\text{if }n=0\\F([\frac{n}{2}])+n-2[\frac{n}{2}]&amp;\text{otherwise}\end{cases}$$</p>
+<p>給定$n$，問$F(0),F(1)\dots, F(n)$中的最大值為何。</p>
+<h1 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h1><p>如果仔細觀察一下，$F(n)$的結果是$n$寫成二進位時有多少$1$，因此這題要問的答案就很明顯了，就是到數字$n$二進位最多有幾個$1$。答案等於$\lfloor\log_2{(N+1)}\rfloor$。</p>
+<p>這裡做法有點懶惰，直接用python大數算，速度跟自己開大數模板差不多。</p>
+<h1 id="AC-Code"><a href="#AC-Code" class="headerlink" title="AC Code"></a>AC Code</h1><figure class="hljs highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> math<br>print(math.floor(math.log(int(input())+<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)))<br></code></pre></td></tr></table></figure>
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/Math/" rel="tag"><i class="fas fa-tags"></i>Math</a>
+        
+      </div>
+      
+    </footer>
   </article>
+  
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
+      
+      <a href="/2018/09/02/TIOJ-1704/" rel="next" title="1704. 烏龜吃橘子"><i class="fas fa-angle-left"></i><span class="nav-title">1704. 烏龜吃橘子</span></a>
+      
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2018/09/02/TIOJ-2037/" rel="prev" title="2037. 警力配置"><span class="nav-title">2037. 警力配置</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
   
   
 </div>
@@ -233,6 +274,17 @@
 
 
   <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目錄</div>
+      <div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#題目大意"><span class="toc-text">題目大意</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#題解"><span class="toc-text">題解</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AC-Code"><span class="toc-text">AC Code</span></a></li></ol></div>
+    </div>
+    
     
     
     <hr>
