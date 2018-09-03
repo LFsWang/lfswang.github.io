@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lfswang.github.io/"/>
-  <updated>2018-09-01T18:47:42.203Z</updated>
+  <updated>2018-09-03T16:03:42.104Z</updated>
   <id>https://lfswang.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>1037. 水晶球 (Crystal Ball)</title>
+    <link href="https://lfswang.github.io/2018/09/04/TIOJ-1037/"/>
+    <id>https://lfswang.github.io/2018/09/04/TIOJ-1037/</id>
+    <published>2018-09-03T16:01:16.000Z</published>
+    <updated>2018-09-03T16:03:42.104Z</updated>
+    
+    <content type="html"><![CDATA[<p>連結：<a href="https://tioj.ck.tp.edu.tw/problems/1037" target="_blank" rel="noopener">https://tioj.ck.tp.edu.tw/problems/1037</a></p><h1 id="題目大意"><a href="#題目大意" class="headerlink" title="題目大意"></a>題目大意</h1><h1 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h1><p>一個很暴力的$\Ord(KNM)$</p><h1 id="AC-Code"><a href="#AC-Code" class="headerlink" title="AC Code"></a>AC Code</h1><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><br><span class="hljs-keyword">bool</span> dp[<span class="hljs-number">2</span>][<span class="hljs-number">100</span>][<span class="hljs-number">100</span>];<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span><br></span>&#123;<br>    ios::sync_with_stdio(<span class="hljs-literal">false</span>);<br>    <span class="hljs-built_in">cin</span>.tie(<span class="hljs-number">0</span>);<br><br>    <span class="hljs-keyword">int</span> N,M,T,d1,d2;<br>    <span class="hljs-keyword">int</span> sx,sy,ex,ey;<br>    <span class="hljs-built_in">cin</span>&gt;&gt;N&gt;&gt;M&gt;&gt;sx&gt;&gt;sy&gt;&gt;ex&gt;&gt;ey;<br>    <span class="hljs-built_in">cin</span>&gt;&gt;T;<br><br>    dp[<span class="hljs-number">0</span>][sx][sy]=<span class="hljs-number">1</span>;<br><br>    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> add(x,y,n) ( x+y&lt;n?x+y:x+y-n )</span><br>    <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> del(x,y,n) ( x-y&gt;=0?x-y:x-y+n )</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k=<span class="hljs-number">1</span>;k&lt;=T;++k)<br>    &#123;<br>        <span class="hljs-built_in">cin</span>&gt;&gt;d1;<br>        d2=d1%M;<br>        d1%=N;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;N;++i)<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j&lt;M;++j)<br>                dp[k&amp;<span class="hljs-number">1</span>][i][j] = dp[(k<span class="hljs-number">-1</span>)&amp;<span class="hljs-number">1</span>][add(i,d1,N)][j] |<br>                                dp[(k<span class="hljs-number">-1</span>)&amp;<span class="hljs-number">1</span>][del(i,d1,N)][j] | <br>                                dp[(k<span class="hljs-number">-1</span>)&amp;<span class="hljs-number">1</span>][i][add(j,d2,M)] | <br>                                dp[(k<span class="hljs-number">-1</span>)&amp;<span class="hljs-number">1</span>][i][del(j,d2,M)] ;<br>    &#125;<br><br>    <span class="hljs-keyword">if</span>(dp[T&amp;<span class="hljs-number">1</span>][ex][ey])<span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">"YES\n"</span>;<br>    <span class="hljs-keyword">else</span> <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">"NO\n"</span>;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;連結：&lt;a href=&quot;https://tioj.ck.tp.edu.tw/problems/1037&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://tioj.ck.tp.edu.tw/problems/1037&lt;/a&gt;&lt;/p&gt;
+&lt;h1 i
+      
+    
+    </summary>
+    
+      <category term="解題" scheme="https://lfswang.github.io/categories/%E8%A7%A3%E9%A1%8C/"/>
+    
+      <category term="TIOJ" scheme="https://lfswang.github.io/categories/%E8%A7%A3%E9%A1%8C/TIOJ/"/>
+    
+    
+      <category term="DP" scheme="https://lfswang.github.io/tags/DP/"/>
+    
+  </entry>
   
   <entry>
     <title>2037. 警力配置</title>
