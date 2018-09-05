@@ -158,6 +158,138 @@
   
   <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="https://lfswang.github.io/2018/08/30/TIOJ-1210/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="LFsWang">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/images/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="LFsWang's World">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/08/30/TIOJ-1210/" itemprop="url">1210 . 圖論 之 簡單圖測試</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-08-30T00:12:25+08:00">2018-08-30 00:12:25</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/解題/" itemprop="url" rel="index"><span itemprop="name">解題</span></a></span><i class="fas fa-angle-right"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/解題/TIOJ/" itemprop="url" rel="index"><span itemprop="name">TIOJ</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>連結：<a href="https://tioj.ck.tp.edu.tw/problems/1210" target="_blank" rel="noopener">https://tioj.ck.tp.edu.tw/problems/1210</a></p>
+<h1 id="題目大意"><a href="#題目大意" class="headerlink" title="題目大意"></a>題目大意</h1><p>給定一個度序列，問這個度序列是否能構成一張簡單圖？</p>
+<h1 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h1><p>最近恰好讀了圖論的書，若一個度序列可以構造出一個簡單圖，該序列又可稱為圖序列，利用度序列判定是否為簡單圖(無自環、重邊)在這本書<a href="https://www.books.com.tw/products/0010769614" target="_blank" rel="noopener">【演算法觀點的圖論】</a>第一章就有提到了，有兩個定理可以使用：</p>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/Erd%C5%91s%E2%80%93Gallai_theorem" target="_blank" rel="noopener">Erdős–Gallai theorem</a></li>
+</ol>
+<p>若度序列 $d:d_1\geq d_2\geq\dots d_n$ 是圖序列 $\iff$ $\sum d$ 是偶數，且對於 $1\leq k \leq n$都有</p>
+<p>$$\sum_{i=1}^k d_i\leq k(k-1) + \sum_{j=k+1}^n \min\{k,d_j\}$$</p>
+<ol start="2">
+<li><a href="https://en.wikipedia.org/wiki/Havel%E2%80%93Hakimi_algorithm" target="_blank" rel="noopener">Havel–Hakimi algorithm</a></li>
+</ol>
+<p>對於$n\geq 2$，若度序列 $d:d_1\geq d_2\geq\dots d_n$ 是圖序列 $\iff$ </p>
+<p>$$d’:d_2-1, d_3-1, \dots, d_{1+d_1}-1, d_{2+d_1}, d_{2+d_1},\dots, d_n$$</p>
+<p>也是圖序列</p>
+<p>可以發現第二個方法比較好實作，就是把度數最大的點，都接一條邊到度數較多的邊上。由於數字都是整數，可以利用Counting Sort或是一些技巧，就能在$O(V)$的時間判定是否為簡單圖了。</p>
+<h1 id="AC-Code"><a href="#AC-Code" class="headerlink" title="AC Code"></a>AC Code</h1><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><br><span class="hljs-keyword">int</span> c[<span class="hljs-number">10001</span>];<br><span class="hljs-keyword">int</span> tmp[<span class="hljs-number">10001</span>];<br><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">test</span><span class="hljs-params">(<span class="hljs-keyword">int</span> mx)</span><br></span>&#123;<br>    <span class="hljs-built_in">memset</span>(tmp,<span class="hljs-number">0</span>,<span class="hljs-keyword">sizeof</span>(tmp));<br>    <span class="hljs-keyword">while</span>( mx &gt; <span class="hljs-number">0</span> )<br>    &#123;<br>        <span class="hljs-keyword">int</span> req = mx, la = mx;<br>        c[mx]--;<br>        <span class="hljs-keyword">while</span>(req&gt;<span class="hljs-number">0</span>&amp;&amp;la&gt;<span class="hljs-number">0</span>)<br>        &#123;<br>            <span class="hljs-keyword">int</span> del = min(c[la],req);<br>            c[la]-=del;<br>            tmp[la<span class="hljs-number">-1</span>]+=del;<br>            req-=del;<br>            la--;<br>        &#125;<br>        <span class="hljs-keyword">if</span>( req ) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        <span class="hljs-keyword">while</span>(la&lt;=mx)<br>        &#123;<br>            c[la]+=tmp[la];<br>            tmp[la]=<span class="hljs-number">0</span>;<br>            la++;<br>        &#125;<br>        <span class="hljs-keyword">while</span>( !c[mx] ) mx--;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span><br></span>&#123;<br>    ios::sync_with_stdio(<span class="hljs-literal">false</span>);<br>    <span class="hljs-built_in">cin</span>.tie(<span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">int</span> N, tmp;<br>    <br>    <span class="hljs-keyword">while</span>(<span class="hljs-built_in">cin</span>&gt;&gt;N,N)<br>    &#123;<br>        <span class="hljs-keyword">int</span> deg=<span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> mx=<span class="hljs-number">0</span>;<br>        <span class="hljs-built_in">memset</span>(c,<span class="hljs-number">0</span>,<span class="hljs-keyword">sizeof</span>(c));<br>        <span class="hljs-keyword">bool</span> isSimple = <span class="hljs-literal">true</span>;<br>        <br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;N;++i)<br>        &#123;<br>            <span class="hljs-built_in">cin</span>&gt;&gt;tmp;<br>            deg+=tmp;<br>            mx=max(mx,tmp);<br>            c[tmp]++;<br>        &#125;<br>        <br>        <span class="hljs-keyword">if</span>( deg%<span class="hljs-number">2</span>!=<span class="hljs-number">0</span> ) isSimple = <span class="hljs-literal">false</span>;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>( mx &gt;= N ) isSimple = <span class="hljs-literal">false</span>;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>( !test(mx) ) isSimple = <span class="hljs-literal">false</span>;<br>        <br>        <span class="hljs-keyword">if</span>( isSimple )<span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">"Yes\n"</span>;<br>        <span class="hljs-keyword">else</span> <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">"No\n"</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/Graph/" rel="tag"><i class="fas fa-tags"></i>Graph</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="https://lfswang.github.io/2018/08/29/TIOJ-1201/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="LFsWang">
+        <meta itemprop="description" content="">
+        <meta itemprop="image" content="/images/avatar.jpg">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="LFsWang's World">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="/2018/08/29/TIOJ-1201/" itemprop="url">1201. 消逝於黃昏中的風</a>
+      </h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-08-29T16:14:22+08:00">2018-08-29 16:14:22</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/解題/" itemprop="url" rel="index"><span itemprop="name">解題</span></a></span><i class="fas fa-angle-right"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/解題/TIOJ/" itemprop="url" rel="index"><span itemprop="name">TIOJ</span></a></span>
+        </span>
+        
+        
+      </div>
+    </header>
+    <main class="post-main" itemprop="articleBody">
+      
+      <p>連結：<a href="https://tioj.ck.tp.edu.tw/problems/1201" target="_blank" rel="noopener">https://tioj.ck.tp.edu.tw/problems/1201</a></p>
+<h1 id="題目大意"><a href="#題目大意" class="headerlink" title="題目大意"></a>題目大意</h1><p>直線上有$K$個房間，每個房間要不就是社團的人，要不就是怪人(沒社團的人)，任兩怪人之間要相隔$M$個房間，已知有$N$種不同的社團，總共有幾種，問有幾種合法的人員放置方法，取除以$P$的餘數。</p>
+<h1 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h1><p>一開始想到數學解，由枚舉怪人的數量，再把方法數加起來，如果現在有$S$位怪人，顯然要滿足：</p>
+<ul>
+<li>$ K \geq ( S+(S-1)\times M ) $</li>
+<li>$ K \geq S + N $</li>
+</ul>
+<p>可以先讓所有人以最緊密的方法排列進去，第一個是怪人，再下$M$個空房間，然後再一個怪人，以此類推。最後會剩下$K - ( S+(S-1)\times M )$間自由擺放的房間，數量用$L$表示。根據排列組合，$L$個相同物有$S+1$個相異位置可放入，共有$\binom{L+S}{L}$種方法，故總方法數是$\sum\binom{L+S}{L}\times {N}^{K-S}$，因為不能保證$P$是質數，硬幹$C^n_m$複雜度過高，化簡$C$找通項DP化很麻煩，因此該方法不太合適。</p>
+<p>如果是排組問題，可以考慮回到DP的基本想法，因為怪人的數量是任意多的，前面的怪人數量不影響答案，因此狀態可以如無限背包問題一樣，設$dp[i]=$有$i$個房間時，答案為何，考慮最後一個房間的狀況：</p>
+<ol>
+<li><p>是怪人：那樣要扣掉$1+M$個位置給怪人與空位，答案有$N^M\times dp[i-M-1]$那麼多種</p>
+</li>
+<li><p>不是怪人：最後一個格子有$N$種可能，答案有$N\times dp[i-1]$那麼多種</p>
+</li>
+</ol>
+<p>最後的答案即上兩狀況的和，狀態與轉移都超乾淨，複雜度是$O(K)$</p>
+<h1 id="AC-Code"><a href="#AC-Code" class="headerlink" title="AC Code"></a>AC Code</h1><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><span class="hljs-keyword">using</span> ll=<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span>;<br>ll dp[<span class="hljs-number">65536</span>+<span class="hljs-number">1</span>];<br>ll pw[<span class="hljs-number">65536</span>+<span class="hljs-number">1</span>];<br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span><br></span>&#123;<br>    ios::sync_with_stdio(<span class="hljs-literal">false</span>);<br>    <span class="hljs-built_in">cin</span>.tie(<span class="hljs-number">0</span>);<br><br>    ll N,M,K,P,ans;<br>    <br>    <span class="hljs-keyword">while</span>(<span class="hljs-built_in">cin</span>&gt;&gt;N&gt;&gt;M&gt;&gt;K&gt;&gt;P,N)<br>    &#123;<br>        ans = <span class="hljs-number">0</span>;<br>        pw[<span class="hljs-number">0</span>]=dp[<span class="hljs-number">0</span>]=<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">for</span>(ll i=<span class="hljs-number">1</span>;i&lt;=K;++i)<br>        &#123;<br>            pw[i] = pw[i<span class="hljs-number">-1</span>] * N % P;<br>            ll v1 = dp[i<span class="hljs-number">-1</span>] * N % P;<br>            ll L = min(M,i<span class="hljs-number">-1</span>) ;<br>            ll v2 = dp[i<span class="hljs-number">-1</span>-L]*pw[L]%P;<br>            dp[i]=(v1+v2)%P;<br>        &#125;<br>        <span class="hljs-built_in">cout</span>&lt;&lt; dp[K] &lt;&lt; <span class="hljs-string">'\n'</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+      
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/DP/" rel="tag"><i class="fas fa-tags"></i>DP</a>
+        
+      </div>
+      
+    </footer>
+  </article>
+  
+  <article class="article post card" itemscope itemtype="http://schema.org/Article">
+    <div class="post-block">
       <link itemprop="mainEntityOfPage" href="https://lfswang.github.io/2018/07/05/CF-ECR46/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="LFsWang">
@@ -238,7 +370,7 @@
     
     <div class="archives-count">
       <div class="site-count-title">歸檔</div>
-      <div><a href="/archives/">11</a></div>
+      <div><a href="/archives/">13</a></div>
     </div>
     
     
@@ -247,7 +379,7 @@
     
     <div class="categories-count">
       <div class="site-count-title">分類</div>
-      <div><a href="/categories/">2</a></div>
+      <div><a href="/categories/">5</a></div>
     </div>
     
     
@@ -256,7 +388,7 @@
     
     <div class="tags-count">
       <div class="site-count-title">標籤</div>
-      <div><a href="/tags/">12</a></div>
+      <div><a href="/tags/">15</a></div>
     </div>
     
   </div>

@@ -107,7 +107,7 @@
     <script defer type="text/javascript" src="/js/index.js"></script>
     
     <script defer type="text/javascript" src="/js/custom.js"></script>
-    <title>1418. 交大都是雷 | LFsWang's World</title>
+    <title>次小生成樹演算法與證明 | LFsWang's World</title>
   </head>
   <body itemscope itemtype="http://schema.org/WebPage" lang="zh_TW"  data-spy="scroll" data-target=".list-group">
     
@@ -157,7 +157,7 @@
   
   <article class="article post card" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="https://lfswang.github.io/2018/08/31/TIOJ-1418/">
+      <link itemprop="mainEntityOfPage" href="https://lfswang.github.io/2018/09/05/algorithm-second-best-mst/">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
        <meta itemprop="name" content="LFsWang">
        <meta itemprop="description" content="">
@@ -168,11 +168,11 @@
       </span>
     </div>
     <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">1418. 交大都是雷</h1>
+      <h1 class="post-title" itemprop="name headline">次小生成樹演算法與證明</h1>
       <div class="post-meta">
         
         <span class="post-date">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-08-31T18:00:53+08:00">2018-08-31 18:00:53</time></span>
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-09-05T16:22:07+08:00">2018-09-05 16:22:07</time></span>
         </span>
         
         
@@ -181,27 +181,47 @@
         
         <span class="post-categories">
           
-          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/解題/" itemprop="url" rel="index"><span itemprop="name">解題</span></a></span><i class="fas fa-angle-right"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/解題/TIOJ/" itemprop="url" rel="index"><span itemprop="name">TIOJ</span></a></span>
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span><i class="fas fa-angle-right"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/Graph/" itemprop="url" rel="index"><span itemprop="name">Graph</span></a></span>
         </span>
         
         
       </div>
     </header>
     <main class="post-main" itemprop="articleBody">
-      <p>連結：<a href="https://tioj.ck.tp.edu.tw/problems/1418" target="_blank" rel="noopener">https://tioj.ck.tp.edu.tw/problems/1418</a></p>
-<h1 id="題目大意"><a href="#題目大意" class="headerlink" title="題目大意"></a>題目大意</h1><p>有$N$位同學要每三個人湊成一組，每湊成一組可以計算出一個雷度，問要怎麼湊才能使整體雷度最低。</p>
-<h1 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h1><p>這題目名稱感覺挺容易起爭議的，而且這題時限我覺得設計的很差，只有特定的實作才能過最後一筆。</p>
-<p>如果不記最後一筆，可以很簡單的用位元DP處裡掉，因為可以任選三人，DP時因此可以固定先選一人，再任選兩人，讓枚舉的複雜度變低，可以再$O(N^2 2^N)$的時間完成。</p>
-<p>$$dp[S]=\begin{cases}0 &amp; \text{if }S=\emptyset \\ \min\{dp[S-\{i,j,k\}]+v[i][j]+v[j][k]+v[k][i]\}&amp;\text{otherwise}\end{cases}$$</p>
-<p>其中 $i,j,k\in S$</p>
-<p>要過最後一筆，我試過先提出可以用行的數字放在新的陣列中處裡，不過這樣反而讓其他的優化處理變差。然後參考網路上有的實作，DP變成向後更新數字，然後就過了，我覺得很莫名。約有4倍的速度差，我個人認為是這樣處裡能留下的快取比向前的還要來的多，不過一般出題卡這種細節我覺得不太行。</p>
-<h1 id="AC-Code"><a href="#AC-Code" class="headerlink" title="AC Code"></a>AC Code</h1><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><span class="hljs-keyword">int</span> dp[<span class="hljs-number">1</span>&lt;&lt;<span class="hljs-number">21</span>];<br><span class="hljs-keyword">int</span> R[<span class="hljs-number">21</span>][<span class="hljs-number">21</span>];<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span><br></span>&#123;<br>    ios::sync_with_stdio(<span class="hljs-literal">false</span>);<br>    <span class="hljs-built_in">cin</span>.tie(<span class="hljs-number">0</span>);<br><br>    <span class="hljs-keyword">int</span> T,N;<br>    <span class="hljs-built_in">cin</span>&gt;&gt;T;<br><br>    <span class="hljs-keyword">while</span>(T--)<br>    &#123;<br>        <span class="hljs-built_in">cin</span>&gt;&gt;N;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;N;++i)<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j&lt;N;++j)<br>                <span class="hljs-built_in">cin</span>&gt;&gt;R[i][j];<br><br>        <span class="hljs-keyword">int</span> ans = (<span class="hljs-number">1</span>&lt;&lt;N)<span class="hljs-number">-1</span>;<br>        <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> test_bit(a,b) ((a)&amp;(1&lt;&lt;(b)))</span><br>        <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> pw(a) (1&lt;&lt;(a))</span><br>        <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> pr(i,j,k) (pw(i)|pw(j)|pw(k))</span><br>        <span class="hljs-keyword">int</span> i,j,k;<br>        <span class="hljs-built_in">memset</span>(dp, <span class="hljs-number">0x3f</span>, <span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">int</span>)*(<span class="hljs-number">1</span>+ans));<br>        dp[<span class="hljs-number">0</span>]=<span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> v=<span class="hljs-number">0</span>;v&lt;ans;++v)<br>        &#123;<br>            <span class="hljs-keyword">if</span>(dp[v]==<span class="hljs-number">0x3f3f3f3f</span>)<span class="hljs-keyword">continue</span>;<br>            i=__builtin_ctz(~v);<br><br>            <span class="hljs-keyword">for</span>(j=i+<span class="hljs-number">1</span>;j&lt;N;++j)<br>                <span class="hljs-keyword">if</span>( !test_bit(v,j) )<br>                &#123;<br>                    <span class="hljs-keyword">for</span>(k=j+<span class="hljs-number">1</span>;k&lt;N;++k)<br>                        <span class="hljs-keyword">if</span>( !test_bit(v,k) )<br>                            <span class="hljs-keyword">if</span>( dp[v|pr(i,j,k)] &gt; dp[v]+R[i][j]+R[j][k]+R[k][i] )<br>                                dp[v|pr(i,j,k)] = dp[v]+R[i][j]+R[j][k]+R[k][i];<br>                &#125;<br>        &#125;<br>        <span class="hljs-built_in">cout</span>&lt;&lt;dp[ans]&lt;&lt;<span class="hljs-string">'\n'</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+      <h1 id="題目"><a href="#題目" class="headerlink" title="題目"></a>題目</h1><p>考慮一張無向的加權圖 $G=\{V,E,w(s,t)\}$，求 $G$ 的生成樹中，權重非嚴格第二大的生成樹。</p>
+<h1 id="演算法"><a href="#演算法" class="headerlink" title="演算法"></a>演算法</h1><ol>
+<li>先找出 $G$ 的最小生成樹 $G_{M}=\{V_M,E_M,w_M(s,t)\}$</li>
+<li>設 $S=\emptyset$</li>
+<li>對於所有的邊 $e = \{s,t\} \in E-E_M$<ol>
+<li>找到 $G_M$ 中，點 $s$ 到點 $t$ 的路徑上，邊長最長的邊 $e’$</li>
+<li>將 $G_M-e’-e$ 加入至集合 $S$ 中</li>
+</ol>
+</li>
+<li>$S$ 中權重和最小的樹即為所求</li>
+</ol>
+<h1 id="證明"><a href="#證明" class="headerlink" title="證明"></a>證明</h1><p>先考慮一個樸素作法，因為次小生成樹與最小生成樹至少有一條邊不一樣，因此，可以枚舉最小生成樹的邊，將其刪除之後，再求最小生成樹，那次小生成樹必然會是這$V-1$顆樹中的其中一種。</p>
+<p>接下來，可以證明刪掉一條邊的圖，存在一個最小生成樹，與原來的最小生成樹只有一條相異的邊。考慮 Kruskal 演算法，如果把第 $i$ 個加入最小生成樹的邊 $e_i = (s_i, t_i)$ 刪除的話，並不影響加入第 $i$ 條邊之前的決策。接下來，將原來最小生成樹第 $i+1$ 條邊到 $V-1$ 條邊加入這一個新的樹中，那會得到兩個獨立的兩個連通塊 (原來MST砍掉 $s$ 到 $t$ 的邊 )，此時再找到一條最小的邊 $e’$ 將這兩個連通塊接在一起，就形成了一個最小生成樹，且這顆樹只有一條邊與原來的樹不一樣。</p>
+<p>為什麼會是最小生成樹呢？因為 $e’$ 必然是 Kruskal 在 $e_i$ 以後才被考慮的邊，且 $e’$ 不會影響加入這一條邊之後的決策。考慮這兩條邊之間的其他邊 $e_m$ 的決策過程：</p>
+<ol>
+<li>如果 $e_m$ 的兩端點不連接 $s_i$, $t_i$ 的連通塊的話，那這條邊的決策就不被影響 </li>
+<li>如果 $e_m$ 的兩端點連接 $s_i$, $t_i$ 的連通塊的話，那這條邊就是比 $e’$ 更小連接方法，那與 $e’$ 的定義矛盾，因此不存在這種情形。</li>
+</ol>
+<p>因此這個方法會是 Kruskal 的決策過程，故作出來的樹是最小生成樹。因此就可以推出存在一的次小生成樹，是與其最小生成樹相差一條邊的樹。</p>
+<h1 id="時間複雜度"><a href="#時間複雜度" class="headerlink" title="時間複雜度"></a>時間複雜度</h1><ul>
+<li>步驟 1 若使用 Kruskal’s algorithm，複雜度為 $\Ord(E\log E)$</li>
+<li>步驟 3.1 若使用 最近公共祖先 (Lowest Common Ancestor, LCA) 的倍增法，單次可以在 $\Ord(\log V)$ 的時間求出 $e’$</li>
+<li>集合 $S$ 實作上，只需要紀錄加入及刪除哪一條邊即可，都可以在 $\Ord(1)$ 時間完成</li>
+</ul>
+<p>故可以在 $\Ord(E\log E)$ 的時間求出次小生成樹</p>
+
     </main>
     <footer class="post-footer">
       
       <div class="post-tags">
         
-        <a class="post-tag button" href="/tags/位元DP/" rel="tag"><i class="fas fa-tags"></i>位元DP</a>
+        <a class="post-tag button" href="/tags/Graph/" rel="tag"><i class="fas fa-tags"></i>Graph</a>
+        
+        <a class="post-tag button" href="/tags/MST/" rel="tag"><i class="fas fa-tags"></i>MST</a>
         
       </div>
       
@@ -212,12 +232,10 @@
   <nav class="page-nav">
     <div class="page-nav-next page-nav-item">
       
-      <a href="/2018/08/31/TIOJ-1331/" rel="next" title="1331. 索拉數列"><i class="fas fa-angle-left"></i><span class="nav-title">1331. 索拉數列</span></a>
+      <a href="/2018/09/05/TIOJ-1445/" rel="next" title="1445. 機器人組裝大賽"><i class="fas fa-angle-left"></i><span class="nav-title">1445. 機器人組裝大賽</span></a>
       
     </div>
     <div class="page-nav-prev page-nav-item">
-      
-      <a href="/2018/09/02/TIOJ-1704/" rel="prev" title="1704. 烏龜吃橘子"><span class="nav-title">1704. 烏龜吃橘子</span><i class="fas fa-angle-right"></i></a>
       
     </div>
   </nav>
@@ -288,7 +306,7 @@
     <hr>
     <div class="post-toc sidebar-item" id="toc-div">
       <div><i class="fas fa-list-ol"></i>文章目錄</div>
-      <div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#題目大意"><span class="toc-text">題目大意</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#題解"><span class="toc-text">題解</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AC-Code"><span class="toc-text">AC Code</span></a></li></ol></div>
+      <div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#題目"><span class="toc-text">題目</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#演算法"><span class="toc-text">演算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#證明"><span class="toc-text">證明</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#時間複雜度"><span class="toc-text">時間複雜度</span></a></li></ol></div>
     </div>
     
     
