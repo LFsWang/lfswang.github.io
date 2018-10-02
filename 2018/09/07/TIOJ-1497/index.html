@@ -107,7 +107,7 @@
     <script defer type="text/javascript" src="/js/index.js"></script>
     
     <script defer type="text/javascript" src="/js/custom.js"></script>
-    <title>標籤: MST | LFsWang's World</title>
+    <title>1497. 喝醉的宿主 The drunk host | LFsWang's World</title>
   </head>
   <body itemscope itemtype="http://schema.org/WebPage" lang="zh_TW"  data-spy="scroll" data-target=".list-group">
     
@@ -153,34 +153,74 @@
         <div class="main-container">
           <div class="content">
             
-<div id="tag" class="tag page">
-  <h1 class="page-title">MST</h1>
+<div id="post" class="page">
   
   <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <header id="post-header" class="post-header">
-      <h1 class="post-title-simple" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2018/09/05/algorithm-second-best-mst/" itemprop="url">次小生成樹演算法與證明</a>
-      </h1>
-      
-      <span class="post-date">
-        <time title="post-date" itemprop="dateCreated datePublished" datetime="2018-09-05T16:22:07+08:00">09-05</time>
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="https://lfswang.github.io/2018/09/07/TIOJ-1497/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="LFsWang">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.jpg">
       </span>
-      
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="LFsWang's World">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">1497. 喝醉的宿主 The drunk host</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-09-07T02:02:26+08:00">2018-09-07 02:02:26</time></span>
+        </span>
+        
+        
+        
+        <span class="post-meta-divider divider">|</span>
+        
+        <span class="post-categories">
+          
+          <i class="far fa-folder-open"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/解題/" itemprop="url" rel="index"><span itemprop="name">解題</span></a></span><i class="fas fa-angle-right"></i><span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/解題/TIOJ/" itemprop="url" rel="index"><span itemprop="name">TIOJ</span></a></span>
+        </span>
+        
+        
+      </div>
     </header>
+    <main class="post-main" itemprop="articleBody">
+      <p>連結：<a href="https://tioj.ck.tp.edu.tw/problems/1497" target="_blank" rel="noopener">https://tioj.ck.tp.edu.tw/problems/1497</a></p>
+<h1 id="題目大意"><a href="#題目大意" class="headerlink" title="題目大意"></a>題目大意</h1><p>給一個字串，求一個字串的Suffix Array。</p>
+<h1 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h1><h1 id="AC-Code"><a href="#AC-Code" class="headerlink" title="AC Code"></a>AC Code</h1><h2 id="使用-std-Sort"><a href="#使用-std-Sort" class="headerlink" title="使用 std::Sort"></a>使用 std::Sort</h2><p>複雜度為$\Ord(|S|\log^2|S|)$</p>
+<figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><br><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; sa(<span class="hljs-built_in">string</span> str)<br>&#123;<br>    <span class="hljs-keyword">int</span> len = str.size();<br>    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; rank(len), sa(len), tmp(len);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;len;++i)<br>    &#123;<br>        rank[i] = str[i];<br>        sa[i] = i;<br>    &#125;<br>    sort(sa.begin(), sa.end(), [&amp;](<span class="hljs-keyword">int</span> s, <span class="hljs-keyword">int</span> e)&#123;<br>            <span class="hljs-keyword">return</span> rank[s]&lt;rank[e];<br>    &#125;);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=len;i*=<span class="hljs-number">2</span>)<br>    &#123;<br>        <span class="hljs-keyword">auto</span> val = [&amp;] (<span class="hljs-keyword">int</span> s) &#123; <span class="hljs-keyword">return</span> make_pair( rank[s], s+i&lt;len?rank[s+i]:<span class="hljs-number">-1</span> ); &#125;;<br>        sort(sa.begin(), sa.end(), [&amp;](<span class="hljs-keyword">int</span> s, <span class="hljs-keyword">int</span> e)&#123;<br>            <span class="hljs-keyword">return</span> val(s) &lt; val(e);<br>        &#125;);<br>        tmp[sa[<span class="hljs-number">0</span>]]=<span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;len;++j) <br>            <span class="hljs-keyword">if</span>( val(sa[j]) == val(sa[j<span class="hljs-number">-1</span>]) ) tmp[sa[j]] = tmp[sa[j<span class="hljs-number">-1</span>]];<br>            <span class="hljs-keyword">else</span> tmp[sa[j]] = tmp[sa[j<span class="hljs-number">-1</span>]] + <span class="hljs-number">1</span>;<br>        rank.swap(tmp);<br>    &#125;<br>    <span class="hljs-keyword">return</span> sa;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span><br></span>&#123;<br>    ios::sync_with_stdio(<span class="hljs-literal">false</span>);<br>    <span class="hljs-built_in">cin</span>.tie(<span class="hljs-number">0</span>);<br>    <span class="hljs-built_in">string</span> str;<br><br>    getline(<span class="hljs-built_in">cin</span>, str);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i:sa(str)) <span class="hljs-built_in">cout</span>&lt;&lt;i&lt;&lt;<span class="hljs-string">'\n'</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="使用-Radix-Sort"><a href="#使用-Radix-Sort" class="headerlink" title="使用 Radix Sort"></a>使用 Radix Sort</h2><p>複雜度為$\Ord(|S|\log |S|)$</p>
+<figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">//TODO</span><br></code></pre></td></tr></table></figure>
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/String/" rel="tag"><i class="fas fa-tags"></i>String</a>
+        
+        <a class="post-tag button" href="/tags/Suffix-Array/" rel="tag"><i class="fas fa-tags"></i>Suffix Array</a>
+        
+      </div>
+      
+    </footer>
   </article>
   
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <header id="post-header" class="post-header">
-      <h1 class="post-title-simple" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2018/09/05/TIOJ-1445/" itemprop="url">1445. 機器人組裝大賽</a>
-      </h1>
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
       
-      <span class="post-date">
-        <time title="post-date" itemprop="dateCreated datePublished" datetime="2018-09-05T15:31:59+08:00">09-05</time>
-      </span>
+      <a href="/2018/09/05/algorithm-second-best-mst/" rel="next" title="次小生成樹演算法與證明"><i class="fas fa-angle-left"></i><span class="nav-title">次小生成樹演算法與證明</span></a>
       
-    </header>
-  </article>
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+      <a href="/2018/10/02/tfcis-2018-10-02-contest/" rel="prev" title="2018 臺南一中上學期資訊學科能力競賽校內複選題解"><span class="nav-title">2018 臺南一中上學期資訊學科能力競賽校內複選題解</span><i class="fas fa-angle-right"></i></a>
+      
+    </div>
+  </nav>
   
   
 </div>
@@ -240,6 +280,17 @@
 
 
   <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目錄</div>
+      <div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#題目大意"><span class="toc-text">題目大意</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#題解"><span class="toc-text">題解</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#AC-Code"><span class="toc-text">AC Code</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-std-Sort"><span class="toc-text">使用 std::Sort</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-Radix-Sort"><span class="toc-text">使用 Radix Sort</span></a></li></ol></li></ol></div>
+    </div>
+    
     
     
     <hr>

@@ -3,6 +3,46 @@
   
     
     <entry>
+      <title>2018 臺南一中上學期資訊學科能力競賽校內複選題解</title>
+      <link href="/2018/10/02/tfcis-2018-10-02-contest/"/>
+      <url>/2018/10/02/tfcis-2018-10-02-contest/</url>
+      <content type="html"><![CDATA[<h1 id="A-威廉伯爵的農場"><a href="#A-威廉伯爵的農場" class="headerlink" title="A. 威廉伯爵的農場"></a>A. 威廉伯爵的農場</h1><h2 id="題目大意"><a href="#題目大意" class="headerlink" title="題目大意"></a>題目大意</h2><p>給平面座標的三個點，問圍成的三角形面積乘以一個常數 $c$，所有數字都是 int 範圍的整數，$c$ 是 2 的倍數，保證答案可以用 long long 表示</p><h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><p>Keys :</p><ul><li>向量運算</li><li>數值處理</li></ul><p>高中數學有提到，兩向量 $\vec{a}$、$\vec{b}$，圍成的平行四邊形面積是 $|\vec{a}\times \vec{b}|$ ，所以這一題的答案就是 $\frac{1}{2}\times c\times |\vec{a}\times \vec{b}|$，其中 $|\vec{a}\times \vec{b}|= |x_ay_b-y_ax_b|$，此外要注意除以 2 的次序避免溢位的問題。</p><h1 id="B-⼤樓彩繪"><a href="#B-⼤樓彩繪" class="headerlink" title="B. ⼤樓彩繪"></a>B. ⼤樓彩繪</h1><h2 id="題目大意-1"><a href="#題目大意-1" class="headerlink" title="題目大意"></a>題目大意</h2><p>有 $m$ 角柱，角柱的側邊每個面都有 $n\times n$的網格，每個網格有 $c$ 種顏色可以選擇，問有幾種著色方法</p><h2 id="題解-1"><a href="#題解-1" class="headerlink" title="題解"></a>題解</h2><p>Keys :</p><ul><li>排列組合</li><li>Burnside’s lemma</li><li>快速冪</li></ul><p>一個很顯然的事情是一個面有 $c^{n^2}$ 種不同的塗法，這個數字姑且稱為 $p$ ，那如何計算有多少的塗法呢？</p><p>如果知道 Burnside’s lemma 的話就有</p><p>$$\frac{1}{m}\sum_{i=1}^{m} p^{\operatorname{gcd}(m,i)}$$</p><h1 id="C-金坷垃運輸網"><a href="#C-金坷垃運輸網" class="headerlink" title="C. 金坷垃運輸網"></a>C. 金坷垃運輸網</h1><h2 id="題目大意-2"><a href="#題目大意-2" class="headerlink" title="題目大意"></a>題目大意</h2><p>給一張無向圖，問 $a$、$b$ 兩點之間是否存在兩個獨立的路徑，即如果任意地把圖中的一條邊移除， $a$、$b$依舊連通</p><h2 id="題解-2"><a href="#題解-2" class="headerlink" title="題解"></a>題解</h2><p>Keys :</p><ul><li>Tarjan’s algorithm for Bridge</li><li>橋連通分量 BCC</li></ul><h1 id="D-金金金坷垃"><a href="#D-金金金坷垃" class="headerlink" title="D. 金金金坷垃"></a>D. 金金金坷垃</h1><h2 id="題目大意-3"><a href="#題目大意-3" class="headerlink" title="題目大意"></a>題目大意</h2><p>排一個大小是$n$的「金」</p><h2 id="題解-3"><a href="#題解-3" class="headerlink" title="題解"></a>題解</h2><p>Keys :</p><ul><li>IO</li></ul><p>會寫星星樹就會這題了吧？</p><h1 id="E-農業基地的密碼"><a href="#E-農業基地的密碼" class="headerlink" title="E. 農業基地的密碼"></a>E. 農業基地的密碼</h1><h2 id="題目大意-4"><a href="#題目大意-4" class="headerlink" title="題目大意"></a>題目大意</h2><p>請輸出一個字串的 Burrows-Wheeler 變換。</p><h2 id="題解-4"><a href="#題解-4" class="headerlink" title="題解"></a>題解</h2><p>Keys :</p><ul><li>後綴數組 Suffix Array</li></ul><p>$BWT[i]=\begin{cases}T[SA[i]-1], &amp; \text{if }SA[i]&gt;1\\\$&amp;\text{otherwise}\end{cases}$</p><h1 id="F-我們的金坷垃"><a href="#F-我們的金坷垃" class="headerlink" title="F. 我們的金坷垃"></a>F. 我們的金坷垃</h1><h2 id="題目大意-5"><a href="#題目大意-5" class="headerlink" title="題目大意"></a>題目大意</h2><p>請輸出一個字串最短補成回文的字串中，第$k$大的解</p><h2 id="題解-5"><a href="#題解-5" class="headerlink" title="題解"></a>題解</h2><p>Keys :</p><ul><li>DP</li><li>解答回朔</li></ul>]]></content>
+      
+      
+        <tags>
+            
+            <tag> 比賽題解 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>1497. 喝醉的宿主 The drunk host</title>
+      <link href="/2018/09/07/TIOJ-1497/"/>
+      <url>/2018/09/07/TIOJ-1497/</url>
+      <content type="html"><![CDATA[<p>連結：<a href="https://tioj.ck.tp.edu.tw/problems/1497" target="_blank" rel="noopener">https://tioj.ck.tp.edu.tw/problems/1497</a></p><h1 id="題目大意"><a href="#題目大意" class="headerlink" title="題目大意"></a>題目大意</h1><p>給一個字串，求一個字串的Suffix Array。</p><h1 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h1><h1 id="AC-Code"><a href="#AC-Code" class="headerlink" title="AC Code"></a>AC Code</h1><h2 id="使用-std-Sort"><a href="#使用-std-Sort" class="headerlink" title="使用 std::Sort"></a>使用 std::Sort</h2><p>複雜度為$\Ord(|S|\log^2|S|)$</p><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><br><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; sa(<span class="hljs-built_in">string</span> str)<br>&#123;<br>    <span class="hljs-keyword">int</span> len = str.size();<br>    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; rank(len), sa(len), tmp(len);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;len;++i)<br>    &#123;<br>        rank[i] = str[i];<br>        sa[i] = i;<br>    &#125;<br>    sort(sa.begin(), sa.end(), [&amp;](<span class="hljs-keyword">int</span> s, <span class="hljs-keyword">int</span> e)&#123;<br>            <span class="hljs-keyword">return</span> rank[s]&lt;rank[e];<br>    &#125;);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>;i&lt;=len;i*=<span class="hljs-number">2</span>)<br>    &#123;<br>        <span class="hljs-keyword">auto</span> val = [&amp;] (<span class="hljs-keyword">int</span> s) &#123; <span class="hljs-keyword">return</span> make_pair( rank[s], s+i&lt;len?rank[s+i]:<span class="hljs-number">-1</span> ); &#125;;<br>        sort(sa.begin(), sa.end(), [&amp;](<span class="hljs-keyword">int</span> s, <span class="hljs-keyword">int</span> e)&#123;<br>            <span class="hljs-keyword">return</span> val(s) &lt; val(e);<br>        &#125;);<br>        tmp[sa[<span class="hljs-number">0</span>]]=<span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">1</span>;j&lt;len;++j) <br>            <span class="hljs-keyword">if</span>( val(sa[j]) == val(sa[j<span class="hljs-number">-1</span>]) ) tmp[sa[j]] = tmp[sa[j<span class="hljs-number">-1</span>]];<br>            <span class="hljs-keyword">else</span> tmp[sa[j]] = tmp[sa[j<span class="hljs-number">-1</span>]] + <span class="hljs-number">1</span>;<br>        rank.swap(tmp);<br>    &#125;<br>    <span class="hljs-keyword">return</span> sa;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span><br></span>&#123;<br>    ios::sync_with_stdio(<span class="hljs-literal">false</span>);<br>    <span class="hljs-built_in">cin</span>.tie(<span class="hljs-number">0</span>);<br>    <span class="hljs-built_in">string</span> str;<br><br>    getline(<span class="hljs-built_in">cin</span>, str);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i:sa(str)) <span class="hljs-built_in">cout</span>&lt;&lt;i&lt;&lt;<span class="hljs-string">'\n'</span>;<br>&#125;<br></code></pre></td></tr></table></figure><h2 id="使用-Radix-Sort"><a href="#使用-Radix-Sort" class="headerlink" title="使用 Radix Sort"></a>使用 Radix Sort</h2><p>複雜度為$\Ord(|S|\log |S|)$</p><figure class="hljs highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">//TODO</span><br></code></pre></td></tr></table></figure>]]></content>
+      
+      <categories>
+          
+          <category> 解題 </category>
+          
+          <category> TIOJ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> String </tag>
+            
+            <tag> Suffix Array </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>次小生成樹演算法與證明</title>
       <link href="/2018/09/05/algorithm-second-best-mst/"/>
       <url>/2018/09/05/algorithm-second-best-mst/</url>

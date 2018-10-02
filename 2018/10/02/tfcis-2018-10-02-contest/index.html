@@ -107,7 +107,7 @@
     <script defer type="text/javascript" src="/js/index.js"></script>
     
     <script defer type="text/javascript" src="/js/custom.js"></script>
-    <title>標籤: MST | LFsWang's World</title>
+    <title>2018 臺南一中上學期資訊學科能力競賽校內複選題解 | LFsWang's World</title>
   </head>
   <body itemscope itemtype="http://schema.org/WebPage" lang="zh_TW"  data-spy="scroll" data-target=".list-group">
     
@@ -153,34 +153,98 @@
         <div class="main-container">
           <div class="content">
             
-<div id="tag" class="tag page">
-  <h1 class="page-title">MST</h1>
+<div id="post" class="page">
   
   <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <header id="post-header" class="post-header">
-      <h1 class="post-title-simple" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2018/09/05/algorithm-second-best-mst/" itemprop="url">次小生成樹演算法與證明</a>
-      </h1>
-      
-      <span class="post-date">
-        <time title="post-date" itemprop="dateCreated datePublished" datetime="2018-09-05T16:22:07+08:00">09-05</time>
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="https://lfswang.github.io/2018/10/02/tfcis-2018-10-02-contest/">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+       <meta itemprop="name" content="LFsWang">
+       <meta itemprop="description" content="">
+       <meta itemprop="image" content="/images/avatar.jpg">
       </span>
-      
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+       <meta itemprop="name" content="LFsWang's World">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">2018 臺南一中上學期資訊學科能力競賽校內複選題解</h1>
+      <div class="post-meta">
+        
+        <span class="post-date">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="2018-10-02T17:21:02+08:00">2018-10-02 17:21:02</time></span>
+        </span>
+        
+        
+        
+      </div>
     </header>
+    <main class="post-main" itemprop="articleBody">
+      <h1 id="A-威廉伯爵的農場"><a href="#A-威廉伯爵的農場" class="headerlink" title="A. 威廉伯爵的農場"></a>A. 威廉伯爵的農場</h1><h2 id="題目大意"><a href="#題目大意" class="headerlink" title="題目大意"></a>題目大意</h2><p>給平面座標的三個點，問圍成的三角形面積乘以一個常數 $c$，所有數字都是 int 範圍的整數，$c$ 是 2 的倍數，保證答案可以用 long long 表示</p>
+<h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><p>Keys :</p>
+<ul>
+<li>向量運算</li>
+<li>數值處理</li>
+</ul>
+<p>高中數學有提到，兩向量 $\vec{a}$、$\vec{b}$，圍成的平行四邊形面積是 $|\vec{a}\times \vec{b}|$ ，所以這一題的答案就是 $\frac{1}{2}\times c\times |\vec{a}\times \vec{b}|$，其中 $|\vec{a}\times \vec{b}|= |x_ay_b-y_ax_b|$，此外要注意除以 2 的次序避免溢位的問題。</p>
+<h1 id="B-⼤樓彩繪"><a href="#B-⼤樓彩繪" class="headerlink" title="B. ⼤樓彩繪"></a>B. ⼤樓彩繪</h1><h2 id="題目大意-1"><a href="#題目大意-1" class="headerlink" title="題目大意"></a>題目大意</h2><p>有 $m$ 角柱，角柱的側邊每個面都有 $n\times n$的網格，每個網格有 $c$ 種顏色可以選擇，問有幾種著色方法</p>
+<h2 id="題解-1"><a href="#題解-1" class="headerlink" title="題解"></a>題解</h2><p>Keys :</p>
+<ul>
+<li>排列組合</li>
+<li>Burnside’s lemma</li>
+<li>快速冪</li>
+</ul>
+<p>一個很顯然的事情是一個面有 $c^{n^2}$ 種不同的塗法，這個數字姑且稱為 $p$ ，那如何計算有多少的塗法呢？</p>
+<p>如果知道 Burnside’s lemma 的話就有</p>
+<p>$$\frac{1}{m}\sum_{i=1}^{m} p^{\operatorname{gcd}(m,i)}$$</p>
+<h1 id="C-金坷垃運輸網"><a href="#C-金坷垃運輸網" class="headerlink" title="C. 金坷垃運輸網"></a>C. 金坷垃運輸網</h1><h2 id="題目大意-2"><a href="#題目大意-2" class="headerlink" title="題目大意"></a>題目大意</h2><p>給一張無向圖，問 $a$、$b$ 兩點之間是否存在兩個獨立的路徑，即如果任意地把圖中的一條邊移除， $a$、$b$依舊連通</p>
+<h2 id="題解-2"><a href="#題解-2" class="headerlink" title="題解"></a>題解</h2><p>Keys :</p>
+<ul>
+<li>Tarjan’s algorithm for Bridge</li>
+<li>橋連通分量 BCC</li>
+</ul>
+<h1 id="D-金金金坷垃"><a href="#D-金金金坷垃" class="headerlink" title="D. 金金金坷垃"></a>D. 金金金坷垃</h1><h2 id="題目大意-3"><a href="#題目大意-3" class="headerlink" title="題目大意"></a>題目大意</h2><p>排一個大小是$n$的「金」</p>
+<h2 id="題解-3"><a href="#題解-3" class="headerlink" title="題解"></a>題解</h2><p>Keys :</p>
+<ul>
+<li>IO</li>
+</ul>
+<p>會寫星星樹就會這題了吧？</p>
+<h1 id="E-農業基地的密碼"><a href="#E-農業基地的密碼" class="headerlink" title="E. 農業基地的密碼"></a>E. 農業基地的密碼</h1><h2 id="題目大意-4"><a href="#題目大意-4" class="headerlink" title="題目大意"></a>題目大意</h2><p>請輸出一個字串的 Burrows-Wheeler 變換。</p>
+<h2 id="題解-4"><a href="#題解-4" class="headerlink" title="題解"></a>題解</h2><p>Keys :</p>
+<ul>
+<li>後綴數組 Suffix Array</li>
+</ul>
+<p>$BWT[i]=\begin{cases}T[SA[i]-1], &amp; \text{if }SA[i]&gt;1\\\$&amp;\text{otherwise}\end{cases}$</p>
+<h1 id="F-我們的金坷垃"><a href="#F-我們的金坷垃" class="headerlink" title="F. 我們的金坷垃"></a>F. 我們的金坷垃</h1><h2 id="題目大意-5"><a href="#題目大意-5" class="headerlink" title="題目大意"></a>題目大意</h2><p>請輸出一個字串最短補成回文的字串中，第$k$大的解</p>
+<h2 id="題解-5"><a href="#題解-5" class="headerlink" title="題解"></a>題解</h2><p>Keys :</p>
+<ul>
+<li>DP</li>
+<li>解答回朔</li>
+</ul>
+
+    </main>
+    <footer class="post-footer">
+      
+      <div class="post-tags">
+        
+        <a class="post-tag button" href="/tags/比賽題解/" rel="tag"><i class="fas fa-tags"></i>比賽題解</a>
+        
+      </div>
+      
+    </footer>
   </article>
   
-  <article class="article post card" itemscope itemtype="http://schema.org/Article">
-    <header id="post-header" class="post-header">
-      <h1 class="post-title-simple" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="/2018/09/05/TIOJ-1445/" itemprop="url">1445. 機器人組裝大賽</a>
-      </h1>
+  
+  <nav class="page-nav">
+    <div class="page-nav-next page-nav-item">
       
-      <span class="post-date">
-        <time title="post-date" itemprop="dateCreated datePublished" datetime="2018-09-05T15:31:59+08:00">09-05</time>
-      </span>
+      <a href="/2018/09/07/TIOJ-1497/" rel="next" title="1497. 喝醉的宿主 The drunk host"><i class="fas fa-angle-left"></i><span class="nav-title">1497. 喝醉的宿主 The drunk host</span></a>
       
-    </header>
-  </article>
+    </div>
+    <div class="page-nav-prev page-nav-item">
+      
+    </div>
+  </nav>
   
   
 </div>
@@ -240,6 +304,17 @@
 
 
   <div class="sidebar-sticky">
+    
+    
+    
+    
+    
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div">
+      <div><i class="fas fa-list-ol"></i>文章目錄</div>
+      <div class="post-toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#A-威廉伯爵的農場"><span class="toc-text">A. 威廉伯爵的農場</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#題目大意"><span class="toc-text">題目大意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#題解"><span class="toc-text">題解</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#B-⼤樓彩繪"><span class="toc-text">B. ⼤樓彩繪</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#題目大意-1"><span class="toc-text">題目大意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#題解-1"><span class="toc-text">題解</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-金坷垃運輸網"><span class="toc-text">C. 金坷垃運輸網</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#題目大意-2"><span class="toc-text">題目大意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#題解-2"><span class="toc-text">題解</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#D-金金金坷垃"><span class="toc-text">D. 金金金坷垃</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#題目大意-3"><span class="toc-text">題目大意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#題解-3"><span class="toc-text">題解</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#E-農業基地的密碼"><span class="toc-text">E. 農業基地的密碼</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#題目大意-4"><span class="toc-text">題目大意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#題解-4"><span class="toc-text">題解</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#F-我們的金坷垃"><span class="toc-text">F. 我們的金坷垃</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#題目大意-5"><span class="toc-text">題目大意</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#題解-5"><span class="toc-text">題解</span></a></li></ol></li></ol></div>
+    </div>
+    
     
     
     <hr>
